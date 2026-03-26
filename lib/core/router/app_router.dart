@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:dead_porky/features/auth/presentation/screens/login_screen.dart';
 import 'package:dead_porky/features/auth/presentation/screens/register_screen.dart';
 import 'package:dead_porky/features/auth/presentation/screens/onboarding_screen.dart';
+import 'package:dead_porky/features/auth/presentation/providers/auth_provider.dart';
 
 // ==================== Route Names ====================
 abstract class AppRoutes {
@@ -44,14 +45,13 @@ abstract class AppRoutes {
   static const String profile = 'profile';
 }
 
-// ==================== Auth State Provider ====================
-// TODO: Replace with actual Firebase Auth state
-final isAuthenticatedProvider = StateProvider<bool>((ref) => false);
+// ==================== Onboarding State ====================
 final hasCompletedOnboardingProvider = StateProvider<bool>((ref) => false);
 
 // ==================== Router Provider ====================
 final routerProvider = Provider<GoRouter>((ref) {
-  final isAuthenticated = ref.watch(isAuthenticatedProvider);
+  final authState = ref.watch(authNotifierProvider);
+  final isAuthenticated = authState.isAuthenticated;
   final hasCompletedOnboarding = ref.watch(hasCompletedOnboardingProvider);
 
   return GoRouter(
