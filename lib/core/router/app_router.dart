@@ -5,6 +5,7 @@ import 'package:dead_porky/features/auth/presentation/screens/login_screen.dart'
 import 'package:dead_porky/features/auth/presentation/screens/register_screen.dart';
 import 'package:dead_porky/features/auth/presentation/screens/onboarding_screen.dart';
 import 'package:dead_porky/features/auth/presentation/providers/auth_provider.dart';
+import 'package:dead_porky/features/dashboard/presentation/screens/dashboard_screen.dart';
 
 // ==================== Route Names ====================
 abstract class AppRoutes {
@@ -124,8 +125,7 @@ final routerProvider = Provider<GoRouter>((ref) {
               GoRoute(
                 path: '/dashboard',
                 name: AppRoutes.dashboard,
-                builder: (context, state) =>
-                    const _PlaceholderScreen(title: 'Dashboard'),
+                builder: (context, state) => const DashboardScreen(),
               ),
             ],
           ),
