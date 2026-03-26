@@ -8,6 +8,7 @@ import 'package:dead_porky/features/auth/presentation/providers/auth_provider.da
 import 'package:dead_porky/features/dashboard/presentation/screens/dashboard_screen.dart';
 import 'package:dead_porky/features/exercises/presentation/screens/exercise_list_screen.dart';
 import 'package:dead_porky/features/exercises/presentation/screens/active_workout_screen.dart';
+import 'package:dead_porky/features/habits/presentation/screens/habit_tracker_screen.dart';
 
 // ==================== Route Names ====================
 abstract class AppRoutes {
@@ -140,8 +141,7 @@ final routerProvider = Provider<GoRouter>((ref) {
               GoRoute(
                 path: '/habits',
                 name: AppRoutes.habits,
-                builder: (context, state) =>
-                    const _PlaceholderScreen(title: 'Hábitos'),
+                builder: (context, state) => const HabitTrackerScreen(),
               ),
             ],
           ),
