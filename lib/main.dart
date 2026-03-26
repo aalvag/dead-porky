@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:dead_porky/core/theme/app_theme.dart';
 import 'package:dead_porky/core/router/app_router.dart';
+import 'package:dead_porky/core/constants/firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,10 +12,8 @@ Future<void> main() async {
   // Load environment variables
   await dotenv.load(fileName: '.env');
 
-  // TODO: Initialize Firebase
-  // await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // );
+  // Initialize Firebase
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   // TODO: Initialize dependency injection
   // await configureDependencies();
