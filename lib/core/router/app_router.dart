@@ -99,20 +99,6 @@ final routerProvider = Provider<GoRouter>((ref) {
         name: AppRoutes.onboarding,
         builder: (context, state) => const OnboardingScreen(),
       ),
-      GoRoute(
-        path: '/auth/register',
-        name: AppRoutes.register,
-        builder: (context, state) =>
-            const _PlaceholderScreen(title: 'Register'),
-      ),
-
-      // ==================== Onboarding ====================
-      GoRoute(
-        path: '/onboarding',
-        name: AppRoutes.onboarding,
-        builder: (context, state) =>
-            const _PlaceholderScreen(title: 'Onboarding'),
-      ),
 
       // ==================== Main Shell ====================
       StatefulShellRoute.indexedStack(
