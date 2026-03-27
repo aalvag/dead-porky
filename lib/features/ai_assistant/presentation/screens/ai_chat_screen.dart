@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
+import 'package:dead_porky/features/ai_engine/data/datasources/kilo_gateway_real.dart';
 
 // ==================== Entities ====================
 
@@ -86,8 +87,80 @@ class ChatNotifier extends StateNotifier<ChatState> {
     final messages = List<ChatMessage>.from(state.messages)..add(userMsg);
     state = state.copyWith(messages: messages, isLoading: true);
 
-    // Simulate AI response (replace with real Kilo Gateway call)
-    _simulateResponse(content);
+    // Use real Kilo Gateway
+    _streamRealResponse(content);
+  }
+
+  Future<void> _streamRealResponse(String userMessage) async {
+    final gateway = KiloGatewayReal();
+
+    // Build context for AI
+    final systemContext = KiloGatewayReal.buildHealthContext(
+      userName: 'Usuario',
+      fitnessGoal: 'Mantener salud',
+    );
+
+    // Build message history
+    final apiMessages = <Map<String, dynamic>>[
+      {'role': 'system', 'content': systemContext},
+      ...state.messages.map((m) => {'role': m.role, 'content': m.content}),
+      {'role': 'user', 'content': userMessage},
+    ];
+
+    // Add empty assistant message for streaming
+    final assistantMsg = ChatMessage.assistant('');
+    final messagesWithAssistant = List<ChatMessage>.from(state.messages)
+      ..add(assistantMsg);
+    state = state.copyWith(messages: messagesWithAssistant);
+
+    try {
+      String fullContent = '';
+
+      await for (final chunk in gateway.streamChat(messages: apiMessages)) {
+        fullContent += chunk;
+        final updatedMessages = List<ChatMessage>.from(state.messages);
+        updatedMessages[updatedMessages.length - 1] = updatedMessages.last
+            .copyWith(content: fullContent);
+        state = state.copyWith(messages: updatedMessages);
+      }
+    } catch (e) {
+      // Fallback to simulated response if Kilo fails
+      final fallback = _getFallbackResponse(userMessage);
+      final updatedMessages = List<ChatMessage>.from(state.messages);
+      updatedMessages[updatedMessages.length - 1] = updatedMessages.last
+          .copyWith(content: fallback);
+      state = state.copyWith(messages: updatedMessages);
+    }
+
+    state = state.copyWith(isLoading: false);
+  }
+
+  String _getFallbackResponse(String userMessage) {
+    final lower = userMessage.toLowerCase();
+
+    if (lower.contains('hola') || lower.contains('buenos')) {
+      return '¡Hola! Soy tu asistente de salud y bienestar. ¿En qué puedo ayudarte hoy? 💪';
+    } else if (lower.contains('ejercicio') || lower.contains('entrenar')) {
+      return '''Para tu entrenamiento de hoy te recomiendo:
+
+🏋️ **Rutina de empuje (Push)**
+1. Press de banca: 4x8-10
+2. Press inclinado con mancuernas: 3x10-12
+3. Aperturas: 3x12-15
+4. Press militar: 4x8-10
+5. Elevaciones laterales: 3x15-20
+6. Extensión de tríceps: 3x12-15
+
+Descanso entre series: 90-120 segundos''';
+    } else if (lower.contains('comer') || lower.contains('nutrición')) {
+      return '''🥗 **Plan nutricional sugerido**
+- Desayuno: Avena con plátano y proteína (400 kcal)
+- Almuerzo: Pollo con arroz y verduras (600 kcal)
+- Cena: Salmón con batata y ensalada (500 kcal)
+
+Macros: P: 150g | C: 250g | G: 70g''';
+    }
+    return 'Puedo ayudarte con ejercicios, nutrición, sueño y bienestar. ¿Qué te gustaría saber?';
   }
 
   Future<void> _simulateResponse(String userMessage) async {
