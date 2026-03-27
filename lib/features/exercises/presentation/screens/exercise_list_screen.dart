@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:dead_porky/features/exercises/data/exercise_library.dart';
+import 'package:dead_porky/core/router/app_router.dart';
 
 /// Search query provider
 final exerciseSearchProvider = StateProvider<String>((ref) => '');
@@ -40,15 +42,23 @@ class _ExerciseListScreenState extends ConsumerState<ExerciseListScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Biblioteca de Ejercicios'),
+        title: const Text('Ejercicios'),
         actions: [
           IconButton(
-            icon: const Icon(Icons.filter_list),
+            icon: const Icon(Icons.play_arrow),
             onPressed: () {
-              _showFilterSheet(context);
+              context.pushNamed(AppRoutes.activeWorkout);
             },
+            tooltip: 'Iniciar entrenamiento',
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          context.pushNamed(AppRoutes.activeWorkout);
+        },
+        icon: const Icon(Icons.fitness_center),
+        label: const Text('Entrenar'),
       ),
       body: Column(
         children: [
