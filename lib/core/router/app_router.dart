@@ -13,6 +13,8 @@ import 'package:dead_porky/features/nutrition/presentation/screens/nutrition_scr
 import 'package:dead_porky/features/wearable/presentation/screens/device_scanner_screen.dart';
 import 'package:dead_porky/features/health_metrics/presentation/screens/health_metrics_screen.dart';
 import 'package:dead_porky/features/ai_assistant/presentation/screens/ai_chat_screen.dart';
+import 'package:dead_porky/features/reports/presentation/screens/reports_screen.dart';
+import 'package:dead_porky/features/settings/presentation/screens/settings_screen.dart';
 
 // ==================== Route Names ====================
 abstract class AppRoutes {
@@ -130,6 +132,11 @@ final routerProvider = Provider<GoRouter>((ref) {
                     name: AppRoutes.aiChat,
                     builder: (context, state) => const AIChatScreen(),
                   ),
+                  GoRoute(
+                    path: 'reports',
+                    name: AppRoutes.weeklyReport,
+                    builder: (context, state) => const ReportsScreen(),
+                  ),
                 ],
               ),
             ],
@@ -177,8 +184,7 @@ final routerProvider = Provider<GoRouter>((ref) {
               GoRoute(
                 path: '/settings',
                 name: AppRoutes.settings,
-                builder: (context, state) =>
-                    const _PlaceholderScreen(title: 'Ajustes'),
+                builder: (context, state) => const SettingsScreen(),
               ),
             ],
           ),
