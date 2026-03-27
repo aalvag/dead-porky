@@ -124,11 +124,6 @@ final routerProvider = Provider<GoRouter>((ref) {
                     name: AppRoutes.deviceScanner,
                     builder: (context, state) => const DeviceScannerScreen(),
                   ),
-                  GoRoute(
-                    path: 'health-metrics',
-                    name: AppRoutes.health,
-                    builder: (context, state) => const HealthMetricsScreen(),
-                  ),
                 ],
               ),
             ],
