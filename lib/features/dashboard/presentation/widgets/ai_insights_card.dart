@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:dead_porky/core/router/app_router.dart';
 
 /// AI insights card showing personalized recommendations
 class AiInsightsCard extends StatelessWidget {
@@ -102,7 +104,7 @@ class AiInsightsCard extends StatelessWidget {
               width: double.infinity,
               child: FilledButton.icon(
                 onPressed: () {
-                  // TODO: Open AI chat
+                  context.pushNamed(AppRoutes.aiChat);
                 },
                 icon: const Icon(Icons.chat_bubble_outline),
                 label: const Text('Preguntar al asistente'),

@@ -12,6 +12,7 @@ import 'package:dead_porky/features/habits/presentation/screens/habit_tracker_sc
 import 'package:dead_porky/features/nutrition/presentation/screens/nutrition_screen.dart';
 import 'package:dead_porky/features/wearable/presentation/screens/device_scanner_screen.dart';
 import 'package:dead_porky/features/health_metrics/presentation/screens/health_metrics_screen.dart';
+import 'package:dead_porky/features/ai_assistant/presentation/screens/ai_chat_screen.dart';
 
 // ==================== Route Names ====================
 abstract class AppRoutes {
@@ -123,6 +124,11 @@ final routerProvider = Provider<GoRouter>((ref) {
                     path: 'devices',
                     name: AppRoutes.deviceScanner,
                     builder: (context, state) => const DeviceScannerScreen(),
+                  ),
+                  GoRoute(
+                    path: 'ai-chat',
+                    name: AppRoutes.aiChat,
+                    builder: (context, state) => const AIChatScreen(),
                   ),
                 ],
               ),

@@ -102,9 +102,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
           // AI Chat button
           IconButton(
             icon: const Icon(Icons.auto_awesome),
-            onPressed: () {
-              // TODO: Navigate to AI chat
-            },
+            onPressed: () => context.pushNamed(AppRoutes.aiChat),
             tooltip: 'Asistente IA',
           ),
         ],
