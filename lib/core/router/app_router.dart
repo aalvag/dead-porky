@@ -7,7 +7,8 @@ import 'package:dead_porky/features/auth/presentation/screens/onboarding_screen.
 import 'package:dead_porky/features/auth/presentation/providers/auth_provider.dart';
 import 'package:dead_porky/features/dashboard/presentation/screens/dashboard_screen.dart';
 import 'package:dead_porky/features/exercises/presentation/screens/exercise_list_screen.dart';
-import 'package:dead_porky/features/exercises/presentation/screens/active_workout_v2_screen.dart';
+import 'package:dead_porky/features/exercises/presentation/screens/routines_screen.dart';
+import 'package:dead_porky/features/exercises/presentation/screens/workout_screen.dart';
 import 'package:dead_porky/features/habits/presentation/screens/habit_tracker_screen.dart';
 import 'package:dead_porky/features/nutrition/presentation/screens/nutrition_screen.dart';
 import 'package:dead_porky/features/wearable/presentation/screens/device_scanner_screen.dart';
@@ -147,12 +148,12 @@ final routerProvider = Provider<GoRouter>((ref) {
               GoRoute(
                 path: '/exercises',
                 name: AppRoutes.exercises,
-                builder: (context, state) => const ExerciseListScreen(),
+                builder: (context, state) => const RoutinesScreen(),
                 routes: [
                   GoRoute(
                     path: 'active-workout',
                     name: AppRoutes.activeWorkout,
-                    builder: (context, state) => const ActiveWorkoutScreenV2(),
+                    builder: (context, state) => const WorkoutScreen(),
                   ),
                 ],
               ),
