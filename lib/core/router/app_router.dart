@@ -10,6 +10,8 @@ import 'package:dead_porky/features/exercises/presentation/screens/exercise_list
 import 'package:dead_porky/features/exercises/presentation/screens/active_workout_screen.dart';
 import 'package:dead_porky/features/habits/presentation/screens/habit_tracker_screen.dart';
 import 'package:dead_porky/features/nutrition/presentation/screens/nutrition_screen.dart';
+import 'package:dead_porky/features/wearable/presentation/screens/device_scanner_screen.dart';
+import 'package:dead_porky/features/health_metrics/presentation/screens/health_metrics_screen.dart';
 
 // ==================== Route Names ====================
 abstract class AppRoutes {
@@ -116,6 +118,18 @@ final routerProvider = Provider<GoRouter>((ref) {
                 path: '/dashboard',
                 name: AppRoutes.dashboard,
                 builder: (context, state) => const DashboardScreen(),
+                routes: [
+                  GoRoute(
+                    path: 'devices',
+                    name: AppRoutes.deviceScanner,
+                    builder: (context, state) => const DeviceScannerScreen(),
+                  ),
+                  GoRoute(
+                    path: 'health-metrics',
+                    name: AppRoutes.health,
+                    builder: (context, state) => const HealthMetricsScreen(),
+                  ),
+                ],
               ),
             ],
           ),

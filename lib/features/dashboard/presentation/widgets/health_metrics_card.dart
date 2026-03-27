@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:dead_porky/core/router/app_router.dart';
 
 /// Health metrics card showing vital signs
 class HealthMetricsCard extends StatelessWidget {
@@ -27,7 +29,7 @@ class HealthMetricsCard extends StatelessWidget {
                 const Spacer(),
                 TextButton(
                   onPressed: () {
-                    // TODO: Navigate to health metrics
+                    context.pushNamed(AppRoutes.health);
                   },
                   child: const Text('Ver todo'),
                 ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:dead_porky/features/dashboard/presentation/widgets/daily_summary_card.dart';
 import 'package:dead_porky/features/dashboard/presentation/widgets/recent_workouts_card.dart';
 import 'package:dead_porky/features/dashboard/presentation/widgets/habits_today_card.dart';
@@ -8,6 +9,7 @@ import 'package:dead_porky/features/dashboard/presentation/widgets/streak_card.d
 import 'package:dead_porky/features/dashboard/presentation/widgets/ai_insights_card.dart';
 import 'package:dead_porky/features/dashboard/presentation/widgets/calories_ring_card.dart';
 import 'package:dead_porky/features/auth/presentation/providers/auth_provider.dart';
+import 'package:dead_porky/core/router/app_router.dart';
 
 /// Dashboard widget type enum
 enum DashboardWidgetType {
@@ -81,6 +83,12 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
           ],
         ),
         actions: [
+          // Devices button
+          IconButton(
+            icon: const Icon(Icons.bluetooth),
+            onPressed: () => context.pushNamed(AppRoutes.deviceScanner),
+            tooltip: 'Dispositivos',
+          ),
           // Reorder toggle
           IconButton(
             icon: Icon(_isReordering ? Icons.check : Icons.reorder),
