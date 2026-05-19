@@ -1,43 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:dead_porky/core/router/app_router.dart';
+import 'package:dead_porky/features/exercises/data/workout_history_service.dart';
+import 'package:dead_porky/features/exercises/domain/entities/workout_record.dart';
 
 /// Recent workouts card showing last training sessions
-class RecentWorkoutsCard extends StatelessWidget {
+class RecentWorkoutsCard extends ConsumerWidget {
   const RecentWorkoutsCard({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-
-    // Mock data - replace with actual data from Firestore
-    final workouts = [
-      _WorkoutItem(
-        name: 'Push Day',
-        date: 'Hoy',
-        duration: '52 min',
-        exercises: 6,
-        volume: '12,450 kg',
-        icon: Icons.fitness_center,
-        color: Colors.blue,
-      ),
-      _WorkoutItem(
-        name: 'Pull Day',
-        date: 'Ayer',
-        duration: '48 min',
-        exercises: 5,
-        volume: '11,200 kg',
-        icon: Icons.fitness_center,
-        color: Colors.red,
-      ),
-      _WorkoutItem(
-        name: 'Leg Day',
-        date: 'Hace 2 días',
-        duration: '61 min',
-        exercises: 7,
-        volume: '15,800 kg',
-        icon: Icons.fitness_center,
-        color: Colors.green,
-      ),
-    ];
+    final historyService = ref.watch(workoutHistoryServiceProvider);
+    final workouts = historyService.getThisWeekWorkouts();
+    final latestWorkouts = workouts.toList()
+      ..sort((a, b) => b.date.compareTo(a.date));
 
     return Card(
       child: Padding(
@@ -49,23 +27,66 @@ class RecentWorkoutsCard extends StatelessWidget {
               children: [
                 Icon(Icons.fitness_center, color: theme.colorScheme.primary),
                 const SizedBox(width: 8),
-                Text(
-                  'Entrenamientos recientes',
-                  style: theme.textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
+                Expanded(
+                  child: Text(
+                    'Entrenamientos recientes',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-                const Spacer(),
                 TextButton(
                   onPressed: () {
-                    // TODO: Navigate to workout history
+                    context.pushNamed(AppRoutes.exercises);
                   },
-                  child: const Text('Ver todos'),
+                  child: const Text('Ver todo'),
                 ),
               ],
             ),
             const SizedBox(height: 12),
-            ...workouts.map((workout) => _WorkoutTile(workout: workout)),
+            if (latestWorkouts.isEmpty) ...[
+              Text(
+                'Registra un entrenamiento para que aparezca en tu historial reciente.',
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+              ),
+              const SizedBox(height: 16),
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton.icon(
+                  onPressed: () {
+                    context.pushNamed(AppRoutes.exercises);
+                  },
+                  icon: const Icon(Icons.fitness_center, size: 18),
+                  label: const Text('Ir a entrenamientos'),
+                ),
+              ),
+            ] else ...[
+              Text(
+                'Esta semana: ${workouts.length} entrenamientos · ${historyService.getWeeklyVolume().toStringAsFixed(0)} kg de volumen',
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+              ),
+              const SizedBox(height: 12),
+              ...latestWorkouts
+                  .take(3)
+                  .map((workout) => _WorkoutCard(workout: workout)),
+              const SizedBox(height: 12),
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton.icon(
+                  onPressed: () {
+                    context.pushNamed(AppRoutes.exercises);
+                  },
+                  icon: const Icon(Icons.fitness_center, size: 18),
+                  label: const Text('Ver entrenamientos'),
+                ),
+              ),
+            ],
           ],
         ),
       ),
@@ -73,68 +94,43 @@ class RecentWorkoutsCard extends StatelessWidget {
   }
 }
 
-class _WorkoutItem {
-  final String name;
-  final String date;
-  final String duration;
-  final int exercises;
-  final String volume;
-  final IconData icon;
-  final Color color;
+class _WorkoutCard extends StatelessWidget {
+  final WorkoutRecord workout;
 
-  const _WorkoutItem({
-    required this.name,
-    required this.date,
-    required this.duration,
-    required this.exercises,
-    required this.volume,
-    required this.icon,
-    required this.color,
-  });
-}
-
-class _WorkoutTile extends StatelessWidget {
-  final _WorkoutItem workout;
-
-  const _WorkoutTile({required this.workout});
+  const _WorkoutCard({required this.workout});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
+      padding: const EdgeInsets.only(bottom: 12),
       child: ListTile(
-        leading: CircleAvatar(
-          backgroundColor: workout.color.withValues(alpha: 0.15),
-          child: Icon(workout.icon, color: workout.color, size: 20),
-        ),
+        contentPadding: EdgeInsets.zero,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        tileColor: theme.colorScheme.surfaceContainerHighest,
         title: Text(
-          workout.name,
-          style: const TextStyle(fontWeight: FontWeight.w600),
+          workout.routineName,
+          style: theme.textTheme.bodyLarge?.copyWith(
+            fontWeight: FontWeight.w600,
+          ),
         ),
         subtitle: Text(
-          '${workout.date} · ${workout.exercises} ejercicios · ${workout.volume}',
+          '${_formatDate(workout.date)} · ${_formatMinutes(workout.durationSeconds)} · ${workout.totalVolume.toStringAsFixed(0)} kg',
           style: theme.textTheme.bodySmall,
         ),
-        trailing: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-          decoration: BoxDecoration(
-            color: theme.colorScheme.surfaceContainerHighest,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Text(
-            workout.duration,
-            style: theme.textTheme.bodySmall?.copyWith(
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        onTap: () {
-          // TODO: Navigate to workout detail
-        },
+        trailing: const Icon(Icons.chevron_right),
+        onTap: () {},
       ),
     );
+  }
+
+  String _formatDate(DateTime date) {
+    return '${date.day}/${date.month}';
+  }
+
+  String _formatMinutes(int seconds) {
+    final minutes = seconds ~/ 60;
+    return '$minutes min';
   }
 }

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
-import 'package:dead_porky/features/exercises/data/exercise_library.dart';
-import 'package:dead_porky/features/ai_engine/data/datasources/kilo_gateway_real.dart';
 
 // ==================== Entities ====================
 
@@ -163,35 +160,11 @@ class PresetRoutines {
           category: 'chest',
           restSeconds: 120,
           sets: [
-            RoutineSet(
-              setNumber: 1,
-              targetReps: 12,
-              type: SetType.warmup,
-            ),
-            RoutineSet(
-              setNumber: 2,
-              targetReps: 10,
-              minReps: 8,
-              maxReps: 12,
-            ),
-            RoutineSet(
-              setNumber: 3,
-              targetReps: 10,
-              minReps: 8,
-              maxReps: 12,
-            ),
-            RoutineSet(
-              setNumber: 4,
-              targetReps: 8,
-              minReps: 6,
-              maxReps: 10,
-            ),
-            RoutineSet(
-              setNumber: 5,
-              targetReps: 8,
-              minReps: 6,
-              maxReps: 10,
-            ),
+            RoutineSet(setNumber: 1, targetReps: 12, type: SetType.warmup),
+            RoutineSet(setNumber: 2, targetReps: 10, minReps: 8, maxReps: 12),
+            RoutineSet(setNumber: 3, targetReps: 10, minReps: 8, maxReps: 12),
+            RoutineSet(setNumber: 4, targetReps: 8, minReps: 6, maxReps: 10),
+            RoutineSet(setNumber: 5, targetReps: 8, minReps: 6, maxReps: 10),
           ],
         ),
         RoutineExercise(
@@ -200,24 +173,9 @@ class PresetRoutines {
           category: 'chest',
           restSeconds: 90,
           sets: [
-            RoutineSet(
-              setNumber: 1,
-              targetReps: 10,
-              minReps: 8,
-              maxReps: 12,
-            ),
-            RoutineSet(
-              setNumber: 2,
-              targetReps: 10,
-              minReps: 8,
-              maxReps: 12,
-            ),
-            RoutineSet(
-              setNumber: 3,
-              targetReps: 10,
-              minReps: 8,
-              maxReps: 12,
-            ),
+            RoutineSet(setNumber: 1, targetReps: 10, minReps: 8, maxReps: 12),
+            RoutineSet(setNumber: 2, targetReps: 10, minReps: 8, maxReps: 12),
+            RoutineSet(setNumber: 3, targetReps: 10, minReps: 8, maxReps: 12),
           ],
         ),
         RoutineExercise(
@@ -226,24 +184,9 @@ class PresetRoutines {
           category: 'chest',
           restSeconds: 60,
           sets: [
-            RoutineSet(
-              setNumber: 1,
-              targetReps: 12,
-              minReps: 10,
-              maxReps: 15,
-            ),
-            RoutineSet(
-              setNumber: 2,
-              targetReps: 12,
-              minReps: 10,
-              maxReps: 15,
-            ),
-            RoutineSet(
-              setNumber: 3,
-              targetReps: 12,
-              minReps: 10,
-              maxReps: 15,
-            ),
+            RoutineSet(setNumber: 1, targetReps: 12, minReps: 10, maxReps: 15),
+            RoutineSet(setNumber: 2, targetReps: 12, minReps: 10, maxReps: 15),
+            RoutineSet(setNumber: 3, targetReps: 12, minReps: 10, maxReps: 15),
           ],
         ),
         RoutineExercise(
@@ -252,24 +195,9 @@ class PresetRoutines {
           category: 'shoulders',
           restSeconds: 90,
           sets: [
-            RoutineSet(
-              setNumber: 1,
-              targetReps: 10,
-              minReps: 8,
-              maxReps: 12,
-            ),
-            RoutineSet(
-              setNumber: 2,
-              targetReps: 10,
-              minReps: 8,
-              maxReps: 12,
-            ),
-            RoutineSet(
-              setNumber: 3,
-              targetReps: 10,
-              minReps: 8,
-              maxReps: 12,
-            ),
+            RoutineSet(setNumber: 1, targetReps: 10, minReps: 8, maxReps: 12),
+            RoutineSet(setNumber: 2, targetReps: 10, minReps: 8, maxReps: 12),
+            RoutineSet(setNumber: 3, targetReps: 10, minReps: 8, maxReps: 12),
           ],
         ),
         RoutineExercise(
@@ -278,24 +206,9 @@ class PresetRoutines {
           category: 'shoulders',
           restSeconds: 60,
           sets: [
-            RoutineSet(
-              setNumber: 1,
-              targetReps: 15,
-              minReps: 12,
-              maxReps: 20,
-            ),
-            RoutineSet(
-              setNumber: 2,
-              targetReps: 15,
-              minReps: 12,
-              maxReps: 20,
-            ),
-            RoutineSet(
-              setNumber: 3,
-              targetReps: 15,
-              minReps: 12,
-              maxReps: 20,
-            ),
+            RoutineSet(setNumber: 1, targetReps: 15, minReps: 12, maxReps: 20),
+            RoutineSet(setNumber: 2, targetReps: 15, minReps: 12, maxReps: 20),
+            RoutineSet(setNumber: 3, targetReps: 15, minReps: 12, maxReps: 20),
           ],
         ),
         RoutineExercise(
@@ -304,24 +217,9 @@ class PresetRoutines {
           category: 'arms',
           restSeconds: 60,
           sets: [
-            RoutineSet(
-              setNumber: 1,
-              targetReps: 12,
-              minReps: 10,
-              maxReps: 15,
-            ),
-            RoutineSet(
-              setNumber: 2,
-              targetReps: 12,
-              minReps: 10,
-              maxReps: 15,
-            ),
-            RoutineSet(
-              setNumber: 3,
-              targetReps: 12,
-              minReps: 10,
-              maxReps: 15,
-            ),
+            RoutineSet(setNumber: 1, targetReps: 12, minReps: 10, maxReps: 15),
+            RoutineSet(setNumber: 2, targetReps: 12, minReps: 10, maxReps: 15),
+            RoutineSet(setNumber: 3, targetReps: 12, minReps: 10, maxReps: 15),
           ],
         ),
       ],
@@ -339,30 +237,10 @@ class PresetRoutines {
           category: 'back',
           restSeconds: 120,
           sets: [
-            RoutineSet(
-              setNumber: 1,
-              targetReps: 8,
-              minReps: 6,
-              maxReps: 10,
-            ),
-            RoutineSet(
-              setNumber: 2,
-              targetReps: 8,
-              minReps: 6,
-              maxReps: 10,
-            ),
-            RoutineSet(
-              setNumber: 3,
-              targetReps: 8,
-              minReps: 6,
-              maxReps: 10,
-            ),
-            RoutineSet(
-              setNumber: 4,
-              targetReps: 8,
-              minReps: 6,
-              maxReps: 10,
-            ),
+            RoutineSet(setNumber: 1, targetReps: 8, minReps: 6, maxReps: 10),
+            RoutineSet(setNumber: 2, targetReps: 8, minReps: 6, maxReps: 10),
+            RoutineSet(setNumber: 3, targetReps: 8, minReps: 6, maxReps: 10),
+            RoutineSet(setNumber: 4, targetReps: 8, minReps: 6, maxReps: 10),
           ],
         ),
         RoutineExercise(
@@ -371,24 +249,9 @@ class PresetRoutines {
           category: 'back',
           restSeconds: 90,
           sets: [
-            RoutineSet(
-              setNumber: 1,
-              targetReps: 10,
-              minReps: 8,
-              maxReps: 12,
-            ),
-            RoutineSet(
-              setNumber: 2,
-              targetReps: 10,
-              minReps: 8,
-              maxReps: 12,
-            ),
-            RoutineSet(
-              setNumber: 3,
-              targetReps: 10,
-              minReps: 8,
-              maxReps: 12,
-            ),
+            RoutineSet(setNumber: 1, targetReps: 10, minReps: 8, maxReps: 12),
+            RoutineSet(setNumber: 2, targetReps: 10, minReps: 8, maxReps: 12),
+            RoutineSet(setNumber: 3, targetReps: 10, minReps: 8, maxReps: 12),
           ],
         ),
         RoutineExercise(
@@ -397,24 +260,9 @@ class PresetRoutines {
           category: 'back',
           restSeconds: 90,
           sets: [
-            RoutineSet(
-              setNumber: 1,
-              targetReps: 10,
-              minReps: 8,
-              maxReps: 12,
-            ),
-            RoutineSet(
-              setNumber: 2,
-              targetReps: 10,
-              minReps: 8,
-              maxReps: 12,
-            ),
-            RoutineSet(
-              setNumber: 3,
-              targetReps: 10,
-              minReps: 8,
-              maxReps: 12,
-            ),
+            RoutineSet(setNumber: 1, targetReps: 10, minReps: 8, maxReps: 12),
+            RoutineSet(setNumber: 2, targetReps: 10, minReps: 8, maxReps: 12),
+            RoutineSet(setNumber: 3, targetReps: 10, minReps: 8, maxReps: 12),
           ],
         ),
         RoutineExercise(
@@ -423,24 +271,9 @@ class PresetRoutines {
           category: 'back',
           restSeconds: 60,
           sets: [
-            RoutineSet(
-              setNumber: 1,
-              targetReps: 15,
-              minReps: 12,
-              maxReps: 20,
-            ),
-            RoutineSet(
-              setNumber: 2,
-              targetReps: 15,
-              minReps: 12,
-              maxReps: 20,
-            ),
-            RoutineSet(
-              setNumber: 3,
-              targetReps: 15,
-              minReps: 12,
-              maxReps: 20,
-            ),
+            RoutineSet(setNumber: 1, targetReps: 15, minReps: 12, maxReps: 20),
+            RoutineSet(setNumber: 2, targetReps: 15, minReps: 12, maxReps: 20),
+            RoutineSet(setNumber: 3, targetReps: 15, minReps: 12, maxReps: 20),
           ],
         ),
         RoutineExercise(
@@ -449,24 +282,9 @@ class PresetRoutines {
           category: 'arms',
           restSeconds: 60,
           sets: [
-            RoutineSet(
-              setNumber: 1,
-              targetReps: 10,
-              minReps: 8,
-              maxReps: 12,
-            ),
-            RoutineSet(
-              setNumber: 2,
-              targetReps: 10,
-              minReps: 8,
-              maxReps: 12,
-            ),
-            RoutineSet(
-              setNumber: 3,
-              targetReps: 10,
-              minReps: 8,
-              maxReps: 12,
-            ),
+            RoutineSet(setNumber: 1, targetReps: 10, minReps: 8, maxReps: 12),
+            RoutineSet(setNumber: 2, targetReps: 10, minReps: 8, maxReps: 12),
+            RoutineSet(setNumber: 3, targetReps: 10, minReps: 8, maxReps: 12),
           ],
         ),
         RoutineExercise(
@@ -475,18 +293,8 @@ class PresetRoutines {
           category: 'arms',
           restSeconds: 60,
           sets: [
-            RoutineSet(
-              setNumber: 1,
-              targetReps: 12,
-              minReps: 10,
-              maxReps: 15,
-            ),
-            RoutineSet(
-              setNumber: 2,
-              targetReps: 12,
-              minReps: 10,
-              maxReps: 15,
-            ),
+            RoutineSet(setNumber: 1, targetReps: 12, minReps: 10, maxReps: 15),
+            RoutineSet(setNumber: 2, targetReps: 12, minReps: 10, maxReps: 15),
           ],
         ),
       ],
@@ -504,35 +312,11 @@ class PresetRoutines {
           category: 'legs',
           restSeconds: 180,
           sets: [
-            RoutineSet(
-              setNumber: 1,
-              targetReps: 10,
-              type: SetType.warmup,
-            ),
-            RoutineSet(
-              setNumber: 2,
-              targetReps: 8,
-              minReps: 6,
-              maxReps: 10,
-            ),
-            RoutineSet(
-              setNumber: 3,
-              targetReps: 8,
-              minReps: 6,
-              maxReps: 10,
-            ),
-            RoutineSet(
-              setNumber: 4,
-              targetReps: 8,
-              minReps: 6,
-              maxReps: 10,
-            ),
-            RoutineSet(
-              setNumber: 5,
-              targetReps: 8,
-              minReps: 6,
-              maxReps: 10,
-            ),
+            RoutineSet(setNumber: 1, targetReps: 10, type: SetType.warmup),
+            RoutineSet(setNumber: 2, targetReps: 8, minReps: 6, maxReps: 10),
+            RoutineSet(setNumber: 3, targetReps: 8, minReps: 6, maxReps: 10),
+            RoutineSet(setNumber: 4, targetReps: 8, minReps: 6, maxReps: 10),
+            RoutineSet(setNumber: 5, targetReps: 8, minReps: 6, maxReps: 10),
           ],
         ),
         RoutineExercise(
@@ -541,24 +325,9 @@ class PresetRoutines {
           category: 'legs',
           restSeconds: 120,
           sets: [
-            RoutineSet(
-              setNumber: 1,
-              targetReps: 10,
-              minReps: 8,
-              maxReps: 12,
-            ),
-            RoutineSet(
-              setNumber: 2,
-              targetReps: 10,
-              minReps: 8,
-              maxReps: 12,
-            ),
-            RoutineSet(
-              setNumber: 3,
-              targetReps: 10,
-              minReps: 8,
-              maxReps: 12,
-            ),
+            RoutineSet(setNumber: 1, targetReps: 10, minReps: 8, maxReps: 12),
+            RoutineSet(setNumber: 2, targetReps: 10, minReps: 8, maxReps: 12),
+            RoutineSet(setNumber: 3, targetReps: 10, minReps: 8, maxReps: 12),
           ],
         ),
         RoutineExercise(
@@ -567,24 +336,9 @@ class PresetRoutines {
           category: 'legs',
           restSeconds: 90,
           sets: [
-            RoutineSet(
-              setNumber: 1,
-              targetReps: 12,
-              minReps: 10,
-              maxReps: 15,
-            ),
-            RoutineSet(
-              setNumber: 2,
-              targetReps: 12,
-              minReps: 10,
-              maxReps: 15,
-            ),
-            RoutineSet(
-              setNumber: 3,
-              targetReps: 12,
-              minReps: 10,
-              maxReps: 15,
-            ),
+            RoutineSet(setNumber: 1, targetReps: 12, minReps: 10, maxReps: 15),
+            RoutineSet(setNumber: 2, targetReps: 12, minReps: 10, maxReps: 15),
+            RoutineSet(setNumber: 3, targetReps: 12, minReps: 10, maxReps: 15),
           ],
         ),
         RoutineExercise(
@@ -593,24 +347,9 @@ class PresetRoutines {
           category: 'legs',
           restSeconds: 60,
           sets: [
-            RoutineSet(
-              setNumber: 1,
-              targetReps: 12,
-              minReps: 10,
-              maxReps: 15,
-            ),
-            RoutineSet(
-              setNumber: 2,
-              targetReps: 12,
-              minReps: 10,
-              maxReps: 15,
-            ),
-            RoutineSet(
-              setNumber: 3,
-              targetReps: 12,
-              minReps: 10,
-              maxReps: 15,
-            ),
+            RoutineSet(setNumber: 1, targetReps: 12, minReps: 10, maxReps: 15),
+            RoutineSet(setNumber: 2, targetReps: 12, minReps: 10, maxReps: 15),
+            RoutineSet(setNumber: 3, targetReps: 12, minReps: 10, maxReps: 15),
           ],
         ),
         RoutineExercise(
@@ -619,30 +358,10 @@ class PresetRoutines {
           category: 'legs',
           restSeconds: 60,
           sets: [
-            RoutineSet(
-              setNumber: 1,
-              targetReps: 20,
-              minReps: 15,
-              maxReps: 25,
-            ),
-            RoutineSet(
-              setNumber: 2,
-              targetReps: 20,
-              minReps: 15,
-              maxReps: 25,
-            ),
-            RoutineSet(
-              setNumber: 3,
-              targetReps: 20,
-              minReps: 15,
-              maxReps: 25,
-            ),
-            RoutineSet(
-              setNumber: 4,
-              targetReps: 20,
-              minReps: 15,
-              maxReps: 25,
-            ),
+            RoutineSet(setNumber: 1, targetReps: 20, minReps: 15, maxReps: 25),
+            RoutineSet(setNumber: 2, targetReps: 20, minReps: 15, maxReps: 25),
+            RoutineSet(setNumber: 3, targetReps: 20, minReps: 15, maxReps: 25),
+            RoutineSet(setNumber: 4, targetReps: 20, minReps: 15, maxReps: 25),
           ],
         ),
       ],
@@ -660,24 +379,9 @@ class PresetRoutines {
           category: 'legs',
           restSeconds: 120,
           sets: [
-            RoutineSet(
-              setNumber: 1,
-              targetReps: 10,
-              minReps: 8,
-              maxReps: 12,
-            ),
-            RoutineSet(
-              setNumber: 2,
-              targetReps: 10,
-              minReps: 8,
-              maxReps: 12,
-            ),
-            RoutineSet(
-              setNumber: 3,
-              targetReps: 10,
-              minReps: 8,
-              maxReps: 12,
-            ),
+            RoutineSet(setNumber: 1, targetReps: 10, minReps: 8, maxReps: 12),
+            RoutineSet(setNumber: 2, targetReps: 10, minReps: 8, maxReps: 12),
+            RoutineSet(setNumber: 3, targetReps: 10, minReps: 8, maxReps: 12),
           ],
         ),
         RoutineExercise(
@@ -686,24 +390,9 @@ class PresetRoutines {
           category: 'chest',
           restSeconds: 120,
           sets: [
-            RoutineSet(
-              setNumber: 1,
-              targetReps: 10,
-              minReps: 8,
-              maxReps: 12,
-            ),
-            RoutineSet(
-              setNumber: 2,
-              targetReps: 10,
-              minReps: 8,
-              maxReps: 12,
-            ),
-            RoutineSet(
-              setNumber: 3,
-              targetReps: 10,
-              minReps: 8,
-              maxReps: 12,
-            ),
+            RoutineSet(setNumber: 1, targetReps: 10, minReps: 8, maxReps: 12),
+            RoutineSet(setNumber: 2, targetReps: 10, minReps: 8, maxReps: 12),
+            RoutineSet(setNumber: 3, targetReps: 10, minReps: 8, maxReps: 12),
           ],
         ),
         RoutineExercise(
@@ -712,24 +401,9 @@ class PresetRoutines {
           category: 'back',
           restSeconds: 120,
           sets: [
-            RoutineSet(
-              setNumber: 1,
-              targetReps: 10,
-              minReps: 8,
-              maxReps: 12,
-            ),
-            RoutineSet(
-              setNumber: 2,
-              targetReps: 10,
-              minReps: 8,
-              maxReps: 12,
-            ),
-            RoutineSet(
-              setNumber: 3,
-              targetReps: 10,
-              minReps: 8,
-              maxReps: 12,
-            ),
+            RoutineSet(setNumber: 1, targetReps: 10, minReps: 8, maxReps: 12),
+            RoutineSet(setNumber: 2, targetReps: 10, minReps: 8, maxReps: 12),
+            RoutineSet(setNumber: 3, targetReps: 10, minReps: 8, maxReps: 12),
           ],
         ),
         RoutineExercise(
@@ -738,18 +412,8 @@ class PresetRoutines {
           category: 'shoulders',
           restSeconds: 90,
           sets: [
-            RoutineSet(
-              setNumber: 1,
-              targetReps: 10,
-              minReps: 8,
-              maxReps: 12,
-            ),
-            RoutineSet(
-              setNumber: 2,
-              targetReps: 10,
-              minReps: 8,
-              maxReps: 12,
-            ),
+            RoutineSet(setNumber: 1, targetReps: 10, minReps: 8, maxReps: 12),
+            RoutineSet(setNumber: 2, targetReps: 10, minReps: 8, maxReps: 12),
           ],
         ),
       ],

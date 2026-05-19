@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
 import 'package:go_router/go_router.dart';
 import 'package:dead_porky/features/auth/presentation/screens/login_screen.dart';
 import 'package:dead_porky/features/auth/presentation/screens/register_screen.dart';
 import 'package:dead_porky/features/auth/presentation/screens/onboarding_screen.dart';
 import 'package:dead_porky/features/auth/presentation/providers/auth_provider.dart';
 import 'package:dead_porky/features/dashboard/presentation/screens/dashboard_screen.dart';
-import 'package:dead_porky/features/exercises/presentation/screens/exercise_list_screen.dart';
+import 'package:dead_porky/features/daily_checkin/presentation/screens/daily_checkin_screen.dart';
 import 'package:dead_porky/features/exercises/presentation/screens/routines_screen.dart';
 import 'package:dead_porky/features/exercises/presentation/screens/workout_screen.dart';
+import 'package:dead_porky/features/exercises/domain/entities/routine.dart';
 import 'package:dead_porky/features/habits/presentation/screens/habit_tracker_screen.dart';
 import 'package:dead_porky/features/nutrition/presentation/screens/nutrition_screen.dart';
 import 'package:dead_porky/features/wearable/presentation/screens/device_scanner_screen.dart';
-import 'package:dead_porky/features/health_metrics/presentation/screens/health_metrics_screen.dart';
 import 'package:dead_porky/features/ai_assistant/presentation/screens/ai_chat_screen.dart';
 import 'package:dead_porky/features/reports/presentation/screens/reports_screen.dart';
 import 'package:dead_porky/features/settings/presentation/screens/settings_screen.dart';
@@ -36,6 +37,7 @@ abstract class AppRoutes {
   static const String activeWorkout = 'active-workout';
   static const String workoutHistory = 'workout-history';
   static const String workoutTemplates = 'workout-templates';
+  static const String dailyCheckin = 'daily-checkin';
 
   // Habits
   static const String habitDetail = 'habit-detail';
@@ -63,23 +65,28 @@ final hasCompletedOnboardingProvider = StateProvider<bool>((ref) => false);
 final routerProvider = Provider<GoRouter>((ref) {
   final authState = ref.watch(authNotifierProvider);
   final isAuthenticated = authState.isAuthenticated;
-  final hasCompletedOnboarding = ref.watch(hasCompletedOnboardingProvider);
 
   return GoRouter(
     initialLocation: '/dashboard',
     debugLogDiagnostics: true,
     redirect: (context, state) {
-      final isAuthRoute = state.matchedLocation.startsWith('/auth');
-      final isOnboardingRoute = state.matchedLocation == '/onboarding';
+      final isAuthRoute = state.uri.path.startsWith('/auth');
+      final isOnboardingRoute = state.uri.path == '/onboarding';
+      final hasCompleteProfile = authState.user?.hasCompleteProfile ?? false;
 
       // Not authenticated and not on auth route -> redirect to login
       if (!isAuthenticated && !isAuthRoute) {
         return '/auth/login';
       }
 
-      // Authenticated but hasn't completed onboarding
-      if (isAuthenticated && !hasCompletedOnboarding && !isOnboardingRoute) {
+      // Authenticated but profile incomplete -> force onboarding
+      if (isAuthenticated && !hasCompleteProfile && !isOnboardingRoute) {
         return '/onboarding';
+      }
+
+      // Authenticated and profile complete should not stay in onboarding
+      if (isAuthenticated && hasCompleteProfile && isOnboardingRoute) {
+        return '/dashboard';
       }
 
       // Authenticated and on auth route -> redirect to dashboard
@@ -134,6 +141,11 @@ final routerProvider = Provider<GoRouter>((ref) {
                     builder: (context, state) => const AIChatScreen(),
                   ),
                   GoRoute(
+                    path: 'daily-checkin',
+                    name: AppRoutes.dailyCheckin,
+                    builder: (context, state) => const DailyCheckinScreen(),
+                  ),
+                  GoRoute(
                     path: 'reports',
                     name: AppRoutes.weeklyReport,
                     builder: (context, state) => const ReportsScreen(),
@@ -153,7 +165,10 @@ final routerProvider = Provider<GoRouter>((ref) {
                   GoRoute(
                     path: 'active-workout',
                     name: AppRoutes.activeWorkout,
-                    builder: (context, state) => const WorkoutScreen(),
+                    builder: (context, state) {
+                      final routine = state.extra as Routine?;
+                      return WorkoutScreen(routine: routine);
+                    },
                   ),
                 ],
               ),
@@ -240,38 +255,6 @@ class _MainShell extends StatelessWidget {
             label: 'Ajustes',
           ),
         ],
-      ),
-    );
-  }
-}
-
-// ==================== Placeholder Screen ====================
-class _PlaceholderScreen extends StatelessWidget {
-  final String title;
-
-  const _PlaceholderScreen({required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(title)),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.construction,
-              size: 64,
-              color: Theme.of(context).colorScheme.primary,
-            ),
-            const SizedBox(height: 16),
-            Text(
-              '$title\n(Pendiente de implementar)',
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-          ],
-        ),
       ),
     );
   }

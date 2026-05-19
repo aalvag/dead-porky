@@ -47,27 +47,27 @@ class ReportsScreen extends ConsumerWidget {
                       ],
                     ),
                     const SizedBox(height: 16),
-                    _SummaryRow(
+                    const _SummaryRow(
                       label: 'Entrenamientos',
                       value: '4',
                       icon: Icons.fitness_center,
                     ),
-                    _SummaryRow(
+                    const _SummaryRow(
                       label: 'Hábitos completados',
                       value: '28/35',
                       icon: Icons.check_circle,
                     ),
-                    _SummaryRow(
+                    const _SummaryRow(
                       label: 'Calorías promedio',
                       value: '2,150 kcal',
                       icon: Icons.local_fire_department,
                     ),
-                    _SummaryRow(
+                    const _SummaryRow(
                       label: 'Sueño promedio',
                       value: '7.2h',
                       icon: Icons.bedtime,
                     ),
-                    _SummaryRow(
+                    const _SummaryRow(
                       label: 'Pasos promedio',
                       value: '8,432',
                       icon: Icons.directions_walk,
@@ -214,7 +214,7 @@ class ReportsScreen extends ConsumerWidget {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         _TrendItem(

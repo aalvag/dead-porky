@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -33,7 +34,7 @@ class KiloGatewayService {
       LogInterceptor(
         requestBody: true,
         responseBody: false, // Don't log streaming responses
-        logPrint: (msg) => print('[KiloGateway] $msg'),
+        logPrint: (msg) => log('[KiloGateway] $msg'),
       ),
     );
   }
@@ -60,8 +61,10 @@ class KiloGatewayService {
       'messages': messages.map((m) => m.toMap()).toList(),
       'max_tokens': maxTokens,
       'temperature': temperature,
-      if (tools != null) 'tools': tools.map((t) => t.toMap()).toList(),
-      if (toolChoice != null) 'tool_choice': toolChoice,
+      ...?(tools != null
+          ? {'tools': tools.map((t) => t.toMap()).toList()}
+          : null),
+      ...?(toolChoice != null ? {'tool_choice': toolChoice} : null),
     };
 
     final response = await _dio.post('/chat/completions', data: body);

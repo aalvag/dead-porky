@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:dead_porky/core/constants/app_constants.dart';
 import 'package:dead_porky/core/errors/failures.dart';
@@ -38,7 +39,7 @@ class DioClient {
       LogInterceptor(
         requestBody: true,
         responseBody: true,
-        logPrint: (obj) => print('[Dio] $obj'),
+        logPrint: (obj) => log('[Dio] $obj'),
       ),
       _AuthInterceptor(),
       _ErrorInterceptor(),

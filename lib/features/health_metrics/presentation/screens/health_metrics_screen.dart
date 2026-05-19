@@ -47,7 +47,7 @@ class HealthMetricsScreen extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Quick stats
-            Row(
+            const Row(
               children: [
                 Expanded(
                   child: _QuickStatCard(
@@ -60,7 +60,7 @@ class HealthMetricsScreen extends ConsumerWidget {
                     trendDown: true,
                   ),
                 ),
-                const SizedBox(width: 8),
+                SizedBox(width: 8),
                 Expanded(
                   child: _QuickStatCard(
                     icon: Icons.monitor_weight,
@@ -75,7 +75,7 @@ class HealthMetricsScreen extends ConsumerWidget {
               ],
             ),
             const SizedBox(height: 8),
-            Row(
+            const Row(
               children: [
                 Expanded(
                   child: _QuickStatCard(
@@ -88,7 +88,7 @@ class HealthMetricsScreen extends ConsumerWidget {
                     trendDown: false,
                   ),
                 ),
-                const SizedBox(width: 8),
+                SizedBox(width: 8),
                 Expanded(
                   child: _QuickStatCard(
                     icon: Icons.air,
@@ -113,7 +113,7 @@ class HealthMetricsScreen extends ConsumerWidget {
                   children: [
                     Row(
                       children: [
-                        Icon(Icons.trending_down, color: Colors.blue),
+                        const Icon(Icons.trending_down, color: Colors.blue),
                         const SizedBox(width: 8),
                         Text(
                           'Peso - Últimos 7 días',
@@ -177,7 +177,7 @@ class HealthMetricsScreen extends ConsumerWidget {
                   children: [
                     Row(
                       children: [
-                        Icon(Icons.favorite, color: Colors.red),
+                        const Icon(Icons.favorite, color: Colors.red),
                         const SizedBox(width: 8),
                         Text(
                           'Frecuencia Cardíaca - Hoy',
@@ -208,7 +208,7 @@ class HealthMetricsScreen extends ConsumerWidget {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         _LegendItem(color: Colors.red, label: 'Reposo'),
@@ -230,7 +230,7 @@ class HealthMetricsScreen extends ConsumerWidget {
                   children: [
                     Row(
                       children: [
-                        Icon(Icons.bedtime, color: Colors.purple),
+                        const Icon(Icons.bedtime, color: Colors.purple),
                         const SizedBox(width: 8),
                         Text(
                           'Sueño - Últimos 7 días',

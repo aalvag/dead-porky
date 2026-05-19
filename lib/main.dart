@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:firebase_core/firebase_core.dart';
+// ignore: unused_import
+import 'package:sqlite3_flutter_libs/sqlite3_flutter_libs.dart';
 import 'package:dead_porky/core/theme/app_theme.dart';
 import 'package:dead_porky/core/router/app_router.dart';
 import 'package:dead_porky/core/constants/firebase_options.dart';

@@ -1,47 +1,73 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:dead_porky/core/router/app_router.dart';
+import 'package:dead_porky/features/habits/domain/entities/habit.dart';
+import 'package:dead_porky/features/habits/presentation/screens/habit_tracker_screen.dart';
 
 /// Habits today card showing daily habit progress
-class HabitsTodayCard extends StatelessWidget {
+class HabitsTodayCard extends ConsumerWidget {
   const HabitsTodayCard({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final habits = ref.watch(habitsProvider);
+    final selectedDate = ref.watch(selectedDateProvider);
+    final habitLogs = ref.watch(habitLogsProvider);
+    final dateKey = _dateKey(selectedDate);
 
-    // Mock data - replace with actual data from Firestore
-    final habits = [
-      _HabitItem(
-        icon: '💧',
-        name: 'Hidratación',
-        progress: 0.75,
-        label: '6/8 vasos',
-        isCompleted: false,
-      ),
-      _HabitItem(
-        icon: '🏃',
-        name: 'Ejercicio',
-        progress: 1.0,
-        label: '52 min',
-        isCompleted: true,
-      ),
-      _HabitItem(
-        icon: '🧘',
-        name: 'Meditación',
-        progress: 1.0,
-        label: '10 min',
-        isCompleted: true,
-      ),
-      _HabitItem(
-        icon: '📚',
-        name: 'Lectura',
-        progress: 0.0,
-        label: '0/20 min',
-        isCompleted: false,
-      ),
-    ];
+    if (habits.isEmpty) {
+      return Card(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(Icons.checklist, color: theme.colorScheme.primary),
+                  const SizedBox(width: 8),
+                  Text(
+                    'Hábitos de hoy',
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              Text(
+                'No hay hábitos configurados. Agrega hábitos para comenzar tu seguimiento diario.',
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+              ),
+              const SizedBox(height: 16),
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton.icon(
+                  onPressed: () {
+                    context.pushNamed(AppRoutes.habits);
+                  },
+                  icon: const Icon(Icons.add, size: 18),
+                  label: const Text('Ir a hábitos'),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
 
-    final completed = habits.where((h) => h.isCompleted).length;
-    final total = habits.length;
+    final completed = habits.where((habit) {
+      final value = habitLogs[habit.id]?[dateKey] ?? 0;
+      return habit.type == HabitType.boolean
+          ? value > 0
+          : value >= (habit.targetValue ?? 1);
+    }).length;
+
+    final todayHabits = habits.take(3).toList();
 
     return Card(
       child: Padding(
@@ -66,32 +92,54 @@ class HabitsTodayCard extends StatelessWidget {
                     vertical: 4,
                   ),
                   decoration: BoxDecoration(
-                    color: completed == total
-                        ? Colors.green.withValues(alpha: 0.15)
-                        : theme.colorScheme.surfaceContainerHighest,
+                    color: theme.colorScheme.surfaceContainerHighest,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
-                    '$completed/$total',
+                    '$completed/${habits.length}',
                     style: theme.textTheme.bodySmall?.copyWith(
                       fontWeight: FontWeight.bold,
-                      color: completed == total ? Colors.green : null,
                     ),
                   ),
                 ),
               ],
             ),
             const SizedBox(height: 12),
-            ...habits.map((habit) => _HabitTile(habit: habit)),
-            const SizedBox(height: 8),
+            ...todayHabits.map((habit) {
+              final value = habitLogs[habit.id]?[dateKey] ?? 0;
+              final isCompleted = habit.type == HabitType.boolean
+                  ? value > 0
+                  : value >= (habit.targetValue ?? 1);
+              final label = habit.type == HabitType.boolean
+                  ? (isCompleted ? 'Completado' : 'Pendiente')
+                  : '${value.toStringAsFixed(0)} / ${habit.targetValue?.toStringAsFixed(0) ?? '?'} ${habit.targetUnit ?? ''}';
+
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: _HabitTile(
+                  habit: habit,
+                  statusLabel: label,
+                  isCompleted: isCompleted,
+                ),
+              );
+            }),
+            if (habits.length > 3) ...[
+              Text(
+                'Muestra solo los primeros hábitos. Ve a la pantalla completa para gestionar todos.',
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+              ),
+              const SizedBox(height: 12),
+            ],
             SizedBox(
               width: double.infinity,
               child: OutlinedButton.icon(
                 onPressed: () {
-                  // TODO: Navigate to habits screen
+                  context.pushNamed(AppRoutes.habits);
                 },
-                icon: const Icon(Icons.add, size: 18),
-                label: const Text('Ver todos los hábitos'),
+                icon: const Icon(Icons.open_in_new, size: 18),
+                label: const Text('Ver hábitos completos'),
               ),
             ),
           ],
@@ -99,103 +147,71 @@ class HabitsTodayCard extends StatelessWidget {
       ),
     );
   }
-}
 
-class _HabitItem {
-  final String icon;
-  final String name;
-  final double progress;
-  final String label;
-  final bool isCompleted;
-
-  const _HabitItem({
-    required this.icon,
-    required this.name,
-    required this.progress,
-    required this.label,
-    required this.isCompleted,
-  });
+  String _dateKey(DateTime date) {
+    return '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
+  }
 }
 
 class _HabitTile extends StatelessWidget {
-  final _HabitItem habit;
+  final Habit habit;
+  final String statusLabel;
+  final bool isCompleted;
 
-  const _HabitTile({required this.habit});
+  const _HabitTile({
+    required this.habit,
+    required this.statusLabel,
+    required this.isCompleted,
+  });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
-      child: Row(
-        children: [
-          // Icon
-          Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              color: habit.isCompleted
-                  ? Colors.green.withValues(alpha: 0.15)
-                  : theme.colorScheme.surfaceContainerHighest,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Center(
-              child: Text(habit.icon, style: const TextStyle(fontSize: 20)),
-            ),
+    return Row(
+      children: [
+        Container(
+          width: 44,
+          height: 44,
+          decoration: BoxDecoration(
+            color: habit.color.withValues(alpha: 0.12),
+            borderRadius: BorderRadius.circular(12),
           ),
-          const SizedBox(width: 12),
-          // Name and progress
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      habit.name,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        decoration: habit.isCompleted
-                            ? TextDecoration.lineThrough
-                            : null,
-                      ),
-                    ),
-                    if (habit.isCompleted) ...[
-                      const SizedBox(width: 4),
-                      const Icon(
-                        Icons.check_circle,
-                        size: 16,
-                        color: Colors.green,
-                      ),
-                    ],
-                  ],
+          child: Center(
+            child: Text(habit.icon, style: const TextStyle(fontSize: 22)),
+          ),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                habit.name,
+                style: theme.textTheme.bodyLarge?.copyWith(
+                  fontWeight: FontWeight.w600,
                 ),
-                const SizedBox(height: 4),
-                LinearProgressIndicator(
-                  value: habit.progress,
-                  minHeight: 4,
-                  borderRadius: BorderRadius.circular(2),
-                  backgroundColor: theme.colorScheme.surfaceContainerHighest,
-                  valueColor: AlwaysStoppedAnimation(
-                    habit.isCompleted
-                        ? Colors.green
-                        : theme.colorScheme.primary,
-                  ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                statusLabel,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: isCompleted
+                      ? theme.colorScheme.primary
+                      : theme.colorScheme.onSurfaceVariant,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-          const SizedBox(width: 12),
-          // Label
-          Text(
-            habit.label,
-            style: theme.textTheme.bodySmall?.copyWith(
-              color: theme.colorScheme.onSurfaceVariant,
-            ),
+        ),
+        if (isCompleted)
+          Icon(Icons.check_circle, color: theme.colorScheme.primary)
+        else
+          Icon(
+            Icons.radio_button_unchecked,
+            color: theme.colorScheme.onSurfaceVariant,
           ),
-        ],
-      ),
+      ],
     );
   }
 }

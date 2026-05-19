@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
 import 'package:dead_porky/features/nutrition/domain/entities/nutrition_entry.dart';
 
 // ==================== Providers ====================
@@ -20,7 +21,6 @@ class NutritionScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
     final selectedDate = ref.watch(selectedMealDateProvider);
     final entries = ref.watch(nutritionEntriesProvider);
     final dateKey = _dateKey(selectedDate);

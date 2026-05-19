@@ -11,93 +11,95 @@ dependencies:
     sdk: flutter
 
   # ==================== Firebase ====================
-  firebase_core: ^4.6.0
-  firebase_auth: ^6.3.0
-  cloud_firestore: ^6.2.0
-  firebase_messaging: ^16.1.3
-  firebase_crashlytics: ^5.1.0
-  firebase_analytics: ^12.2.0
+  firebase_core: ^4.7.0
+  firebase_auth: ^6.4.0
+  cloud_firestore: ^6.3.0
+  firebase_messaging: ^16.2.0
+  firebase_crashlytics: ^5.2.0
+  firebase_analytics: ^12.3.0
 
   # ==================== State Management ====================
-  flutter_riverpod: ^2.6.1
-  riverpod_annotation: ^2.6.1
+  flutter_riverpod: ^3.3.1
+  riverpod_annotation: ^4.0.2
 
   # ==================== Navigation ====================
-  go_router: ^14.8.1
+  go_router: ^17.2.3
 
   # ==================== Local Database ====================
-  drift: ^2.19.0
-  sqlite3_flutter_libs: ^0.5.0
-  path_provider: ^2.1.0
-  path: ^1.9.0
+  drift: ^2.31.0
+  sqlite3_flutter_libs: ^0.5.42
+  path_provider: ^2.1.5
+  path: ^1.9.1
 
   # ==================== Dependency Injection ====================
-  get_it: ^8.0.0
-  injectable: ^2.4.0
+  get_it: ^9.2.1
+  injectable: ^2.7.1+4
 
   # ==================== HTTP & Networking ====================
-  dio: ^5.8.0
-  http: ^1.2.0
+  dio: ^5.9.2
+  http: ^1.6.0
 
   # ==================== Code Generation Support ====================
-  freezed_annotation: ^2.4.4
-  json_annotation: ^4.9.0
+  freezed_annotation: ^3.1.0
+  json_annotation: ^4.11.0
 
   # ==================== BLE / Wearables ====================
-  flutter_blue_plus: ^1.31.0
+  flutter_blue_plus: ^2.2.1
 
   # ==================== Health APIs ====================
   health: ^13.3.1
-  # health_connector: ^3.8.1  # Uncomment when available for your Flutter version
+  health_connector: ^3.8.1
+  health_connector_core: ^3.8.0
 
   # ==================== AI / Kilo Gateway ====================
-  openai_dart: ^0.5.4
+  openai_dart: ^4.3.0
   eventflux: ^2.2.1
 
   # ==================== UI Components ====================
-  fl_chart: ^0.70.0
-  google_fonts: ^6.2.1
+  fl_chart: ^1.2.0
+  google_fonts: ^8.1.0
   flutter_animate: ^4.5.2
   cached_network_image: ^3.4.1
   shimmer: ^3.0.0
-  cupertino_icons: ^1.0.8
-  flutter_svg: ^2.0.16
-  lottie: ^3.1.2
+  cupertino_icons: ^1.0.9
+  flutter_svg: ^2.2.4
+  lottie: ^3.3.3
+  font_awesome_flutter: ^11.0.0
 
   # ==================== Security ====================
   flutter_secure_storage: ^10.0.0
-  local_auth: ^2.3.0
+  local_auth: ^3.0.1
 
   # ==================== Voice Input ====================
   speech_to_text: ^7.3.0
 
   # ==================== Notifications ====================
-  flutter_local_notifications: ^18.0.1
-  timezone: ^0.9.4
+  flutter_local_notifications: ^21.0.0
+  timezone: ^0.11.0
 
   # ==================== Utils ====================
-  intl: ^0.19.0
-  uuid: ^4.5.1
+  intl: ^0.20.2
+  uuid: ^4.5.3
   dartz: ^0.10.1
-  logger: ^2.5.0
-  connectivity_plus: ^6.1.1
-  flutter_dotenv: ^5.0.2
-  share_plus: ^10.1.4
-  url_launcher: ^6.3.1
-  image_picker: ^1.1.2
+  logger: ^2.7.0
+  connectivity_plus: ^7.1.1
+  flutter_dotenv: ^6.0.1
+  share_plus: ^12.0.2
+  url_launcher: ^6.3.2
+  image_picker: ^1.2.2
 
   # ==================== Export ====================
-  pdf: ^3.11.1
-  csv: ^6.0.0
-  printing: ^5.13.4
+  pdf: ^3.12.0
+  csv: ^8.0.0
+  printing: ^5.14.3
 
   # ==================== Storage ====================
   hive: ^2.2.3
   hive_flutter: ^1.1.0
 
   # ==================== Auth Social ====================
-  google_sign_in: ^6.2.2
-  sign_in_with_apple: ^6.1.4
+  google_sign_in: ^7.2.0
+  sign_in_with_apple: ^7.0.1
 
 dev_dependencies:
   flutter_test:
@@ -106,15 +108,15 @@ dev_dependencies:
     sdk: flutter
 
   # ==================== Code Generation ====================
-  build_runner: ^2.4.0
-  freezed: ^2.5.0
-  json_serializable: ^6.8.0
-  injectable_generator: ^2.7.0
-  drift_dev: ^2.19.0
-  riverpod_generator: ^2.6.3
+  build_runner: ^2.15.0
+  freezed: ^3.2.5
+  json_serializable: ^6.13.0
+  injectable_generator: ^2.12.1
+  drift_dev: ^2.31.0
+  riverpod_generator: ^4.0.3
 
   # ==================== Testing ====================
-  mocktail: ^1.0.0
+  mocktail: ^1.0.5
   bloc_test: ^10.0.0
   golden_toolkit: ^0.15.0
 

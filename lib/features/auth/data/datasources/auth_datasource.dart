@@ -37,7 +37,7 @@ class FirebaseAuthDatasource implements AuthDatasource {
       email: email,
       password: password,
     );
-    return _mapFirebaseUser(credential.user!);
+    return await _buildUserFromFirebase(credential.user!);
   }
 
   @override
@@ -58,7 +58,7 @@ class FirebaseAuthDatasource implements AuthDatasource {
     final user = _mapFirebaseUser(credential.user!, displayName: displayName);
     await _createUserDocument(user);
 
-    return user;
+    return await _buildUserFromFirebase(credential.user!);
   }
 
   @override
@@ -93,7 +93,7 @@ class FirebaseAuthDatasource implements AuthDatasource {
   Future<User?> getCurrentUser() async {
     final firebaseUser = _firebaseAuth.currentUser;
     if (firebaseUser == null) return null;
-    return _mapFirebaseUser(firebaseUser);
+    return await _buildUserFromFirebase(firebaseUser);
   }
 
   @override
@@ -129,9 +129,9 @@ class FirebaseAuthDatasource implements AuthDatasource {
 
   @override
   Stream<User?> authStateChanges() {
-    return _firebaseAuth.authStateChanges().map((firebaseUser) {
+    return _firebaseAuth.authStateChanges().asyncMap((firebaseUser) async {
       if (firebaseUser == null) return null;
-      return _mapFirebaseUser(firebaseUser);
+      return await _buildUserFromFirebase(firebaseUser);
     });
   }
 
@@ -150,6 +150,18 @@ class FirebaseAuthDatasource implements AuthDatasource {
       createdAt: firebaseUser.metadata.creationTime,
       lastLoginAt: firebaseUser.metadata.lastSignInTime,
     );
+  }
+
+  Future<User> _buildUserFromFirebase(firebase_auth.User firebaseUser) async {
+    final doc = await _firestore.collection('users').doc(firebaseUser.uid).get();
+    if (doc.exists && doc.data() != null) {
+      final data = Map<String, dynamic>.from(doc.data()!);
+      return User.fromJson(data);
+    }
+
+    final defaultUser = _mapFirebaseUser(firebaseUser);
+    await _createUserDocument(defaultUser);
+    return defaultUser;
   }
 
   Future<void> _createUserDocument(User user) async {

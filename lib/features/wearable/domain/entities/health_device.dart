@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // ==================== Entities ====================
 
@@ -78,6 +77,11 @@ class PresetDevices {
     const HealthDevice(
       id: '1',
       name: 'Apple Watch Series 9',
+      type: DeviceType.smartwatch,
+    ),
+    const HealthDevice(
+      id: '8',
+      name: 'Galaxy Watch 4',
       type: DeviceType.smartwatch,
     ),
     const HealthDevice(id: '2', name: 'Withings Body+', type: DeviceType.scale),

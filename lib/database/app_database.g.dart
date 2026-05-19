@@ -4026,6 +4026,578 @@ class NutritionEntriesCompanion extends UpdateCompanion<NutritionEntry> {
   }
 }
 
+class $DailyCheckinsTable extends DailyCheckins
+    with TableInfo<$DailyCheckinsTable, DailyCheckin> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $DailyCheckinsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _dateKeyMeta = const VerificationMeta(
+    'dateKey',
+  );
+  @override
+  late final GeneratedColumn<String> dateKey = GeneratedColumn<String>(
+    'date_key',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _waterMlMeta = const VerificationMeta(
+    'waterMl',
+  );
+  @override
+  late final GeneratedColumn<int> waterMl = GeneratedColumn<int>(
+    'water_ml',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _sleepHoursMeta = const VerificationMeta(
+    'sleepHours',
+  );
+  @override
+  late final GeneratedColumn<double> sleepHours = GeneratedColumn<double>(
+    'sleep_hours',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _moodMeta = const VerificationMeta('mood');
+  @override
+  late final GeneratedColumn<int> mood = GeneratedColumn<int>(
+    'mood',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _energyLevelMeta = const VerificationMeta(
+    'energyLevel',
+  );
+  @override
+  late final GeneratedColumn<int> energyLevel = GeneratedColumn<int>(
+    'energy_level',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _workoutCompletedMeta = const VerificationMeta(
+    'workoutCompleted',
+  );
+  @override
+  late final GeneratedColumn<bool> workoutCompleted = GeneratedColumn<bool>(
+    'workout_completed',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("workout_completed" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
+  static const VerificationMeta _foodLoggedMeta = const VerificationMeta(
+    'foodLogged',
+  );
+  @override
+  late final GeneratedColumn<bool> foodLogged = GeneratedColumn<bool>(
+    'food_logged',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("food_logged" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
+  static const VerificationMeta _notesMeta = const VerificationMeta('notes');
+  @override
+  late final GeneratedColumn<String> notes = GeneratedColumn<String>(
+    'notes',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    defaultValue: currentDateAndTime,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    dateKey,
+    waterMl,
+    sleepHours,
+    mood,
+    energyLevel,
+    workoutCompleted,
+    foodLogged,
+    notes,
+    updatedAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'daily_checkins';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<DailyCheckin> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('date_key')) {
+      context.handle(
+        _dateKeyMeta,
+        dateKey.isAcceptableOrUnknown(data['date_key']!, _dateKeyMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_dateKeyMeta);
+    }
+    if (data.containsKey('water_ml')) {
+      context.handle(
+        _waterMlMeta,
+        waterMl.isAcceptableOrUnknown(data['water_ml']!, _waterMlMeta),
+      );
+    }
+    if (data.containsKey('sleep_hours')) {
+      context.handle(
+        _sleepHoursMeta,
+        sleepHours.isAcceptableOrUnknown(data['sleep_hours']!, _sleepHoursMeta),
+      );
+    }
+    if (data.containsKey('mood')) {
+      context.handle(
+        _moodMeta,
+        mood.isAcceptableOrUnknown(data['mood']!, _moodMeta),
+      );
+    }
+    if (data.containsKey('energy_level')) {
+      context.handle(
+        _energyLevelMeta,
+        energyLevel.isAcceptableOrUnknown(
+          data['energy_level']!,
+          _energyLevelMeta,
+        ),
+      );
+    }
+    if (data.containsKey('workout_completed')) {
+      context.handle(
+        _workoutCompletedMeta,
+        workoutCompleted.isAcceptableOrUnknown(
+          data['workout_completed']!,
+          _workoutCompletedMeta,
+        ),
+      );
+    }
+    if (data.containsKey('food_logged')) {
+      context.handle(
+        _foodLoggedMeta,
+        foodLogged.isAcceptableOrUnknown(data['food_logged']!, _foodLoggedMeta),
+      );
+    }
+    if (data.containsKey('notes')) {
+      context.handle(
+        _notesMeta,
+        notes.isAcceptableOrUnknown(data['notes']!, _notesMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {dateKey};
+  @override
+  DailyCheckin map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return DailyCheckin(
+      dateKey: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}date_key'],
+      )!,
+      waterMl: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}water_ml'],
+      )!,
+      sleepHours: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}sleep_hours'],
+      )!,
+      mood: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}mood'],
+      ),
+      energyLevel: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}energy_level'],
+      ),
+      workoutCompleted: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}workout_completed'],
+      )!,
+      foodLogged: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}food_logged'],
+      )!,
+      notes: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}notes'],
+      ),
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
+    );
+  }
+
+  @override
+  $DailyCheckinsTable createAlias(String alias) {
+    return $DailyCheckinsTable(attachedDatabase, alias);
+  }
+}
+
+class DailyCheckin extends DataClass implements Insertable<DailyCheckin> {
+  final String dateKey;
+  final int waterMl;
+  final double sleepHours;
+  final int? mood;
+  final int? energyLevel;
+  final bool workoutCompleted;
+  final bool foodLogged;
+  final String? notes;
+  final DateTime updatedAt;
+  const DailyCheckin({
+    required this.dateKey,
+    required this.waterMl,
+    required this.sleepHours,
+    this.mood,
+    this.energyLevel,
+    required this.workoutCompleted,
+    required this.foodLogged,
+    this.notes,
+    required this.updatedAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['date_key'] = Variable<String>(dateKey);
+    map['water_ml'] = Variable<int>(waterMl);
+    map['sleep_hours'] = Variable<double>(sleepHours);
+    if (!nullToAbsent || mood != null) {
+      map['mood'] = Variable<int>(mood);
+    }
+    if (!nullToAbsent || energyLevel != null) {
+      map['energy_level'] = Variable<int>(energyLevel);
+    }
+    map['workout_completed'] = Variable<bool>(workoutCompleted);
+    map['food_logged'] = Variable<bool>(foodLogged);
+    if (!nullToAbsent || notes != null) {
+      map['notes'] = Variable<String>(notes);
+    }
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    return map;
+  }
+
+  DailyCheckinsCompanion toCompanion(bool nullToAbsent) {
+    return DailyCheckinsCompanion(
+      dateKey: Value(dateKey),
+      waterMl: Value(waterMl),
+      sleepHours: Value(sleepHours),
+      mood: mood == null && nullToAbsent ? const Value.absent() : Value(mood),
+      energyLevel: energyLevel == null && nullToAbsent
+          ? const Value.absent()
+          : Value(energyLevel),
+      workoutCompleted: Value(workoutCompleted),
+      foodLogged: Value(foodLogged),
+      notes: notes == null && nullToAbsent
+          ? const Value.absent()
+          : Value(notes),
+      updatedAt: Value(updatedAt),
+    );
+  }
+
+  factory DailyCheckin.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return DailyCheckin(
+      dateKey: serializer.fromJson<String>(json['dateKey']),
+      waterMl: serializer.fromJson<int>(json['waterMl']),
+      sleepHours: serializer.fromJson<double>(json['sleepHours']),
+      mood: serializer.fromJson<int?>(json['mood']),
+      energyLevel: serializer.fromJson<int?>(json['energyLevel']),
+      workoutCompleted: serializer.fromJson<bool>(json['workoutCompleted']),
+      foodLogged: serializer.fromJson<bool>(json['foodLogged']),
+      notes: serializer.fromJson<String?>(json['notes']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'dateKey': serializer.toJson<String>(dateKey),
+      'waterMl': serializer.toJson<int>(waterMl),
+      'sleepHours': serializer.toJson<double>(sleepHours),
+      'mood': serializer.toJson<int?>(mood),
+      'energyLevel': serializer.toJson<int?>(energyLevel),
+      'workoutCompleted': serializer.toJson<bool>(workoutCompleted),
+      'foodLogged': serializer.toJson<bool>(foodLogged),
+      'notes': serializer.toJson<String?>(notes),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+    };
+  }
+
+  DailyCheckin copyWith({
+    String? dateKey,
+    int? waterMl,
+    double? sleepHours,
+    Value<int?> mood = const Value.absent(),
+    Value<int?> energyLevel = const Value.absent(),
+    bool? workoutCompleted,
+    bool? foodLogged,
+    Value<String?> notes = const Value.absent(),
+    DateTime? updatedAt,
+  }) => DailyCheckin(
+    dateKey: dateKey ?? this.dateKey,
+    waterMl: waterMl ?? this.waterMl,
+    sleepHours: sleepHours ?? this.sleepHours,
+    mood: mood.present ? mood.value : this.mood,
+    energyLevel: energyLevel.present ? energyLevel.value : this.energyLevel,
+    workoutCompleted: workoutCompleted ?? this.workoutCompleted,
+    foodLogged: foodLogged ?? this.foodLogged,
+    notes: notes.present ? notes.value : this.notes,
+    updatedAt: updatedAt ?? this.updatedAt,
+  );
+  DailyCheckin copyWithCompanion(DailyCheckinsCompanion data) {
+    return DailyCheckin(
+      dateKey: data.dateKey.present ? data.dateKey.value : this.dateKey,
+      waterMl: data.waterMl.present ? data.waterMl.value : this.waterMl,
+      sleepHours: data.sleepHours.present
+          ? data.sleepHours.value
+          : this.sleepHours,
+      mood: data.mood.present ? data.mood.value : this.mood,
+      energyLevel: data.energyLevel.present
+          ? data.energyLevel.value
+          : this.energyLevel,
+      workoutCompleted: data.workoutCompleted.present
+          ? data.workoutCompleted.value
+          : this.workoutCompleted,
+      foodLogged: data.foodLogged.present
+          ? data.foodLogged.value
+          : this.foodLogged,
+      notes: data.notes.present ? data.notes.value : this.notes,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('DailyCheckin(')
+          ..write('dateKey: $dateKey, ')
+          ..write('waterMl: $waterMl, ')
+          ..write('sleepHours: $sleepHours, ')
+          ..write('mood: $mood, ')
+          ..write('energyLevel: $energyLevel, ')
+          ..write('workoutCompleted: $workoutCompleted, ')
+          ..write('foodLogged: $foodLogged, ')
+          ..write('notes: $notes, ')
+          ..write('updatedAt: $updatedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    dateKey,
+    waterMl,
+    sleepHours,
+    mood,
+    energyLevel,
+    workoutCompleted,
+    foodLogged,
+    notes,
+    updatedAt,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is DailyCheckin &&
+          other.dateKey == this.dateKey &&
+          other.waterMl == this.waterMl &&
+          other.sleepHours == this.sleepHours &&
+          other.mood == this.mood &&
+          other.energyLevel == this.energyLevel &&
+          other.workoutCompleted == this.workoutCompleted &&
+          other.foodLogged == this.foodLogged &&
+          other.notes == this.notes &&
+          other.updatedAt == this.updatedAt);
+}
+
+class DailyCheckinsCompanion extends UpdateCompanion<DailyCheckin> {
+  final Value<String> dateKey;
+  final Value<int> waterMl;
+  final Value<double> sleepHours;
+  final Value<int?> mood;
+  final Value<int?> energyLevel;
+  final Value<bool> workoutCompleted;
+  final Value<bool> foodLogged;
+  final Value<String?> notes;
+  final Value<DateTime> updatedAt;
+  final Value<int> rowid;
+  const DailyCheckinsCompanion({
+    this.dateKey = const Value.absent(),
+    this.waterMl = const Value.absent(),
+    this.sleepHours = const Value.absent(),
+    this.mood = const Value.absent(),
+    this.energyLevel = const Value.absent(),
+    this.workoutCompleted = const Value.absent(),
+    this.foodLogged = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  DailyCheckinsCompanion.insert({
+    required String dateKey,
+    this.waterMl = const Value.absent(),
+    this.sleepHours = const Value.absent(),
+    this.mood = const Value.absent(),
+    this.energyLevel = const Value.absent(),
+    this.workoutCompleted = const Value.absent(),
+    this.foodLogged = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : dateKey = Value(dateKey);
+  static Insertable<DailyCheckin> custom({
+    Expression<String>? dateKey,
+    Expression<int>? waterMl,
+    Expression<double>? sleepHours,
+    Expression<int>? mood,
+    Expression<int>? energyLevel,
+    Expression<bool>? workoutCompleted,
+    Expression<bool>? foodLogged,
+    Expression<String>? notes,
+    Expression<DateTime>? updatedAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (dateKey != null) 'date_key': dateKey,
+      if (waterMl != null) 'water_ml': waterMl,
+      if (sleepHours != null) 'sleep_hours': sleepHours,
+      if (mood != null) 'mood': mood,
+      if (energyLevel != null) 'energy_level': energyLevel,
+      if (workoutCompleted != null) 'workout_completed': workoutCompleted,
+      if (foodLogged != null) 'food_logged': foodLogged,
+      if (notes != null) 'notes': notes,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  DailyCheckinsCompanion copyWith({
+    Value<String>? dateKey,
+    Value<int>? waterMl,
+    Value<double>? sleepHours,
+    Value<int?>? mood,
+    Value<int?>? energyLevel,
+    Value<bool>? workoutCompleted,
+    Value<bool>? foodLogged,
+    Value<String?>? notes,
+    Value<DateTime>? updatedAt,
+    Value<int>? rowid,
+  }) {
+    return DailyCheckinsCompanion(
+      dateKey: dateKey ?? this.dateKey,
+      waterMl: waterMl ?? this.waterMl,
+      sleepHours: sleepHours ?? this.sleepHours,
+      mood: mood ?? this.mood,
+      energyLevel: energyLevel ?? this.energyLevel,
+      workoutCompleted: workoutCompleted ?? this.workoutCompleted,
+      foodLogged: foodLogged ?? this.foodLogged,
+      notes: notes ?? this.notes,
+      updatedAt: updatedAt ?? this.updatedAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (dateKey.present) {
+      map['date_key'] = Variable<String>(dateKey.value);
+    }
+    if (waterMl.present) {
+      map['water_ml'] = Variable<int>(waterMl.value);
+    }
+    if (sleepHours.present) {
+      map['sleep_hours'] = Variable<double>(sleepHours.value);
+    }
+    if (mood.present) {
+      map['mood'] = Variable<int>(mood.value);
+    }
+    if (energyLevel.present) {
+      map['energy_level'] = Variable<int>(energyLevel.value);
+    }
+    if (workoutCompleted.present) {
+      map['workout_completed'] = Variable<bool>(workoutCompleted.value);
+    }
+    if (foodLogged.present) {
+      map['food_logged'] = Variable<bool>(foodLogged.value);
+    }
+    if (notes.present) {
+      map['notes'] = Variable<String>(notes.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('DailyCheckinsCompanion(')
+          ..write('dateKey: $dateKey, ')
+          ..write('waterMl: $waterMl, ')
+          ..write('sleepHours: $sleepHours, ')
+          ..write('mood: $mood, ')
+          ..write('energyLevel: $energyLevel, ')
+          ..write('workoutCompleted: $workoutCompleted, ')
+          ..write('foodLogged: $foodLogged, ')
+          ..write('notes: $notes, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 class $SyncQueueTable extends SyncQueue
     with TableInfo<$SyncQueueTable, SyncQueueData> {
   @override
@@ -4538,6 +5110,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $NutritionEntriesTable nutritionEntries = $NutritionEntriesTable(
     this,
   );
+  late final $DailyCheckinsTable dailyCheckins = $DailyCheckinsTable(this);
   late final $SyncQueueTable syncQueue = $SyncQueueTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
@@ -4550,6 +5123,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     habitLogs,
     healthMetrics,
     nutritionEntries,
+    dailyCheckins,
     syncQueue,
   ];
 }
@@ -6496,6 +7070,290 @@ typedef $$NutritionEntriesTableProcessedTableManager =
       NutritionEntry,
       PrefetchHooks Function()
     >;
+typedef $$DailyCheckinsTableCreateCompanionBuilder =
+    DailyCheckinsCompanion Function({
+      required String dateKey,
+      Value<int> waterMl,
+      Value<double> sleepHours,
+      Value<int?> mood,
+      Value<int?> energyLevel,
+      Value<bool> workoutCompleted,
+      Value<bool> foodLogged,
+      Value<String?> notes,
+      Value<DateTime> updatedAt,
+      Value<int> rowid,
+    });
+typedef $$DailyCheckinsTableUpdateCompanionBuilder =
+    DailyCheckinsCompanion Function({
+      Value<String> dateKey,
+      Value<int> waterMl,
+      Value<double> sleepHours,
+      Value<int?> mood,
+      Value<int?> energyLevel,
+      Value<bool> workoutCompleted,
+      Value<bool> foodLogged,
+      Value<String?> notes,
+      Value<DateTime> updatedAt,
+      Value<int> rowid,
+    });
+
+class $$DailyCheckinsTableFilterComposer
+    extends Composer<_$AppDatabase, $DailyCheckinsTable> {
+  $$DailyCheckinsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get dateKey => $composableBuilder(
+    column: $table.dateKey,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get waterMl => $composableBuilder(
+    column: $table.waterMl,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get sleepHours => $composableBuilder(
+    column: $table.sleepHours,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get mood => $composableBuilder(
+    column: $table.mood,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get energyLevel => $composableBuilder(
+    column: $table.energyLevel,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get workoutCompleted => $composableBuilder(
+    column: $table.workoutCompleted,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get foodLogged => $composableBuilder(
+    column: $table.foodLogged,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$DailyCheckinsTableOrderingComposer
+    extends Composer<_$AppDatabase, $DailyCheckinsTable> {
+  $$DailyCheckinsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get dateKey => $composableBuilder(
+    column: $table.dateKey,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get waterMl => $composableBuilder(
+    column: $table.waterMl,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get sleepHours => $composableBuilder(
+    column: $table.sleepHours,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get mood => $composableBuilder(
+    column: $table.mood,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get energyLevel => $composableBuilder(
+    column: $table.energyLevel,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get workoutCompleted => $composableBuilder(
+    column: $table.workoutCompleted,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get foodLogged => $composableBuilder(
+    column: $table.foodLogged,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$DailyCheckinsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $DailyCheckinsTable> {
+  $$DailyCheckinsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get dateKey =>
+      $composableBuilder(column: $table.dateKey, builder: (column) => column);
+
+  GeneratedColumn<int> get waterMl =>
+      $composableBuilder(column: $table.waterMl, builder: (column) => column);
+
+  GeneratedColumn<double> get sleepHours => $composableBuilder(
+    column: $table.sleepHours,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get mood =>
+      $composableBuilder(column: $table.mood, builder: (column) => column);
+
+  GeneratedColumn<int> get energyLevel => $composableBuilder(
+    column: $table.energyLevel,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get workoutCompleted => $composableBuilder(
+    column: $table.workoutCompleted,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get foodLogged => $composableBuilder(
+    column: $table.foodLogged,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get notes =>
+      $composableBuilder(column: $table.notes, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+}
+
+class $$DailyCheckinsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $DailyCheckinsTable,
+          DailyCheckin,
+          $$DailyCheckinsTableFilterComposer,
+          $$DailyCheckinsTableOrderingComposer,
+          $$DailyCheckinsTableAnnotationComposer,
+          $$DailyCheckinsTableCreateCompanionBuilder,
+          $$DailyCheckinsTableUpdateCompanionBuilder,
+          (
+            DailyCheckin,
+            BaseReferences<_$AppDatabase, $DailyCheckinsTable, DailyCheckin>,
+          ),
+          DailyCheckin,
+          PrefetchHooks Function()
+        > {
+  $$DailyCheckinsTableTableManager(_$AppDatabase db, $DailyCheckinsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$DailyCheckinsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$DailyCheckinsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$DailyCheckinsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> dateKey = const Value.absent(),
+                Value<int> waterMl = const Value.absent(),
+                Value<double> sleepHours = const Value.absent(),
+                Value<int?> mood = const Value.absent(),
+                Value<int?> energyLevel = const Value.absent(),
+                Value<bool> workoutCompleted = const Value.absent(),
+                Value<bool> foodLogged = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => DailyCheckinsCompanion(
+                dateKey: dateKey,
+                waterMl: waterMl,
+                sleepHours: sleepHours,
+                mood: mood,
+                energyLevel: energyLevel,
+                workoutCompleted: workoutCompleted,
+                foodLogged: foodLogged,
+                notes: notes,
+                updatedAt: updatedAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String dateKey,
+                Value<int> waterMl = const Value.absent(),
+                Value<double> sleepHours = const Value.absent(),
+                Value<int?> mood = const Value.absent(),
+                Value<int?> energyLevel = const Value.absent(),
+                Value<bool> workoutCompleted = const Value.absent(),
+                Value<bool> foodLogged = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => DailyCheckinsCompanion.insert(
+                dateKey: dateKey,
+                waterMl: waterMl,
+                sleepHours: sleepHours,
+                mood: mood,
+                energyLevel: energyLevel,
+                workoutCompleted: workoutCompleted,
+                foodLogged: foodLogged,
+                notes: notes,
+                updatedAt: updatedAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$DailyCheckinsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $DailyCheckinsTable,
+      DailyCheckin,
+      $$DailyCheckinsTableFilterComposer,
+      $$DailyCheckinsTableOrderingComposer,
+      $$DailyCheckinsTableAnnotationComposer,
+      $$DailyCheckinsTableCreateCompanionBuilder,
+      $$DailyCheckinsTableUpdateCompanionBuilder,
+      (
+        DailyCheckin,
+        BaseReferences<_$AppDatabase, $DailyCheckinsTable, DailyCheckin>,
+      ),
+      DailyCheckin,
+      PrefetchHooks Function()
+    >;
 typedef $$SyncQueueTableCreateCompanionBuilder =
     SyncQueueCompanion Function({
       Value<int> id,
@@ -6767,6 +7625,8 @@ class $AppDatabaseManager {
       $$HealthMetricsTableTableManager(_db, _db.healthMetrics);
   $$NutritionEntriesTableTableManager get nutritionEntries =>
       $$NutritionEntriesTableTableManager(_db, _db.nutritionEntries);
+  $$DailyCheckinsTableTableManager get dailyCheckins =>
+      $$DailyCheckinsTableTableManager(_db, _db.dailyCheckins);
   $$SyncQueueTableTableManager get syncQueue =>
       $$SyncQueueTableTableManager(_db, _db.syncQueue);
 }

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart' show Timestamp;
+
 /// User entity representing the authenticated user
 class User {
   final String id;
@@ -54,6 +56,16 @@ class User {
     );
   }
 
+  bool get hasCompleteProfile => profile.isComplete;
+
+  static DateTime? _parseDateTime(dynamic value) {
+    if (value == null) return null;
+    if (value is DateTime) return value;
+    if (value is Timestamp) return value.toDate();
+    if (value is String) return DateTime.parse(value);
+    return null;
+  }
+
   Map<String, dynamic> toJson() => {
     'id': id,
     'email': email,
@@ -83,15 +95,9 @@ class User {
     stats: json['stats'] != null
         ? UserStats.fromJson(json['stats'] as Map<String, dynamic>)
         : const UserStats(),
-    createdAt: json['createdAt'] != null
-        ? DateTime.parse(json['createdAt'] as String)
-        : null,
-    updatedAt: json['updatedAt'] != null
-        ? DateTime.parse(json['updatedAt'] as String)
-        : null,
-    lastLoginAt: json['lastLoginAt'] != null
-        ? DateTime.parse(json['lastLoginAt'] as String)
-        : null,
+    createdAt: _parseDateTime(json['createdAt']),
+    updatedAt: _parseDateTime(json['updatedAt']),
+    lastLoginAt: _parseDateTime(json['lastLoginAt']),
   );
 }
 
@@ -134,12 +140,25 @@ class UserProfile {
     'allergies': allergies,
   };
 
+  bool get isComplete {
+    return height != null &&
+        weight != null &&
+        birthdate != null &&
+        gender != Gender.notSpecified;
+  }
+
+  static DateTime? _parseDateValue(dynamic value) {
+    if (value == null) return null;
+    if (value is DateTime) return value;
+    if (value is Timestamp) return value.toDate();
+    if (value is String) return DateTime.tryParse(value);
+    return null;
+  }
+
   factory UserProfile.fromJson(Map<String, dynamic> json) => UserProfile(
     height: (json['height'] as num?)?.toDouble(),
     weight: (json['weight'] as num?)?.toDouble(),
-    birthdate: json['birthdate'] != null
-        ? DateTime.parse(json['birthdate'] as String)
-        : null,
+    birthdate: _parseDateValue(json['birthdate']),
     gender: Gender.values.firstWhere(
       (g) => g.name == json['gender'],
       orElse: () => Gender.notSpecified,

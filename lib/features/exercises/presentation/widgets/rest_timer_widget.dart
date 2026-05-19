@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:dead_porky/features/exercises/data/exercise_library.dart';
+import 'package:flutter_riverpod/legacy.dart';
 
 /// Rest timer state
 class RestTimerState {
@@ -346,8 +346,6 @@ class _ControlButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     if (isPrimary) {
       return FilledButton(
         onPressed: onTap,

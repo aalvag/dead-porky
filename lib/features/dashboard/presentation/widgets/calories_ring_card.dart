@@ -7,10 +7,7 @@ class CaloriesRingCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    const consumed = 1850;
-    const goal = 2200;
-    const burned = 420;
-    final progress = consumed / goal;
+    const progress = 0.0;
 
     return Card(
       child: Padding(
@@ -45,9 +42,7 @@ class CaloriesRingCard extends StatelessWidget {
                     child: CircularProgressIndicator(
                       value: progress.clamp(0.0, 1.0),
                       strokeWidth: 12,
-                      valueColor: AlwaysStoppedAnimation(
-                        progress > 1 ? Colors.red : Colors.orange,
-                      ),
+                      valueColor: const AlwaysStoppedAnimation(Colors.orange),
                     ),
                   ),
                   // Center text
@@ -55,13 +50,13 @@ class CaloriesRingCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        '$consumed',
+                        '--',
                         style: theme.textTheme.headlineSmall?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
-                        'de $goal kcal',
+                        'de -- kcal',
                         style: theme.textTheme.bodySmall?.copyWith(
                           color: theme.colorScheme.onSurfaceVariant,
                         ),
@@ -84,24 +79,24 @@ class CaloriesRingCard extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  _StatRow(
+                  const _StatRow(
                     icon: Icons.restaurant,
                     label: 'Consumidas',
-                    value: '$consumed kcal',
+                    value: '-- kcal',
                     color: Colors.orange,
                   ),
                   const SizedBox(height: 8),
-                  _StatRow(
+                  const _StatRow(
                     icon: Icons.local_fire_department,
                     label: 'Quemadas',
-                    value: '$burned kcal',
+                    value: '-- kcal',
                     color: Colors.red,
                   ),
                   const SizedBox(height: 8),
-                  _StatRow(
+                  const _StatRow(
                     icon: Icons.trending_down,
                     label: 'Restantes',
-                    value: '${goal - consumed + burned} kcal',
+                    value: '-- kcal',
                     color: Colors.green,
                   ),
                 ],

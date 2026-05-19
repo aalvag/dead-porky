@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
 import 'package:uuid/uuid.dart';
 import 'package:dead_porky/features/ai_engine/data/datasources/kilo_gateway_real.dart';
+import 'package:dead_porky/features/auth/domain/entities/user.dart';
+import 'package:dead_porky/features/auth/presentation/providers/auth_provider.dart';
+import 'package:dead_porky/features/daily_checkin/presentation/providers/daily_checkin_provider.dart';
+import 'package:dead_porky/features/wearable/presentation/providers/wearable_metrics_provider.dart';
+import 'package:dead_porky/features/wearable/presentation/screens/device_scanner_screen.dart';
 
 // ==================== Entities ====================
 
@@ -82,22 +88,56 @@ class ChatState {
 class ChatNotifier extends StateNotifier<ChatState> {
   ChatNotifier() : super(const ChatState());
 
-  void addUserMessage(String content) {
+  void addUserMessage(
+    String content, {
+    User? currentUser,
+    DailyCheckinState? dailyCheckin,
+    WearableMetricsState? wearableMetrics,
+    List<String>? connectedDevices,
+  }) {
     final userMsg = ChatMessage.user(content);
     final messages = List<ChatMessage>.from(state.messages)..add(userMsg);
     state = state.copyWith(messages: messages, isLoading: true);
 
-    // Use real Kilo Gateway
-    _streamRealResponse(content);
+    // Use real Kilo Gateway with profile and daily state context
+    _streamRealResponse(
+      content,
+      currentUser: currentUser,
+      dailyCheckin: dailyCheckin,
+      wearableMetrics: wearableMetrics,
+      connectedDevices: connectedDevices,
+    );
   }
 
-  Future<void> _streamRealResponse(String userMessage) async {
+  Future<void> _streamRealResponse(
+    String userMessage, {
+    User? currentUser,
+    DailyCheckinState? dailyCheckin,
+    WearableMetricsState? wearableMetrics,
+    List<String>? connectedDevices,
+  }) async {
     final gateway = KiloGatewayReal();
 
     // Build context for AI
     final systemContext = KiloGatewayReal.buildHealthContext(
-      userName: 'Usuario',
-      fitnessGoal: 'Mantener salud',
+      userName: currentUser?.displayName ?? 'Usuario',
+      weight: currentUser?.profile.weight,
+      height: currentUser?.profile.height,
+      age: currentUser?.profile.age,
+      fitnessGoal: currentUser?.profile.fitnessGoal.label,
+      workoutCompleted: dailyCheckin?.workoutCompleted,
+      foodLogged: dailyCheckin?.foodLogged,
+      mood: dailyCheckin?.mood,
+      energyLevel: dailyCheckin?.energyLevel,
+      checkinNotes: dailyCheckin?.notes,
+      avgSleep: dailyCheckin?.sleepHours,
+      connectedDevices: connectedDevices,
+      restingHeartRate: wearableMetrics?.restingHeartRate,
+      activeMinutes: wearableMetrics?.activeMinutes,
+      caloriesBurned: wearableMetrics?.caloriesBurned,
+      lastSyncAt: wearableMetrics?.lastSyncedAt,
+      autoSyncWearables: currentUser?.settings.autoSyncWearables,
+      avgSteps: wearableMetrics?.steps,
     );
 
     // Build message history
@@ -163,103 +203,6 @@ Macros: P: 150g | C: 250g | G: 70g''';
     return 'Puedo ayudarte con ejercicios, nutrición, sueño y bienestar. ¿Qué te gustaría saber?';
   }
 
-  Future<void> _simulateResponse(String userMessage) async {
-    await Future.delayed(const Duration(milliseconds: 1500));
-
-    String response;
-    final lower = userMessage.toLowerCase();
-
-    if (lower.contains('hola') || lower.contains('buenos')) {
-      response =
-          '¡Hola! Soy tu asistente de salud y bienestar. ¿En qué puedo ayudarte hoy? 💪';
-    } else if (lower.contains('ejercicio') || lower.contains('entrenar')) {
-      response = '''Para tu entrenamiento de hoy te recomiendo:
-
-🏋️ **Rutina de empuje (Push)**
-1. Press de banca: 4x8-10
-2. Press inclinado con mancuernas: 3x10-12
-3. Aperturas: 3x12-15
-4. Press militar: 4x8-10
-5. Elevaciones laterales: 3x15-20
-6. Extensión de tríceps: 3x12-15
-
-Descanso entre series: 90-120 segundos
-¡Recuerda calentar bien antes de empezar! 🔥''';
-    } else if (lower.contains('comer') ||
-        lower.contains('comida') ||
-        lower.contains('nutrición')) {
-      response = '''Basado en tus objetivos, te recomiendo:
-
-🥗 **Plan nutricional de hoy**
-- **Desayuno**: Avena con plátano y proteína (400 kcal)
-- **Almuerzo**: Pollo con arroz y verduras (600 kcal)
-- **Merienda**: Yogur griego con frutos secos (200 kcal)
-- **Cena**: Salmón con batata y ensalada (500 kcal)
-
-**Macros objetivo**: P: 150g | C: 250g | G: 70g
-
-¿Quieres que ajuste algo según tus preferencias? 🍽️''';
-    } else if (lower.contains('dormir') || lower.contains('sueño')) {
-      response = '''El sueño es fundamental para tu recuperación. Te recomiendo:
-
-😴 **Higiene del sueño**
-1. Dormir 7-9 horas por noche
-2. Acostarte y despertar a la misma hora
-3. Evitar pantallas 1 hora antes de dormir
-4. Habitación fresca (18-20°C) y oscura
-5. No cafeína después de las 14:00
-
-Tu promedio actual es de 7.3 horas. ¡Vas bien! 💤''';
-    } else if (lower.contains('peso') ||
-        lower.contains('bajar') ||
-        lower.contains('adelgazar')) {
-      response = '''Para perder peso de forma saludable:
-
-⚖️ **Recomendaciones**
-1. **Déficit calórico**: 300-500 kcal diarias
-2. **Proteína alta**: 2g por kg de peso corporal
-3. **Entrenamiento de fuerza**: 3-4 veces por semana
-4. **Cardio moderado**: 2-3 sesiones de 30 min
-5. **Pasos diarios**: Mínimo 8,000
-
-Tu TDEE estimado es ~2,400 kcal. Objetivo: 1,900-2,100 kcal.
-
-¿Quieres que te prepare un plan más detallado? 📊''';
-    } else if (lower.contains('gracias')) {
-      response =
-          '¡De nada! Estoy aquí para ayudarte en tu camino hacia una vida más saludable. ¿Necesitas algo más? 😊';
-    } else {
-      response =
-          '''Entiendo tu consulta. Como tu asistente de salud personalizado, puedo ayudarte con:
-
-💪 **Ejercicios y rutinas**
-🥗 **Nutrición y alimentación**
-😴 **Sueño y recuperación**
-📊 **Análisis de tus métricas**
-🎯 **Planificación de objetivos**
-
-¿Sobre qué te gustaría que profundicemos?''';
-    }
-
-    // Simulate streaming effect
-    final assistantMsg = ChatMessage.assistant('');
-    final messages = List<ChatMessage>.from(state.messages)..add(assistantMsg);
-    state = state.copyWith(messages: messages);
-
-    // Stream characters
-    String currentContent = '';
-    for (int i = 0; i < response.length; i++) {
-      await Future.delayed(const Duration(milliseconds: 20));
-      currentContent += response[i];
-      final updatedMessages = List<ChatMessage>.from(state.messages);
-      updatedMessages[updatedMessages.length - 1] = updatedMessages.last
-          .copyWith(content: currentContent);
-      state = state.copyWith(messages: updatedMessages);
-    }
-
-    state = state.copyWith(isLoading: false);
-  }
-
   void clearChat() {
     state = const ChatState();
   }
@@ -295,7 +238,21 @@ class _AIChatScreenState extends ConsumerState<AIChatScreen> {
     final text = _controller.text.trim();
     if (text.isEmpty) return;
 
-    ref.read(chatProvider.notifier).addUserMessage(text);
+    final currentUser = ref.read(currentUserProvider);
+    final dailyCheckin = ref.read(dailyCheckinProvider);
+    final wearableMetrics = ref.read(wearableMetricsProvider);
+    final connectedDeviceNames = ref
+        .read(connectedDevicesProvider)
+        .map((device) => device.name)
+        .toList();
+
+    ref.read(chatProvider.notifier).addUserMessage(
+      text,
+      currentUser: currentUser,
+      dailyCheckin: dailyCheckin,
+      wearableMetrics: wearableMetrics,
+      connectedDevices: connectedDeviceNames,
+    );
     _controller.clear();
 
     // Scroll to bottom

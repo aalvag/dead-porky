@@ -1,10 +1,17 @@
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 import 'dart:io';
 
 part 'app_database.g.dart';
+
+final appDatabaseProvider = Provider<AppDatabase>((ref) {
+  final database = AppDatabase();
+  ref.onDispose(() => database.close());
+  return database;
+});
 
 // ==================== Tables ====================
 
@@ -99,6 +106,23 @@ class HealthMetrics extends Table {
   Set<Column> get primaryKey => {id};
 }
 
+/// Daily check-in table for quick daily status entries
+class DailyCheckins extends Table {
+  TextColumn get dateKey => text()();
+  IntColumn get waterMl => integer().withDefault(const Constant(0))();
+  RealColumn get sleepHours => real().withDefault(const Constant(0))();
+  IntColumn get mood => integer().nullable()();
+  IntColumn get energyLevel => integer().nullable()();
+  BoolColumn get workoutCompleted =>
+      boolean().withDefault(const Constant(false))();
+  BoolColumn get foodLogged => boolean().withDefault(const Constant(false))();
+  TextColumn get notes => text().nullable()();
+  DateTimeColumn get updatedAt => dateTime().withDefault(currentDateAndTime)();
+
+  @override
+  Set<Column> get primaryKey => {dateKey};
+}
+
 /// Nutrition entries table
 class NutritionEntries extends Table {
   TextColumn get id => text()();
@@ -141,6 +165,7 @@ class SyncQueue extends Table {
     HabitLogs,
     HealthMetrics,
     NutritionEntries,
+    DailyCheckins,
     SyncQueue,
   ],
 )
@@ -260,6 +285,22 @@ class AppDatabase extends _$AppDatabase {
 
   Future<void> insertNutritionEntry(NutritionEntriesCompanion entry) =>
       into(nutritionEntries).insert(entry);
+
+  // ==================== Daily Check-ins ====================
+
+  Future<DailyCheckin?> getDailyCheckin(String dateKey) => (select(
+    dailyCheckins,
+  )..where((t) => t.dateKey.equals(dateKey))).getSingleOrNull();
+
+  Stream<DailyCheckin?> watchDailyCheckin(String dateKey) => (select(
+    dailyCheckins,
+  )..where((t) => t.dateKey.equals(dateKey))).watchSingleOrNull();
+
+  Future<void> upsertDailyCheckin(DailyCheckinsCompanion entry) =>
+      into(dailyCheckins).insert(
+        entry,
+        onConflict: DoUpdate((old) => entry, target: [dailyCheckins.dateKey]),
+      );
 
   // ==================== Sync Queue ====================
 

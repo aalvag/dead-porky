@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:dead_porky/features/auth/domain/entities/user.dart';
+import 'package:dead_porky/features/auth/presentation/providers/auth_provider.dart';
 import 'package:dead_porky/core/router/app_router.dart';
 
 /// Onboarding page model
@@ -36,6 +38,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   Gender _gender = Gender.notSpecified;
   ActivityLevel _activityLevel = ActivityLevel.moderate;
   FitnessGoal _fitnessGoal = FitnessGoal.maintain;
+  bool _isSaving = false;
 
   final List<_OnboardingPage> _pages = [
     const _OnboardingPage(
@@ -93,12 +96,61 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     }
   }
 
-  void _completeOnboarding() {
-    // TODO: Save profile data to Firestore
-    // ref.read(authNotifierProvider.notifier).updateProfile(...);
+  Future<void> _completeOnboarding() async {
+    if (!_isProfileComplete()) {
+      _showMessage('Completa tu altura, peso, fecha de nacimiento y género antes de continuar.');
+      return;
+    }
 
-    // Mark onboarding as completed
-    ref.read(hasCompletedOnboardingProvider.notifier).state = true;
+    final currentUser = ref.read(currentUserProvider);
+    if (currentUser == null) {
+      _showMessage('No se encontró el usuario. Inicia sesión de nuevo.');
+      return;
+    }
+
+    final profile = UserProfile(
+      height: _height,
+      weight: _weight,
+      birthdate: _birthdate,
+      gender: _gender,
+      activityLevel: _activityLevel,
+      fitnessGoal: _fitnessGoal,
+    );
+
+    final updatedUser = currentUser.copyWith(profile: profile);
+
+    setState(() {
+      _isSaving = true;
+    });
+
+    try {
+      await ref.read(authNotifierProvider.notifier).updateProfile(updatedUser);
+      ref.read(hasCompletedOnboardingProvider.notifier).state = true;
+      if (mounted) {
+        context.go('/dashboard');
+      }
+    } catch (_) {
+      _showMessage('No se pudo guardar tu perfil. Intenta de nuevo.');
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isSaving = false;
+        });
+      }
+    }
+  }
+
+  bool _isProfileComplete() {
+    return _height != null &&
+        _weight != null &&
+        _birthdate != null &&
+        _gender != Gender.notSpecified;
+  }
+
+  void _showMessage(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message)),
+    );
   }
 
   @override
@@ -161,12 +213,21 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                     const SizedBox.shrink(),
                   const Spacer(),
                   FilledButton(
-                    onPressed: _nextPage,
-                    child: Text(
-                      _currentPage == _pages.length - 1
-                          ? 'Comenzar'
-                          : 'Siguiente',
-                    ),
+                    onPressed: _isSaving ? null : _nextPage,
+                    child: _isSaving
+                        ? const SizedBox(
+                            height: 18,
+                            width: 18,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              color: Colors.white,
+                            ),
+                          )
+                        : Text(
+                            _currentPage == _pages.length - 1
+                                ? 'Comenzar'
+                                : 'Siguiente',
+                          ),
                   ),
                 ],
               ),

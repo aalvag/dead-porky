@@ -2,8 +2,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:uuid/uuid.dart';
+import 'package:flutter_riverpod/legacy.dart';
 import 'package:dead_porky/features/exercises/domain/entities/routine.dart';
+import 'package:dead_porky/features/exercises/domain/entities/workout_record.dart';
+import 'package:dead_porky/features/exercises/data/workout_history_service.dart';
 import 'package:dead_porky/features/ai_engine/data/datasources/kilo_gateway_real.dart';
 
 // ==================== Workout State ====================
@@ -229,42 +231,102 @@ class WorkoutNotifier extends StateNotifier<WorkoutState?> {
     _timer?.cancel();
     state = state!.copyWith(isActive: false, isCompleted: true);
 
-    // Generate AI evaluation
-    final buffer = StringBuffer();
-    buffer.writeln('📊 **Resumen del Entrenamiento**\n');
-    buffer.writeln('⏱️ Duración: ${state!.formattedElapsed}');
-    buffer.writeln('🏋️ Ejercicios: ${state!.exercises.length}');
-    buffer.writeln('💪 Series completadas: ${state!.totalCompletedSets}');
-    buffer.writeln('📦 Volumen: ${state!.totalVolume.toStringAsFixed(0)} kg\n');
-
-    for (final exercise in state!.exercises) {
-      buffer.writeln('**${exercise.exerciseName}**');
-      buffer.writeln(
-        '- ${exercise.completedSets}/${exercise.sets.length} series',
+    // Convert to ExerciseRecord list
+    final exerciseRecords = state!.exercises.map((e) {
+      return ExerciseRecord(
+        exerciseId: e.exerciseId,
+        exerciseName: e.exerciseName,
+        category: e.category,
+        restSeconds: e.restSeconds,
+        sets: e.sets
+            .map(
+              (s) => SetRecord(
+                setNumber: s.setNumber,
+                targetReps: s.targetReps,
+                reps: s.reps,
+                weight: s.weight,
+                type: s.type.label.toLowerCase(),
+                rpe: s.rpe,
+                completed: s.completed,
+                completedAt: s.completedAt,
+              ),
+            )
+            .toList(),
       );
-      buffer.writeln(
-        '- Volumen: ${exercise.totalVolume.toStringAsFixed(0)} kg\n',
-      );
-    }
+    }).toList();
 
-    // Try real AI evaluation
+    // Create workout record
+    final record = WorkoutRecord.create(
+      routineName: state!.routine?.name ?? 'Entrenamiento',
+      durationSeconds: state!.elapsed.inSeconds,
+      exercises: exerciseRecords,
+    );
+
+    // Save to history service (in production, this would persist to DB)
+    // TODO: Get from provider/injection
+    final historyService = WorkoutHistoryService();
+    historyService.saveWorkout(record);
+
+    // Generate detailed AI evaluation
+    final workoutContext = record.toAIContext();
+
+    const systemPrompt =
+        '''Eres un entrenador personal experto y nutricionista. 
+Evalúa este entrenamiento completo y proporciona:
+1. **Resumen del rendimiento**: ¿Fue un buen entrenamiento?
+2. **Análisis por ejercicio**: Fortalezas y debilidades
+3. **Progresión**: ¿Cómo se compara con el objetivo?
+4. **Recomendaciones**: Qué ajustar para la próxima sesión
+5. **Recuperación**: Qué hacer después de este entrenamiento
+6. **Nutrición**: Qué comer post-entrenamiento basado en el volumen
+
+Responde en español, usa emojis, sé conciso pero detallado (máximo 12 líneas).''';
+
     try {
       final gateway = KiloGatewayReal();
       final evaluation = await gateway.chat(
         messages: [
-          {
-            'role': 'system',
-            'content':
-                'Eres un entrenador experto. Evalúa este entrenamiento y da recomendaciones. Responde en español con emojis.',
-          },
-          {'role': 'user', 'content': buffer.toString()},
+          {'role': 'system', 'content': systemPrompt},
+          {'role': 'user', 'content': workoutContext},
         ],
-        maxTokens: 800,
+        maxTokens: 1000,
       );
+
+      // Update record with AI evaluation
+      // In production: historyService.updateEvaluation(record.id, evaluation);
+
       return evaluation;
     } catch (e) {
-      return '${buffer.toString()}\n\n¡Buen trabajo! 💪🔥';
+      return _generateFallbackEvaluation(record);
     }
+  }
+
+  String _generateFallbackEvaluation(WorkoutRecord record) {
+    final buffer = StringBuffer();
+    buffer.writeln('📊 **Resumen del Entrenamiento**\n');
+    buffer.writeln('⏱️ Duración: ${record.durationSeconds ~/ 60} minutos');
+    buffer.writeln('🏋️ Ejercicios: ${record.exercises.length}');
+    buffer.writeln(
+      '💪 Series completadas: ${record.completedSets}/${record.totalSets}',
+    );
+    buffer.writeln(
+      '📦 Volumen total: ${record.totalVolume.toStringAsFixed(0)} kg\n',
+    );
+
+    for (final exercise in record.exercises) {
+      buffer.writeln('**${exercise.exerciseName}**');
+      for (final set in exercise.sets) {
+        if (set.completed) {
+          buffer.writeln(
+            '  S${set.setNumber}: ${set.weight}kg x ${set.reps} reps (RPE: ${set.rpe ?? '-'})',
+          );
+        }
+      }
+      buffer.writeln('');
+    }
+
+    buffer.writeln('🔥 ¡Buen trabajo! Sigue así.');
+    return buffer.toString();
   }
 
   void cancel() {
@@ -483,7 +545,7 @@ class _WorkoutScreenState extends ConsumerState<WorkoutScreen> {
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('Finalizar Entrenamiento'),
-        content: const Text('¿Listo? La IA evaluará tu rendimiento.'),
+        content: const Text('¿Listo? Se guardará tu progreso.'),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
@@ -496,15 +558,37 @@ class _WorkoutScreenState extends ConsumerState<WorkoutScreen> {
               showDialog(
                 context: context,
                 barrierDismissible: false,
-                builder: (_) =>
-                    const Center(child: CircularProgressIndicator()),
+                builder: (_) => const AlertDialog(
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      CircularProgressIndicator(),
+                      SizedBox(height: 16),
+                      Text('Guardando entrenamiento...'),
+                    ],
+                  ),
+                ),
               );
 
-              final evaluation = await notifier.finishAndGetEvaluation();
+              try {
+                final evaluation = await notifier
+                    .finishAndGetEvaluation()
+                    .timeout(const Duration(seconds: 15));
 
-              if (context.mounted) {
-                Navigator.pop(context); // Close loading
-                _showEvaluationDialog(context, evaluation);
+                if (context.mounted) {
+                  Navigator.pop(context); // Close loading
+                  _showEvaluationDialog(context, evaluation);
+                }
+              } catch (e) {
+                // Timeout or error - show fallback
+                if (context.mounted) {
+                  Navigator.pop(context); // Close loading
+                  _showEvaluationDialog(
+                    context,
+                    '✅ Entrenamiento guardado correctamente.\n\n'
+                    'No se pudo conectar con el asistente IA, pero tus datos están guardados.',
+                  );
+                }
               }
             },
             child: const Text('Finalizar'),
@@ -552,7 +636,7 @@ class _TopStatsBar extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       decoration: BoxDecoration(
         color: theme.colorScheme.primaryContainer.withValues(alpha: 0.5),
         border: Border(
@@ -560,64 +644,77 @@ class _TopStatsBar extends StatelessWidget {
         ),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _StatItem(
-            icon: Icons.timer,
-            value: workout.formattedElapsed,
-            label: 'Tiempo',
+          // Time
+          Column(
+            children: [
+              Text(
+                workout.formattedElapsed,
+                style: theme.textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  fontFeatures: const [FontFeature.tabularFigures()],
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                'Duración',
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+              ),
+            ],
           ),
+          // Divider
           Container(
             width: 1,
-            height: 30,
+            height: 40,
             color: theme.colorScheme.outlineVariant,
           ),
-          _StatItem(
-            icon: Icons.check_circle,
-            value: '${workout.totalCompletedSets}',
-            label: 'Series',
+          // Sets
+          Column(
+            children: [
+              Text(
+                '${workout.totalCompletedSets}',
+                style: theme.textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                'Series',
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+              ),
+            ],
           ),
+          // Divider
           Container(
             width: 1,
-            height: 30,
+            height: 40,
             color: theme.colorScheme.outlineVariant,
           ),
-          _StatItem(
-            icon: Icons.monitor_weight,
-            value: '${(workout.totalVolume / 1000).toStringAsFixed(1)}k',
-            label: 'Volumen',
+          // Volume
+          Column(
+            children: [
+              Text(
+                '${(workout.totalVolume / 1000).toStringAsFixed(1)}k',
+                style: theme.textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                'Volumen (kg)',
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+              ),
+            ],
           ),
         ],
       ),
-    );
-  }
-}
-
-class _StatItem extends StatelessWidget {
-  final IconData icon;
-  final String value;
-  final String label;
-
-  const _StatItem({
-    required this.icon,
-    required this.value,
-    required this.label,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Column(
-      children: [
-        Icon(icon, size: 18, color: theme.colorScheme.primary),
-        const SizedBox(height: 4),
-        Text(
-          value,
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-        ),
-        Text(label, style: theme.textTheme.bodySmall),
-      ],
     );
   }
 }
@@ -666,34 +763,40 @@ class _RestTimerBanner extends StatelessWidget {
         children: [
           // Timer circle
           SizedBox(
-            width: 64,
-            height: 64,
+            width: 56,
+            height: 56,
             child: Stack(
               alignment: Alignment.center,
               children: [
                 CircularProgressIndicator(
                   value: 1,
-                  strokeWidth: 6,
+                  strokeWidth: 4,
                   backgroundColor: theme.colorScheme.surfaceContainerHighest,
                 ),
                 CircularProgressIndicator(
                   value: progress,
-                  strokeWidth: 6,
+                  strokeWidth: 4,
                   valueColor: AlwaysStoppedAnimation(timerColor),
                 ),
-                Text(
-                  '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                    color: timerColor,
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: theme.colorScheme.surface,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Text(
+                    '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                      color: timerColor,
+                    ),
                   ),
                 ),
               ],
             ),
           ),
           const SizedBox(width: 16),
-
           // Info
           Expanded(
             child: Column(
@@ -713,7 +816,7 @@ class _RestTimerBanner extends StatelessWidget {
                   ),
                 if (state.isFinished)
                   Text(
-                    '¡Tiempo! Continúa con la siguiente serie',
+                    '¡Tiempo! Continúa',
                     style: TextStyle(
                       color: timerColor,
                       fontWeight: FontWeight.w600,
@@ -722,10 +825,9 @@ class _RestTimerBanner extends StatelessWidget {
               ],
             ),
           ),
-
           // Controls
           IconButton(
-            icon: const Icon(Icons.remove),
+            icon: const Icon(Icons.remove, size: 20),
             onPressed: () => onAddTime(-15),
           ),
           IconButton.filled(
@@ -734,7 +836,7 @@ class _RestTimerBanner extends StatelessWidget {
             style: IconButton.styleFrom(backgroundColor: timerColor),
           ),
           IconButton(
-            icon: const Icon(Icons.add),
+            icon: const Icon(Icons.add, size: 20),
             onPressed: () => onAddTime(15),
           ),
         ],
@@ -826,46 +928,46 @@ class _ExerciseCard extends StatelessWidget {
           ),
 
           // Sets header
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Row(
               children: [
-                const SizedBox(
+                SizedBox(
                   width: 30,
                   child: Text(
                     '#',
                     style: TextStyle(fontWeight: FontWeight.w600),
                   ),
                 ),
-                const Expanded(
+                Expanded(
                   child: Text(
                     'OBJ',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 12),
                   ),
                 ),
-                const Expanded(
+                Expanded(
                   child: Text(
                     'KG',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 12),
                   ),
                 ),
-                const Expanded(
+                Expanded(
                   child: Text(
                     'REPS',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 12),
                   ),
                 ),
-                const Expanded(
+                Expanded(
                   child: Text(
                     'RPE',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 12),
                   ),
                 ),
-                const SizedBox(width: 50),
+                SizedBox(width: 50),
               ],
             ),
           ),

@@ -31,7 +31,7 @@ class NotificationService {
     );
 
     await _plugin.initialize(
-      settings,
+      settings: settings,
       onDidReceiveNotificationResponse: _onNotificationTapped,
     );
 
@@ -83,7 +83,13 @@ class NotificationService {
       iOS: iosDetails,
     );
 
-    await _plugin.show(id, title, body, details, payload: payload);
+    await _plugin.show(
+      id: id,
+      title: title,
+      body: body,
+      notificationDetails: details,
+      payload: payload,
+    );
   }
 
   /// Schedule notification
@@ -110,14 +116,12 @@ class NotificationService {
     );
 
     await _plugin.zonedSchedule(
-      id,
-      title,
-      body,
-      tz.TZDateTime.from(scheduledDate, tz.local),
-      details,
+      id: id,
+      title: title,
+      body: body,
+      scheduledDate: tz.TZDateTime.from(scheduledDate, tz.local),
+      notificationDetails: details,
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime,
       payload: payload,
     );
   }
@@ -131,11 +135,11 @@ class NotificationService {
     final id = habitName.hashCode;
 
     await _plugin.zonedSchedule(
-      id,
-      'Recordatorio: $habitName',
-      'No olvides completar tu hábito hoy',
-      _nextInstanceOfTime(hour, minute),
-      const NotificationDetails(
+      id: id,
+      title: 'Recordatorio: $habitName',
+      body: 'No olvides completar tu hábito hoy',
+      scheduledDate: _nextInstanceOfTime(hour, minute),
+      notificationDetails: const NotificationDetails(
         android: AndroidNotificationDetails(
           'dead_porky_habits',
           'Recordatorios de Hábitos',
@@ -146,16 +150,12 @@ class NotificationService {
       ),
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       matchDateTimeComponents: DateTimeComponents.time,
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime,
       payload: 'habit_$habitName',
     );
   }
 
   /// Schedule rest timer notification
   Future<void> scheduleRestTimer({required int seconds}) async {
-    final scheduledDate = DateTime.now().add(Duration(seconds: seconds));
-
     await showNotification(
       id: 9999,
       title: '¡Descanso terminado!',
@@ -170,11 +170,11 @@ class NotificationService {
     required int minute,
   }) async {
     await _plugin.zonedSchedule(
-      1000,
-      '¡Hora de entrenar! 💪',
-      'No olvides tu entrenamiento de hoy',
-      _nextInstanceOfTime(hour, minute),
-      const NotificationDetails(
+      id: 1000,
+      title: '¡Hora de entrenar! 💪',
+      body: 'No olvides tu entrenamiento de hoy',
+      scheduledDate: _nextInstanceOfTime(hour, minute),
+      notificationDetails: const NotificationDetails(
         android: AndroidNotificationDetails(
           'dead_porky_workouts',
           'Recordatorios de Entrenamiento',
@@ -185,8 +185,6 @@ class NotificationService {
       ),
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       matchDateTimeComponents: DateTimeComponents.time,
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime,
       payload: 'workout_reminder',
     );
   }
@@ -229,7 +227,7 @@ class NotificationService {
 
   /// Cancel notification
   Future<void> cancel(int id) async {
-    await _plugin.cancel(id);
+    await _plugin.cancel(id: id);
   }
 
   /// Cancel all notifications

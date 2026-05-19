@@ -1,18 +1,61 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:dead_porky/features/habits/domain/entities/habit.dart';
+import 'package:dead_porky/features/habits/presentation/screens/habit_tracker_screen.dart';
 
 /// Streak card showing current and longest streaks
-class StreakCard extends StatelessWidget {
+class StreakCard extends ConsumerWidget {
   const StreakCard({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final habits = ref.watch(habitsProvider);
+    final habitLogs = ref.watch(habitLogsProvider);
 
-    // Mock data - replace with actual data
-    const currentStreak = 12;
-    const longestStreak = 28;
-    const totalPoints = 4850;
-    const level = 5;
+    final dailyHabits = habits
+        .where((habit) => habit.frequency == HabitFrequency.daily)
+        .toList();
+    final currentStreak = _computeCurrentStreak(dailyHabits, habitLogs);
+    final longestStreak = _computeLongestStreak(dailyHabits, habitLogs);
+    final completedToday = _countCompletedToday(dailyHabits, habitLogs);
+    final totalPoints = completedToday * 10;
+    final level = 1 + (totalPoints ~/ 50);
+
+    if (dailyHabits.isEmpty) {
+      return Card(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(
+                    Icons.local_fire_department,
+                    color: theme.colorScheme.primary,
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    'Tu racha',
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              Text(
+                'Agrega hábitos diarios para que puedas seguir tu racha y progresar continuamente.',
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
 
     return Card(
       child: Padding(
@@ -38,7 +81,6 @@ class StreakCard extends StatelessWidget {
             const SizedBox(height: 16),
             Row(
               children: [
-                // Current streak
                 Expanded(
                   child: _StreakItem(
                     icon: Icons.local_fire_department,
@@ -53,12 +95,11 @@ class StreakCard extends StatelessWidget {
                   height: 60,
                   color: theme.colorScheme.outlineVariant,
                 ),
-                // Longest streak
                 Expanded(
                   child: _StreakItem(
                     icon: Icons.emoji_events,
                     value: '$longestStreak',
-                    label: 'Récord personal',
+                    label: 'Récord',
                     color: Colors.amber,
                     isHighlighted: false,
                   ),
@@ -66,7 +107,6 @@ class StreakCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 16),
-            // Level and XP
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
@@ -80,7 +120,6 @@ class StreakCard extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  // Level badge
                   Container(
                     width: 48,
                     height: 48,
@@ -110,12 +149,14 @@ class StreakCard extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          '$totalPoints XP acumulados',
+                          totalPoints > 0
+                              ? '$totalPoints XP acumulados'
+                              : 'Suma puntos completando tus hábitos diarios',
                           style: theme.textTheme.bodySmall,
                         ),
                         const SizedBox(height: 4),
                         LinearProgressIndicator(
-                          value: 0.65, // Progress to next level
+                          value: (totalPoints % 50) / 50,
                           minHeight: 6,
                           borderRadius: BorderRadius.circular(3),
                           backgroundColor:
@@ -123,7 +164,9 @@ class StreakCard extends StatelessWidget {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          '150 XP para nivel ${level + 1}',
+                          totalPoints > 0
+                              ? '${50 - (totalPoints % 50)} XP para nivel ${level + 1}'
+                              : 'Completa un hábito para avanzar',
                           style: theme.textTheme.bodySmall?.copyWith(
                             color: theme.colorScheme.onSurfaceVariant,
                           ),
@@ -135,36 +178,108 @@ class StreakCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12),
-            // Achievements preview
-            Row(
-              children: [
-                Text(
-                  'Logros recientes:',
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    color: theme.colorScheme.onSurfaceVariant,
-                  ),
-                ),
-                const SizedBox(width: 8),
-                ...['🏆', '💪', '🔥', '⭐'].map((badge) {
-                  return Padding(
-                    padding: const EdgeInsets.only(right: 4),
-                    child: Text(badge, style: const TextStyle(fontSize: 20)),
-                  );
-                }),
-                const Spacer(),
-                TextButton(
-                  onPressed: () {
-                    // TODO: Navigate to achievements
-                  },
-                  child: const Text('Ver todos'),
-                ),
-              ],
+            Text(
+              currentStreak > 0
+                  ? '¡Manténla! $completedToday hábitos del día completados.'
+                  : 'Aún no tienes racha activa. Empieza con tu primer hábito diario.',
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
             ),
           ],
         ),
       ),
     );
   }
+
+  int _countCompletedToday(
+    List<Habit> habits,
+    Map<String, Map<String, double>> habitLogs,
+  ) {
+    final todayKey = _dateKey(DateTime.now());
+    return habits.where((habit) {
+      final value = habitLogs[habit.id]?[todayKey] ?? 0;
+      return habit.type == HabitType.boolean
+          ? value > 0
+          : value >= (habit.targetValue ?? 1);
+    }).length;
+  }
+
+  bool _isHabitCompletedOnDate(
+    Habit habit,
+    Map<String, Map<String, double>> habitLogs,
+    DateTime date,
+  ) {
+    final dateKey = _dateKey(date);
+    final value = habitLogs[habit.id]?[dateKey] ?? 0;
+    return habit.type == HabitType.boolean
+        ? value > 0
+        : value >= (habit.targetValue ?? 1);
+  }
+
+  int _computeCurrentStreak(
+    List<Habit> habits,
+    Map<String, Map<String, double>> habitLogs,
+  ) {
+    if (habits.isEmpty) return 0;
+
+    var streak = 0;
+    var date = DateTime.now();
+    while (true) {
+      final allCompleted = habits.every(
+        (habit) => _isHabitCompletedOnDate(habit, habitLogs, date),
+      );
+      if (!allCompleted) break;
+      streak += 1;
+      date = date.subtract(const Duration(days: 1));
+    }
+    return streak;
+  }
+
+  int _computeLongestStreak(
+    List<Habit> habits,
+    Map<String, Map<String, double>> habitLogs,
+  ) {
+    if (habits.isEmpty) return 0;
+
+    final dates =
+        habitLogs.values
+            .expand((map) => map.keys)
+            .toSet()
+            .map(DateTime.parse)
+            .toList()
+          ..sort();
+
+    var longest = 0;
+    var current = 0;
+    DateTime? previousDate;
+
+    for (final date in dates) {
+      if (previousDate == null || date.difference(previousDate).inDays == 1) {
+        final allCompleted = habits.every(
+          (habit) => _isHabitCompletedOnDate(habit, habitLogs, date),
+        );
+        if (allCompleted) {
+          current += 1;
+        } else {
+          longest = current > longest ? current : longest;
+          current = 0;
+        }
+      } else {
+        longest = current > longest ? current : longest;
+        final allCompleted = habits.every(
+          (habit) => _isHabitCompletedOnDate(habit, habitLogs, date),
+        );
+        current = allCompleted ? 1 : 0;
+      }
+      previousDate = date;
+    }
+
+    return current > longest ? current : longest;
+  }
+
+  String _dateKey(DateTime date) =>
+      '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
 }
 
 class _StreakItem extends StatelessWidget {

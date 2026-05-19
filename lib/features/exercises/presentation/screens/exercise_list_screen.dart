@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
 import 'package:go_router/go_router.dart';
 import 'package:dead_porky/features/exercises/data/exercise_library.dart';
 import 'package:dead_porky/core/router/app_router.dart';
@@ -169,30 +170,6 @@ class _ExerciseListScreenState extends ConsumerState<ExerciseListScreen> {
           ),
         ],
       ),
-    );
-  }
-
-  void _showFilterSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) {
-        return const Padding(
-          padding: EdgeInsets.all(24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Filtrar por',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 16),
-              // TODO: Add filter options (equipment, difficulty, muscle group)
-              Text('Próximamente: filtros avanzados'),
-            ],
-          ),
-        );
-      },
     );
   }
 

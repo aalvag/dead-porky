@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
 import 'package:go_router/go_router.dart';
 import 'package:dead_porky/features/exercises/domain/entities/routine.dart';
 import 'package:dead_porky/features/exercises/data/exercise_library.dart';

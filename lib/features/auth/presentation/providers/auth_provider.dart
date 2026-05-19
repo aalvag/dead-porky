@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
 import 'package:dead_porky/features/auth/domain/entities/user.dart';
 import 'package:dead_porky/features/auth/domain/repositories/auth_repository.dart';
 import 'package:dead_porky/features/auth/data/datasources/auth_datasource.dart';
@@ -136,6 +137,16 @@ class AuthNotifier extends StateNotifier<AuthState> {
     try {
       await _repository.resetPassword(email);
       state = state.copyWith(status: AuthStatus.unauthenticated);
+    } catch (e) {
+      state = AuthState(status: AuthStatus.error, errorMessage: _parseError(e));
+    }
+  }
+
+  Future<void> updateProfile(User user) async {
+    state = state.copyWith(status: AuthStatus.loading);
+    try {
+      await _repository.updateProfile(user);
+      state = AuthState(status: AuthStatus.authenticated, user: user);
     } catch (e) {
       state = AuthState(status: AuthStatus.error, errorMessage: _parseError(e));
     }

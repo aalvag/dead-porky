@@ -208,11 +208,8 @@ class GamificationScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
 
-    // Mock user stats
-    const totalPoints = 4850;
-    const level = 5;
-    const currentStreak = 12;
-    const unlockedBadges = 6;
+    const totalPoints = 0;
+    const level = 1;
 
     return Scaffold(
       appBar: AppBar(title: const Text('Logros y Progreso')),
@@ -262,20 +259,24 @@ class GamificationScreen extends ConsumerWidget {
                             ),
                           ),
                           Text(
-                            '$totalPoints XP acumulados',
+                            totalPoints > 0
+                                ? '$totalPoints XP acumulados'
+                                : 'Aún no tienes puntos. Registra tu primera sesión.',
                             style: theme.textTheme.bodyMedium?.copyWith(
                               color: theme.colorScheme.onSurfaceVariant,
                             ),
                           ),
                           const SizedBox(height: 8),
                           LinearProgressIndicator(
-                            value: 0.65,
+                            value: totalPoints > 0 ? 0.65 : 0.0,
                             minHeight: 8,
                             borderRadius: BorderRadius.circular(4),
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            '150 XP para nivel ${level + 1}',
+                            totalPoints > 0
+                                ? '150 XP para nivel ${level + 1}'
+                                : 'Empieza tu primer entrenamiento para avanzar',
                             style: theme.textTheme.bodySmall,
                           ),
                         ],
@@ -290,10 +291,10 @@ class GamificationScreen extends ConsumerWidget {
             // Stats row
             Row(
               children: [
-                Expanded(
+                const Expanded(
                   child: _MiniStat(
                     icon: Icons.local_fire_department,
-                    value: '$currentStreak',
+                    value: '0',
                     label: 'Días de racha',
                     color: Colors.orange,
                   ),
@@ -302,16 +303,16 @@ class GamificationScreen extends ConsumerWidget {
                 Expanded(
                   child: _MiniStat(
                     icon: Icons.emoji_events,
-                    value: '$unlockedBadges/${PresetBadges.badges.length}',
+                    value: '0/${PresetBadges.badges.length}',
                     label: 'Logros',
                     color: Colors.amber,
                   ),
                 ),
                 const SizedBox(width: 8),
-                Expanded(
+                const Expanded(
                   child: _MiniStat(
                     icon: Icons.star,
-                    value: '$totalPoints',
+                    value: '0',
                     label: 'Puntos',
                     color: Colors.purple,
                   ),
@@ -342,7 +343,7 @@ class GamificationScreen extends ConsumerWidget {
               itemCount: PresetBadges.badges.length,
               itemBuilder: (context, index) {
                 final badge = PresetBadges.badges[index];
-                final isUnlocked = index < unlockedBadges; // Mock
+                const isUnlocked = false;
                 return _BadgeCard(badge: badge, isUnlocked: isUnlocked);
               },
             ),

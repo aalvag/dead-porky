@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
 import 'package:dead_porky/features/exercises/domain/entities/workout.dart';
 import 'package:dead_porky/features/exercises/presentation/widgets/rest_timer_widget.dart';
 import 'package:dead_porky/features/exercises/data/exercise_library.dart';
@@ -643,17 +644,13 @@ class _ExerciseSetCard extends StatelessWidget {
             const SizedBox(height: 8),
 
             // Set headers
-            Row(
+            const Row(
               children: [
-                const SizedBox(width: 30),
-                const Expanded(
-                  child: Text('Peso', textAlign: TextAlign.center),
-                ),
-                const Expanded(
-                  child: Text('Reps', textAlign: TextAlign.center),
-                ),
-                const Expanded(child: Text('RPE', textAlign: TextAlign.center)),
-                const SizedBox(width: 50),
+                SizedBox(width: 30),
+                Expanded(child: Text('Peso', textAlign: TextAlign.center)),
+                Expanded(child: Text('Reps', textAlign: TextAlign.center)),
+                Expanded(child: Text('RPE', textAlign: TextAlign.center)),
+                SizedBox(width: 50),
               ],
             ),
             const Divider(),

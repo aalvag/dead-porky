@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
 import 'package:dead_porky/features/wearable/domain/entities/health_device.dart';
+import 'package:dead_porky/features/wearable/presentation/providers/wearable_metrics_provider.dart';
 
 // ==================== Providers ====================
 
@@ -23,6 +25,7 @@ class _DeviceScannerScreenState extends ConsumerState<DeviceScannerScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final connectedDevices = ref.watch(connectedDevicesProvider);
+    final wearableMetrics = ref.watch(wearableMetricsProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -80,23 +83,49 @@ class _DeviceScannerScreenState extends ConsumerState<DeviceScannerScreen> {
                       ],
                     ),
                     const SizedBox(height: 12),
-                    _InfoRow(
+                    const _InfoRow(
                       icon: Icons.apple,
                       text: 'HealthKit (iOS) - Pasos, sueño, FC',
                     ),
-                    _InfoRow(
+                    const _InfoRow(
                       icon: Icons.android,
                       text: 'Health Connect (Android) - Todos los datos',
                     ),
-                    _InfoRow(
+                    const _InfoRow(
                       icon: Icons.bluetooth,
                       text: 'BLE - Básculas, monitores FC, glucosa',
                     ),
-                    _InfoRow(
+                    const _InfoRow(
                       icon: Icons.cloud,
                       text: 'APIs - Fitbit, Garmin, Withings, Dexcom',
                     ),
                   ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+
+            // Health Connect sync
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton.icon(
+                onPressed: wearableMetrics.isSyncing
+                    ? null
+                    : _syncHealthConnect,
+                icon: wearableMetrics.isSyncing
+                    ? const SizedBox(
+                        width: 18,
+                        height: 18,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          color: Colors.white,
+                        ),
+                      )
+                    : const Icon(Icons.sync),
+                label: Text(
+                  wearableMetrics.isSyncing
+                      ? 'Sincronizando Health Connect...'
+                      : 'Sincronizar con Health Connect',
                 ),
               ),
             ),
@@ -143,6 +172,54 @@ class _DeviceScannerScreenState extends ConsumerState<DeviceScannerScreen> {
     );
   }
 
+  Future<void> _syncHealthConnect() async {
+    final notifier = ref.read(wearableMetricsProvider.notifier);
+    try {
+      await notifier.syncWithHealthPlatform();
+
+      final connected = List<HealthDevice>.from(
+        ref.read(connectedDevicesProvider),
+      );
+      const healthConnectId = 'health_connect_source';
+      if (!connected.any((device) => device.id == healthConnectId)) {
+        connected.add(
+          HealthDevice(
+            id: healthConnectId,
+            name: 'Health Connect',
+            type: DeviceType.smartwatch,
+            status: DeviceStatus.connected,
+            lastSync: DateTime.now(),
+          ),
+        );
+      } else {
+        for (var i = 0; i < connected.length; i++) {
+          if (connected[i].id == healthConnectId) {
+            connected[i] = connected[i].copyWith(lastSync: DateTime.now());
+          }
+        }
+      }
+
+      ref.read(connectedDevicesProvider.notifier).state = connected;
+      ref
+          .read(wearableMetricsProvider.notifier)
+          .setConnectedDevices(connected.map((device) => device.name).toList());
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Health Connect sincronizado correctamente'),
+          ),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('No se pudo sincronizar Health Connect: $e')),
+        );
+      }
+    }
+  }
+
   void _toggleScan() {
     setState(() => _isScanning = !_isScanning);
     if (_isScanning) {
@@ -168,6 +245,9 @@ class _DeviceScannerScreenState extends ConsumerState<DeviceScannerScreen> {
         ),
       );
       ref.read(connectedDevicesProvider.notifier).state = connected;
+      ref
+          .read(wearableMetricsProvider.notifier)
+          .setConnectedDevices(connected.map((device) => device.name).toList());
 
       ScaffoldMessenger.of(
         context,
@@ -181,6 +261,9 @@ class _DeviceScannerScreenState extends ConsumerState<DeviceScannerScreen> {
     );
     connected.removeWhere((d) => d.id == device.id);
     ref.read(connectedDevicesProvider.notifier).state = connected;
+    ref
+        .read(wearableMetricsProvider.notifier)
+        .setConnectedDevices(connected.map((device) => device.name).toList());
 
     ScaffoldMessenger.of(
       context,

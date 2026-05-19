@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:dead_porky/core/router/app_router.dart';
+import 'package:dead_porky/core/theme/app_theme.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -20,11 +23,11 @@ class SettingsScreen extends ConsumerWidget {
                 backgroundColor: theme.colorScheme.primaryContainer,
                 child: const Icon(Icons.person),
               ),
-              title: const Text('Mi Perfil'),
-              subtitle: const Text('Editar información personal'),
+              title: const Text('Completa tu perfil'),
+              subtitle: const Text('Editar información personal y objetivos'),
               trailing: const Icon(Icons.chevron_right),
               onTap: () {
-                // TODO: Navigate to profile edit
+                context.pushNamed(AppRoutes.onboarding);
               },
             ),
           ),
@@ -243,10 +246,10 @@ class SettingsScreen extends ConsumerWidget {
           Card(
             child: Column(
               children: [
-                ListTile(
-                  leading: const Icon(Icons.info),
-                  title: const Text('Versión'),
-                  subtitle: const Text('1.0.0 (Build 1)'),
+                const ListTile(
+                  leading: Icon(Icons.info),
+                  title: Text('Versión'),
+                  subtitle: Text('1.0.0 (Build 1)'),
                 ),
                 const Divider(height: 1),
                 ListTile(
@@ -288,40 +291,51 @@ class SettingsScreen extends ConsumerWidget {
   }
 
   void _showThemeSelector(BuildContext context, WidgetRef ref) {
+    final currentThemeValue = ref.read(themeModeProvider) == ThemeMode.light
+        ? 'light'
+        : ref.read(themeModeProvider) == ThemeMode.dark
+        ? 'dark'
+        : 'system';
+
     showModalBottomSheet(
       context: context,
       builder: (context) => Padding(
         padding: const EdgeInsets.all(24),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'Seleccionar tema',
-              style: Theme.of(
-                context,
-              ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 16),
-            RadioListTile(
-              title: const Text('Sistema'),
-              subtitle: const Text('Sigue la configuración del sistema'),
-              value: 'system',
-              groupValue: 'system',
-              onChanged: (value) => Navigator.pop(context),
-            ),
-            RadioListTile(
-              title: const Text('Claro'),
-              value: 'light',
-              groupValue: 'system',
-              onChanged: (value) => Navigator.pop(context),
-            ),
-            RadioListTile(
-              title: const Text('Oscuro'),
-              value: 'dark',
-              groupValue: 'system',
-              onChanged: (value) => Navigator.pop(context),
-            ),
-          ],
+        child: RadioGroup<String>(
+          groupValue: currentThemeValue,
+          onChanged: (value) {
+            if (value == null) return;
+            switch (value) {
+              case 'light':
+                ref.read(themeModeProvider.notifier).state = ThemeMode.light;
+                break;
+              case 'dark':
+                ref.read(themeModeProvider.notifier).state = ThemeMode.dark;
+                break;
+              default:
+                ref.read(themeModeProvider.notifier).state = ThemeMode.system;
+            }
+            Navigator.pop(context);
+          },
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Seleccionar tema',
+                style: Theme.of(
+                  context,
+                ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 16),
+              const RadioListTile<String>(
+                title: Text('Sistema'),
+                subtitle: Text('Sigue la configuración del sistema'),
+                value: 'system',
+              ),
+              const RadioListTile<String>(title: Text('Claro'), value: 'light'),
+              const RadioListTile<String>(title: Text('Oscuro'), value: 'dark'),
+            ],
+          ),
         ),
       ),
     );

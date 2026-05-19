@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:dead_porky/core/router/app_router.dart';
+import 'package:dead_porky/features/ai_assistant/presentation/providers/ai_insights_provider.dart';
 
 /// AI insights card showing personalized recommendations
-class AiInsightsCard extends StatelessWidget {
+class AiInsightsCard extends ConsumerWidget {
   const AiInsightsCard({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final insightsState = ref.watch(aiInsightsProvider);
 
     return Card(
       child: Padding(
@@ -54,52 +57,49 @@ class AiInsightsCard extends StatelessWidget {
                 ),
                 IconButton(
                   icon: const Icon(Icons.refresh),
-                  onPressed: () {
-                    // TODO: Refresh insights
-                  },
+                  onPressed: insightsState.isLoading
+                      ? null
+                      : () => ref
+                          .read(aiInsightsProvider.notifier)
+                          .refreshInsights(),
                   tooltip: 'Actualizar insights',
                 ),
               ],
             ),
             const SizedBox(height: 16),
-            // Insight items
-            _InsightItem(
-              icon: Icons.trending_up,
-              title: 'Progresión detectada',
-              description:
-                  'Tu press de banca ha aumentado 2.5kg esta semana. ¡Excelente progreso!',
-              color: Colors.green,
-              action: 'Ver detalles',
-              onAction: () {
-                // TODO: Navigate to exercise detail
-              },
-            ),
-            const Divider(height: 24),
-            _InsightItem(
-              icon: Icons.warning_amber,
-              title: 'Atención: Sueño reducido',
-              description:
-                  'Has dormido promedio 6h esta semana. Intenta llegar a 7-8h para mejor recuperación.',
-              color: Colors.orange,
-              action: 'Ver análisis',
-              onAction: () {
-                // TODO: Navigate to sleep analysis
-              },
-            ),
-            const Divider(height: 24),
-            _InsightItem(
-              icon: Icons.restaurant,
-              title: 'Sugerencia nutricional',
-              description:
-                  'Basado en tu entrenamiento de hoy, considera aumentar proteína a 150g.',
-              color: Colors.blue,
-              action: 'Ver plan',
-              onAction: () {
-                // TODO: Navigate to nutrition
-              },
-            ),
+            if (insightsState.isLoading)
+              const Center(child: CircularProgressIndicator())
+            else if (insightsState.error != null)
+              Text(
+                insightsState.error!,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: theme.colorScheme.error,
+                ),
+              )
+            else if (insightsState.insight != null)
+              Text(
+                insightsState.insight!,
+                style: theme.textTheme.bodyMedium,
+              )
+            else ...[
+              Text(
+                'Pulsa actualizar para generar recomendaciones dinámicas basadas en tu sueño, entrenamiento, nutrición y wearable.',
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+              ),
+              const SizedBox(height: 16),
+              _InsightItem(
+                icon: Icons.trending_up,
+                title: 'Progresión detectada',
+                description:
+                    'Tu press de banca ha aumentado 2.5kg esta semana. ¡Excelente progreso!',
+                color: Colors.green,
+                action: 'Ver detalles',
+                onAction: () {},
+              ),
+            ],
             const SizedBox(height: 12),
-            // Chat button
             SizedBox(
               width: double.infinity,
               child: FilledButton.icon(
