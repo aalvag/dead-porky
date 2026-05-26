@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:dead_porky/features/auth/domain/entities/user.dart';
@@ -132,6 +133,34 @@ class AuthNotifier extends StateNotifier<AuthState> {
     state = const AuthState(status: AuthStatus.unauthenticated);
   }
 
+  void signInLocallyForDebug({String? email}) {
+    final now = DateTime.now();
+    final normalizedEmail = (email == null || email.trim().isEmpty)
+        ? 'local@deadporky.dev'
+        : email.trim();
+
+    final debugUser = User(
+      id: 'local-debug-user',
+      email: normalizedEmail,
+      displayName: 'Huawei Local Debug',
+      profile: UserProfile(
+        height: 178,
+        weight: 82,
+        birthdate: DateTime(1992, 6, 14),
+        gender: Gender.other,
+        activityLevel: ActivityLevel.active,
+        fitnessGoal: FitnessGoal.generalHealth,
+      ),
+      settings: const UserSettings(autoSyncWearables: true),
+      stats: const UserStats(),
+      createdAt: now,
+      updatedAt: now,
+      lastLoginAt: now,
+    );
+
+    state = AuthState(status: AuthStatus.authenticated, user: debugUser);
+  }
+
   Future<void> resetPassword(String email) async {
     state = state.copyWith(status: AuthStatus.loading);
     try {
@@ -167,12 +196,18 @@ class AuthNotifier extends StateNotifier<AuthState> {
       return 'No se encontró una cuenta con este correo';
     } else if (msg.contains('wrong-password')) {
       return 'Contraseña incorrecta';
+    } else if (msg.contains('invalid-login-credentials') ||
+        msg.contains('invalid-credential') ||
+        msg.contains('supplied auth credential is incorrect')) {
+      return 'Credenciales inválidas o la cuenta no existe';
     } else if (msg.contains('email-already-in-use')) {
       return 'Ya existe una cuenta con este correo';
     } else if (msg.contains('weak-password')) {
       return 'La contraseña es muy débil';
     } else if (msg.contains('invalid-email')) {
       return 'Correo electrónico inválido';
+    } else if (msg.contains('operation-not-allowed')) {
+      return 'El acceso con email y contraseña no está habilitado en Firebase';
     } else if (msg.contains('too-many-requests')) {
       return 'Demasiados intentos. Intenta más tarde';
     } else if (msg.contains('network')) {

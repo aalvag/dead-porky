@@ -6,6 +6,9 @@ plugins {
     id("com.google.gms.google-services")
 }
 
+val huaweiHealthAppId = providers.gradleProperty("HUAWEI_HEALTH_APP_ID").orNull
+    ?: "NOT_CONFIGURED"
+
 android {
     namespace = "com.deadporky.app.dead_porky"
     compileSdk = flutter.compileSdkVersion
@@ -30,6 +33,7 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        manifestPlaceholders["huaweiHealthAppId"] = huaweiHealthAppId
     }
 
     buildTypes {
@@ -43,6 +47,7 @@ android {
 
 dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
+    implementation("com.huawei.hms:health:6.11.0.303")
 }
 
 flutter {

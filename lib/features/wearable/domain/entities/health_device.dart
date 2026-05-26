@@ -8,6 +8,9 @@ class HealthDevice {
   final DeviceType type;
   final DeviceStatus status;
   final DateTime? lastSync;
+  final DeviceConnectionSource connectionSource;
+  final String? bleDeviceId;
+  final int? lastSeenRssi;
 
   const HealthDevice({
     required this.id,
@@ -15,15 +18,49 @@ class HealthDevice {
     required this.type,
     this.status = DeviceStatus.disconnected,
     this.lastSync,
+    this.connectionSource = DeviceConnectionSource.bluetooth,
+    this.bleDeviceId,
+    this.lastSeenRssi,
   });
 
-  HealthDevice copyWith({DeviceStatus? status, DateTime? lastSync}) {
+  HealthDevice copyWith({
+    DeviceStatus? status,
+    DateTime? lastSync,
+    DeviceConnectionSource? connectionSource,
+    String? bleDeviceId,
+    int? lastSeenRssi,
+  }) {
     return HealthDevice(
       id: id,
       name: name,
       type: type,
       status: status ?? this.status,
       lastSync: lastSync ?? this.lastSync,
+      connectionSource: connectionSource ?? this.connectionSource,
+      bleDeviceId: bleDeviceId ?? this.bleDeviceId,
+      lastSeenRssi: lastSeenRssi ?? this.lastSeenRssi,
+    );
+  }
+
+  static const String huaweiGt6ProId = 'huawei_gt6_pro';
+  static const String huaweiGt6ProName = 'HUAWEI WATCH GT 6 Pro';
+
+  static HealthDevice huaweiGt6Pro({
+    DeviceStatus status = DeviceStatus.disconnected,
+    DateTime? lastSync,
+    DeviceConnectionSource connectionSource = DeviceConnectionSource.bluetooth,
+    String? bleDeviceId,
+    int? lastSeenRssi,
+  }) {
+    return HealthDevice(
+      id: huaweiGt6ProId,
+      name: huaweiGt6ProName,
+      type: DeviceType.smartwatch,
+      status: status,
+      lastSync: lastSync,
+      connectionSource: connectionSource,
+      bleDeviceId: bleDeviceId,
+      lastSeenRssi: lastSeenRssi,
     );
   }
 }
@@ -37,6 +74,8 @@ enum DeviceType {
 }
 
 enum DeviceStatus { connected, disconnected, syncing }
+
+enum DeviceConnectionSource { bluetooth, healthPlatform, hybrid }
 
 extension DeviceTypeX on DeviceType {
   String get label {
@@ -70,45 +109,15 @@ extension DeviceTypeX on DeviceType {
   }
 }
 
-// ==================== Preset Devices ====================
-
-class PresetDevices {
-  static final List<HealthDevice> devices = [
-    const HealthDevice(
-      id: '1',
-      name: 'Apple Watch Series 9',
-      type: DeviceType.smartwatch,
-    ),
-    const HealthDevice(
-      id: '8',
-      name: 'Galaxy Watch 4',
-      type: DeviceType.smartwatch,
-    ),
-    const HealthDevice(id: '2', name: 'Withings Body+', type: DeviceType.scale),
-    const HealthDevice(
-      id: '3',
-      name: 'Dexcom G7',
-      type: DeviceType.glucoseMonitor,
-    ),
-    const HealthDevice(
-      id: '4',
-      name: 'Omron Evolv',
-      type: DeviceType.bloodPressure,
-    ),
-    const HealthDevice(
-      id: '5',
-      name: 'Fitbit Charge 6',
-      type: DeviceType.fitnessBand,
-    ),
-    const HealthDevice(
-      id: '6',
-      name: 'Garmin Venu 3',
-      type: DeviceType.smartwatch,
-    ),
-    const HealthDevice(
-      id: '7',
-      name: 'Mi Band 8',
-      type: DeviceType.fitnessBand,
-    ),
-  ];
+extension DeviceConnectionSourceX on DeviceConnectionSource {
+  String get label {
+    switch (this) {
+      case DeviceConnectionSource.bluetooth:
+        return 'BLE';
+      case DeviceConnectionSource.healthPlatform:
+        return 'Health Connect / Apple Health';
+      case DeviceConnectionSource.hybrid:
+        return 'BLE + Health Connect / Apple Health';
+    }
+  }
 }

@@ -31,8 +31,10 @@ analyzer:
     - "**/*.g.dart"
     - "**/*.freezed.dart"
     - "**/*.config.dart"
+    - "**/*.dart.bak"
     - "**/generated/**"
     - ".dart_tool/**"
+    - "wearable_metrics_provider_OLD.dart"
   errors:
     invalid_annotation_target: ignore
   plugins:

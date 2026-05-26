@@ -12,7 +12,7 @@ import 'package:dead_porky/features/exercises/presentation/screens/routines_scre
 import 'package:dead_porky/features/exercises/presentation/screens/workout_screen.dart';
 import 'package:dead_porky/features/exercises/domain/entities/routine.dart';
 import 'package:dead_porky/features/habits/presentation/screens/habit_tracker_screen.dart';
-import 'package:dead_porky/features/nutrition/presentation/screens/nutrition_screen.dart';
+import 'package:dead_porky/features/health_metrics/presentation/screens/health_metrics_screen.dart';
 import 'package:dead_porky/features/wearable/presentation/screens/device_scanner_screen.dart';
 import 'package:dead_porky/features/ai_assistant/presentation/screens/ai_chat_screen.dart';
 import 'package:dead_porky/features/reports/presentation/screens/reports_screen.dart';
@@ -71,22 +71,10 @@ final routerProvider = Provider<GoRouter>((ref) {
     debugLogDiagnostics: true,
     redirect: (context, state) {
       final isAuthRoute = state.uri.path.startsWith('/auth');
-      final isOnboardingRoute = state.uri.path == '/onboarding';
-      final hasCompleteProfile = authState.user?.hasCompleteProfile ?? false;
 
       // Not authenticated and not on auth route -> redirect to login
       if (!isAuthenticated && !isAuthRoute) {
         return '/auth/login';
-      }
-
-      // Authenticated but profile incomplete -> force onboarding
-      if (isAuthenticated && !hasCompleteProfile && !isOnboardingRoute) {
-        return '/onboarding';
-      }
-
-      // Authenticated and profile complete should not stay in onboarding
-      if (isAuthenticated && hasCompleteProfile && isOnboardingRoute) {
-        return '/dashboard';
       }
 
       // Authenticated and on auth route -> redirect to dashboard
@@ -190,7 +178,7 @@ final routerProvider = Provider<GoRouter>((ref) {
               GoRoute(
                 path: '/health',
                 name: AppRoutes.health,
-                builder: (context, state) => const NutritionScreen(),
+                builder: (context, state) => const HealthMetricsScreen(),
               ),
             ],
           ),

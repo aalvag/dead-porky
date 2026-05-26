@@ -143,6 +143,39 @@ class NutritionEntries extends Table {
   Set<Column> get primaryKey => {id};
 }
 
+/// Nutrition goals table for personalized daily targets
+class NutritionGoals extends Table {
+  TextColumn get id => text()();
+  IntColumn get calorieGoal => integer().withDefault(const Constant(2200))();
+  RealColumn get proteinGoal => real().withDefault(const Constant(150))();
+  RealColumn get carbsGoal => real().withDefault(const Constant(250))();
+  RealColumn get fatGoal => real().withDefault(const Constant(70))();
+  RealColumn get fiberGoal => real().withDefault(const Constant(28))();
+  DateTimeColumn get updatedAt => dateTime().withDefault(currentDateAndTime)();
+
+  @override
+  Set<Column> get primaryKey => {id};
+}
+
+/// Saved nutrition recipes / composite meals
+class NutritionRecipes extends Table {
+  TextColumn get id => text()();
+  TextColumn get name => text()();
+  TextColumn get mealType => text()();
+  IntColumn get calories => integer().withDefault(const Constant(0))();
+  RealColumn get protein => real().withDefault(const Constant(0))();
+  RealColumn get carbs => real().withDefault(const Constant(0))();
+  RealColumn get fat => real().withDefault(const Constant(0))();
+  RealColumn get fiber => real().withDefault(const Constant(0))();
+  TextColumn get ingredientsJson => text().withDefault(const Constant('[]'))();
+  TextColumn get notes => text().nullable()();
+  DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
+  DateTimeColumn get updatedAt => dateTime().withDefault(currentDateAndTime)();
+
+  @override
+  Set<Column> get primaryKey => {id};
+}
+
 /// Sync queue for offline operations
 class SyncQueue extends Table {
   IntColumn get id => integer().autoIncrement()();
@@ -165,6 +198,8 @@ class SyncQueue extends Table {
     HabitLogs,
     HealthMetrics,
     NutritionEntries,
+    NutritionGoals,
+    NutritionRecipes,
     DailyCheckins,
     SyncQueue,
   ],
@@ -173,7 +208,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(_openConnection());
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 2;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -181,7 +216,10 @@ class AppDatabase extends _$AppDatabase {
       await m.createAll();
     },
     onUpgrade: (Migrator m, int from, int to) async {
-      // Handle future migrations
+      if (from < 2) {
+        await m.createTable(nutritionGoals);
+        await m.createTable(nutritionRecipes);
+      }
     },
   );
 
@@ -285,6 +323,35 @@ class AppDatabase extends _$AppDatabase {
 
   Future<void> insertNutritionEntry(NutritionEntriesCompanion entry) =>
       into(nutritionEntries).insert(entry);
+
+  Future<void> updateNutritionEntry(NutritionEntriesCompanion entry) => (update(
+    nutritionEntries,
+  )..where((t) => t.id.equals(entry.id.value))).write(entry);
+
+  Future<void> deleteNutritionEntry(String id) =>
+      (delete(nutritionEntries)..where((t) => t.id.equals(id))).go();
+
+  Future<NutritionGoal?> getNutritionGoal(String id) =>
+      (select(nutritionGoals)..where((t) => t.id.equals(id))).getSingleOrNull();
+
+  Future<void> upsertNutritionGoal(NutritionGoalsCompanion goal) =>
+      into(nutritionGoals).insert(
+        goal,
+        onConflict: DoUpdate((old) => goal, target: [nutritionGoals.id]),
+      );
+
+  Future<List<NutritionRecipe>> getAllNutritionRecipes() => (select(
+    nutritionRecipes,
+  )..orderBy([(t) => OrderingTerm.desc(t.updatedAt)])).get();
+
+  Future<void> upsertNutritionRecipe(NutritionRecipesCompanion recipe) =>
+      into(nutritionRecipes).insert(
+        recipe,
+        onConflict: DoUpdate((old) => recipe, target: [nutritionRecipes.id]),
+      );
+
+  Future<void> deleteNutritionRecipe(String id) =>
+      (delete(nutritionRecipes)..where((t) => t.id.equals(id))).go();
 
   // ==================== Daily Check-ins ====================
 

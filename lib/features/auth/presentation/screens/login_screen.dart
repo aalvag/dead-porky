@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -144,6 +145,33 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         : const Text('Iniciar Sesión'),
                   ),
                 ),
+                if (kDebugMode) ...[
+                  const SizedBox(height: 12),
+                  SizedBox(
+                    width: double.infinity,
+                    child: OutlinedButton.icon(
+                      onPressed: _isLoading
+                          ? null
+                          : () {
+                              ref
+                                  .read(authNotifierProvider.notifier)
+                                  .signInLocallyForDebug(
+                                    email: _emailController.text.trim(),
+                                  );
+                            },
+                      icon: const Icon(Icons.developer_mode),
+                      label: const Text('Entrar En Modo Local'),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'Usa este acceso si Firebase falla. Te deja entrar para probar la app y el wearable sin backend.',
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: theme.colorScheme.onSurfaceVariant,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
                 const SizedBox(height: 16),
 
                 // Register link

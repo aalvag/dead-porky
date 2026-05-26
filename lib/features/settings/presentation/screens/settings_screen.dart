@@ -130,7 +130,7 @@ class SettingsScreen extends ConsumerWidget {
                 ListTile(
                   leading: const Icon(Icons.bluetooth),
                   title: const Text('Dispositivos conectados'),
-                  subtitle: const Text('0 dispositivos'),
+                  subtitle: const Text('Huawei GT6 Pro'),
                   trailing: const Icon(Icons.chevron_right),
                   onTap: () {},
                 ),
@@ -138,7 +138,7 @@ class SettingsScreen extends ConsumerWidget {
                 ListTile(
                   leading: const Icon(Icons.health_and_safety),
                   title: const Text('Fuentes de datos de salud'),
-                  subtitle: const Text('HealthKit / Health Connect'),
+                  subtitle: const Text('Huawei Health + HealthKit / Health Connect'),
                   trailing: const Icon(Icons.chevron_right),
                   onTap: () {},
                 ),
@@ -146,7 +146,7 @@ class SettingsScreen extends ConsumerWidget {
                 SwitchListTile(
                   secondary: const Icon(Icons.sync),
                   title: const Text('Sincronización automática'),
-                  subtitle: const Text('Sync con wearables'),
+                  subtitle: const Text('Sync con Huawei GT6 Pro'),
                   value: true,
                   onChanged: (value) {},
                 ),

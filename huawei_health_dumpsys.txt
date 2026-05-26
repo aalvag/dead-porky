@@ -1,0 +1,2068 @@
+Activity Resolver Table:
+  Full MIME Types:
+      application/gpx:
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter 29683a8
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          StaticType: "application/gpx"
+      application/kml:
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter 11ccfcb
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          StaticType: "application/vnd.google-earth.kml+xml"
+          StaticType: "application/kml"
+      application/tcx:
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter 2236ec1
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          StaticType: "application/tcx"
+      text/*:
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter a78338e
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "content"
+          Authority: "": -1 WILD
+          StaticType: "text"
+          mPriority=0, mOrder=0, mHasStaticPartialTypes=true, mHasDynamicPartialTypes=false
+      application/vnd.google-earth.kmz:
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter f1b2666
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          StaticType: "application/vnd.google-earth.kmz"
+      audio/*:
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter 2b767af
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "content"
+          Authority: "": -1 WILD
+          StaticType: "audio"
+          mPriority=0, mOrder=0, mHasStaticPartialTypes=true, mHasDynamicPartialTypes=false
+      */*:
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter ad55789
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "file"
+          Authority: "": -1 WILD
+          Path: "PatternMatcher{GLOB: .*\.gpx}"
+          Path: "PatternMatcher{GLOB: .*\..*\.gpx}"
+          Path: "PatternMatcher{GLOB: .*\..*\..*\.gpx}"
+          Path: "PatternMatcher{GLOB: .*\..*\..*\..*\.gpx}"
+          Path: "PatternMatcher{GLOB: .*\.tcx}"
+          Path: "PatternMatcher{GLOB: .*\..*\.tcx}"
+          Path: "PatternMatcher{GLOB: .*\..*\..*\.tcx}"
+          Path: "PatternMatcher{GLOB: .*\..*\..*\..*\.tcx}"
+          StaticType: "*"
+          mPriority=0, mOrder=0, mHasStaticPartialTypes=true, mHasDynamicPartialTypes=false
+      application/vnd.android.package-archive:
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter 347fa9a
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "content"
+          Authority: "": -1 WILD
+          StaticType: "application/vnd.android.package-archive"
+      video/*:
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter a08a7bc
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "content"
+          Authority: "": -1 WILD
+          StaticType: "video"
+          mPriority=0, mOrder=0, mHasStaticPartialTypes=true, mHasDynamicPartialTypes=false
+      application/octet-stream:
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter d269da7
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          StaticType: "application/octet-stream"
+      huawei.sports/address:
+        1a5afc7 com.huawei.health/.nfcqrcodeaction.NfcAndQrCodeActionActivity filter a04a9f4
+          Action: "android.nfc.action.NDEF_DISCOVERED"
+          Category: "android.intent.category.LAUNCHER"
+          Category: "android.intent.category.DEFAULT"
+          StaticType: "huawei.sports/address"
+      image/*:
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter 32e345
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "content"
+          Authority: "": -1 WILD
+          StaticType: "image"
+          mPriority=0, mOrder=0, mHasStaticPartialTypes=true, mHasDynamicPartialTypes=false
+      application/vnd.google-earth.kml+xml:
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter 11ccfcb
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          StaticType: "application/vnd.google-earth.kml+xml"
+          StaticType: "application/kml"
+
+  Base MIME Types:
+      huawei.sports:
+        1a5afc7 com.huawei.health/.nfcqrcodeaction.NfcAndQrCodeActionActivity filter a04a9f4
+          Action: "android.nfc.action.NDEF_DISCOVERED"
+          Category: "android.intent.category.LAUNCHER"
+          Category: "android.intent.category.DEFAULT"
+          StaticType: "huawei.sports/address"
+      application:
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter 347fa9a
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "content"
+          Authority: "": -1 WILD
+          StaticType: "application/vnd.android.package-archive"
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter 11ccfcb
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          StaticType: "application/vnd.google-earth.kml+xml"
+          StaticType: "application/kml"
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter 11ccfcb
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          StaticType: "application/vnd.google-earth.kml+xml"
+          StaticType: "application/kml"
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter 29683a8
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          StaticType: "application/gpx"
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter 2236ec1
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          StaticType: "application/tcx"
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter f1b2666
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          StaticType: "application/vnd.google-earth.kmz"
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter d269da7
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          StaticType: "application/octet-stream"
+
+  Wild MIME Types:
+      *:
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter ad55789
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "file"
+          Authority: "": -1 WILD
+          Path: "PatternMatcher{GLOB: .*\.gpx}"
+          Path: "PatternMatcher{GLOB: .*\..*\.gpx}"
+          Path: "PatternMatcher{GLOB: .*\..*\..*\.gpx}"
+          Path: "PatternMatcher{GLOB: .*\..*\..*\..*\.gpx}"
+          Path: "PatternMatcher{GLOB: .*\.tcx}"
+          Path: "PatternMatcher{GLOB: .*\..*\.tcx}"
+          Path: "PatternMatcher{GLOB: .*\..*\..*\.tcx}"
+          Path: "PatternMatcher{GLOB: .*\..*\..*\..*\.tcx}"
+          StaticType: "*"
+          mPriority=0, mOrder=0, mHasStaticPartialTypes=true, mHasDynamicPartialTypes=false
+      text:
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter a78338e
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "content"
+          Authority: "": -1 WILD
+          StaticType: "text"
+          mPriority=0, mOrder=0, mHasStaticPartialTypes=true, mHasDynamicPartialTypes=false
+      audio:
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter 2b767af
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "content"
+          Authority: "": -1 WILD
+          StaticType: "audio"
+          mPriority=0, mOrder=0, mHasStaticPartialTypes=true, mHasDynamicPartialTypes=false
+      image:
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter 32e345
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "content"
+          Authority: "": -1 WILD
+          StaticType: "image"
+          mPriority=0, mOrder=0, mHasStaticPartialTypes=true, mHasDynamicPartialTypes=false
+      video:
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter a08a7bc
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "content"
+          Authority: "": -1 WILD
+          StaticType: "video"
+          mPriority=0, mOrder=0, mHasStaticPartialTypes=true, mHasDynamicPartialTypes=false
+
+  Schemes:
+      com.huawei.multisimsdk.multidevicemanager:
+        c4890ee com.huawei.health/net.openid.appauth.RedirectUriReceiverActivity filter d22698f
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "com.huawei.multisimsdk.multidevicemanager"
+      hihealth:
+        1a5afc7 com.huawei.health/.nfcqrcodeaction.NfcAndQrCodeActionActivity filter 67ce51d
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "hihealth"
+          Authority: "cardio": -1
+      hwppsprivacy:
+        c4626d8 com.huawei.health/com.huawei.opendevice.open.OAIDSettingActivity filter cc48a31
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "hwppsprivacy"
+          Authority: "com.huawei.health": -1
+      com.huawei.health.braintree:
+        61e9c3e com.huawei.health/com.braintreepayments.api.BraintreeBrowserSwitchActivity filter 4979a9f
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "com.huawei.health.braintree"
+      wallet:
+        9a342f2 com.huawei.health/com.huawei.wear.wallet.ui.ThirdInvokeActivity filter 2156d43
+          Action: "android.intent.action.VIEW"
+          Action: "com.huawei.wear.wallet.action.CHECK_QR_CODE"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "wallet"
+          Authority: "com.huawei.health": -1
+          Path: "PatternMatcher{LITERAL: /financeclient/token2}"
+      file:
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter ad55789
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "file"
+          Authority: "": -1 WILD
+          Path: "PatternMatcher{GLOB: .*\.gpx}"
+          Path: "PatternMatcher{GLOB: .*\..*\.gpx}"
+          Path: "PatternMatcher{GLOB: .*\..*\..*\.gpx}"
+          Path: "PatternMatcher{GLOB: .*\..*\..*\..*\.gpx}"
+          Path: "PatternMatcher{GLOB: .*\.tcx}"
+          Path: "PatternMatcher{GLOB: .*\..*\.tcx}"
+          Path: "PatternMatcher{GLOB: .*\..*\..*\.tcx}"
+          Path: "PatternMatcher{GLOB: .*\..*\..*\..*\.tcx}"
+          StaticType: "*"
+          mPriority=0, mOrder=0, mHasStaticPartialTypes=true, mHasDynamicPartialTypes=false
+      hwid:
+        f3c1fc0 com.huawei.health/com.huawei.hms.iapfull.pay.PayActivity filter cc634f9
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.BROWSABLE"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "hwid"
+          Authority: "com.huawei.health.iapfull": -1
+          Path: "PatternMatcher{LITERAL: /result}"
+      hwpps:
+        b643e4a com.huawei.health/com.huawei.openalliance.ad.activity.PPSLauncherActivity filter be541bb
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "hwpps"
+          Authority: "com.huawei.health": -1
+      huaweihealth:
+        b67438c com.huawei.health/.browseraction.HwSchemeQrCodeActivity filter bd49ad5
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "huaweischeme"
+          Scheme: "huaweihealth"
+          Authority: "healthapp": -1
+          Authority: "healthapp": -1
+          Authority: "healthapp": -1
+          Authority: "healthapp": -1
+          Authority: "healthapp": -1
+          Authority: "healthapp": -1
+          Authority: "healthapp": -1
+          Authority: "huaweihealth.app": -1
+          Authority: "huaweihealth.app": -1
+          Authority: "huaweihealth.app": -1
+          Authority: "healthapp": -1
+          Authority: "healthapp": -1
+          Authority: "healthapp": -1
+          Authority: "healthapp": -1
+          Authority: "healthapp": -1
+          Authority: "healthapp": -1
+          Path: "PatternMatcher{LITERAL: /qrcode}"
+          Path: "PatternMatcher{LITERAL: /track}"
+          Path: "PatternMatcher{PREFIX: /router/}"
+          Path: "PatternMatcher{PREFIX: /home/}"
+          Path: "PatternMatcher{LITERAL: /column}"
+          Path: "PatternMatcher{LITERAL: /thirdPartService}"
+          Path: "PatternMatcher{PREFIX: /oauth/}"
+          Path: "PatternMatcher{LITERAL: /oauth/strava}"
+          Path: "PatternMatcher{LITERAL: /oauth/komoot}"
+          Path: "PatternMatcher{LITERAL: /oauth/runtastic}"
+          Path: "PatternMatcher{LITERAL: /familyhealth}"
+          Path: "PatternMatcher{LITERAL: /mykaka}"
+          Path: "PatternMatcher{LITERAL: /achievement}"
+          Path: "PatternMatcher{LITERAL: /fitnesspage}"
+          Path: "PatternMatcher{LITERAL: /honorCard}"
+          Path: "PatternMatcher{LITERAL: /groupqrcode}"
+        67102ea com.huawei.health/.browseraction.HwHealthBrowserActionActivity filter 7fdb9db
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "huaweihealth"
+          Authority: "huaweihealth.app": -1
+          Path: "PatternMatcher{LITERAL: /openwith}"
+      huaweischeme:
+        4bc7160 com.huawei.health/com.huawei.ui.homewear21.home.KeyDirectActivity filter f07b619
+          Action: "com.huawei.health.action.ONE_KEY_DIRECT"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "huaweischeme"
+          Authority: "healthapp": -1
+          Path: "PatternMatcher{LITERAL: /oneKeyDirect}"
+        b67438c com.huawei.health/.browseraction.HwSchemeQrCodeActivity filter bd49ad5
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "huaweischeme"
+          Scheme: "huaweihealth"
+          Authority: "healthapp": -1
+          Authority: "healthapp": -1
+          Authority: "healthapp": -1
+          Authority: "healthapp": -1
+          Authority: "healthapp": -1
+          Authority: "healthapp": -1
+          Authority: "healthapp": -1
+          Authority: "huaweihealth.app": -1
+          Authority: "huaweihealth.app": -1
+          Authority: "huaweihealth.app": -1
+          Authority: "healthapp": -1
+          Authority: "healthapp": -1
+          Authority: "healthapp": -1
+          Authority: "healthapp": -1
+          Authority: "healthapp": -1
+          Authority: "healthapp": -1
+          Path: "PatternMatcher{LITERAL: /qrcode}"
+          Path: "PatternMatcher{LITERAL: /track}"
+          Path: "PatternMatcher{PREFIX: /router/}"
+          Path: "PatternMatcher{PREFIX: /home/}"
+          Path: "PatternMatcher{LITERAL: /column}"
+          Path: "PatternMatcher{LITERAL: /thirdPartService}"
+          Path: "PatternMatcher{PREFIX: /oauth/}"
+          Path: "PatternMatcher{LITERAL: /oauth/strava}"
+          Path: "PatternMatcher{LITERAL: /oauth/komoot}"
+          Path: "PatternMatcher{LITERAL: /oauth/runtastic}"
+          Path: "PatternMatcher{LITERAL: /familyhealth}"
+          Path: "PatternMatcher{LITERAL: /mykaka}"
+          Path: "PatternMatcher{LITERAL: /achievement}"
+          Path: "PatternMatcher{LITERAL: /fitnesspage}"
+          Path: "PatternMatcher{LITERAL: /honorCard}"
+          Path: "PatternMatcher{LITERAL: /groupqrcode}"
+        b0c78 com.huawei.health/.browseraction.HwSchemeBasicHealthActivity filter f510f51
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "huaweischeme"
+          Authority: "healthapp": -1
+          Authority: "healthapp": -1
+          Authority: "healthapp": -1
+          Authority: "healthapp": -1
+          Path: "PatternMatcher{LITERAL: /basicHealth}"
+          Path: "PatternMatcher{LITERAL: /devicemanagement}"
+          Path: "PatternMatcher{LITERAL: /ecgBasicHealth}"
+          Path: "PatternMatcher{LITERAL: /devicemgr}"
+        3a43254 com.huawei.health/.suggestion.ui.fitness.activity.TrainDetail filter 53735fd
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "huaweischeme"
+          Authority: "healthapp": -1
+          Path: "PatternMatcher{LITERAL: /product/1}"
+        76ab41c com.huawei.health/com.huawei.audiodevicekit.healthaudio.HealthAudioRouterActivity filter 4f76825
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "huaweischeme"
+          Authority: "healthapp": -1
+          Path: "PatternMatcher{LITERAL: /audio}"
+      huaweiMusic:
+        1a56de com.huawei.health/.soundaction.HWHealthSoundActionActivity filter f62d0bf
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "huaweiVoice"
+          Scheme: "huaweiMusic"
+          Authority: "com.huawei.vassistant": -1
+          Authority: "com.android.mediacenter": -1
+          Path: "PatternMatcher{PREFIX: /sports}"
+          Path: "PatternMatcher{PREFIX: /sports}"
+      huaweiVoice:
+        1a56de com.huawei.health/.soundaction.HWHealthSoundActionActivity filter f62d0bf
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "huaweiVoice"
+          Scheme: "huaweiMusic"
+          Authority: "com.huawei.vassistant": -1
+          Authority: "com.android.mediacenter": -1
+          Path: "PatternMatcher{PREFIX: /sports}"
+          Path: "PatternMatcher{PREFIX: /sports}"
+      content:
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter a78338e
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "content"
+          Authority: "": -1 WILD
+          StaticType: "text"
+          mPriority=0, mOrder=0, mHasStaticPartialTypes=true, mHasDynamicPartialTypes=false
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter 2b767af
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "content"
+          Authority: "": -1 WILD
+          StaticType: "audio"
+          mPriority=0, mOrder=0, mHasStaticPartialTypes=true, mHasDynamicPartialTypes=false
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter a08a7bc
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "content"
+          Authority: "": -1 WILD
+          StaticType: "video"
+          mPriority=0, mOrder=0, mHasStaticPartialTypes=true, mHasDynamicPartialTypes=false
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter 32e345
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "content"
+          Authority: "": -1 WILD
+          StaticType: "image"
+          mPriority=0, mOrder=0, mHasStaticPartialTypes=true, mHasDynamicPartialTypes=false
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter 347fa9a
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "content"
+          Authority: "": -1 WILD
+          StaticType: "application/vnd.android.package-archive"
+      com.huawei.health.braintree.deeplinkhandler:
+        e76f8f0 com.huawei.health/com.braintreepayments.api.BraintreeDeepLinkActivity filter 2214e69
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "com.huawei.health.braintree.deeplinkhandler"
+      hwppsprivacyadinfo:
+        d62d884 com.huawei.health/com.huawei.opendevice.open.WhyThisAdStatementActivity filter b26986d
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "hwppsprivacyadinfo"
+          Authority: "com.huawei.health": -1
+      hwppsprivacydetail:
+        4aff516 com.huawei.health/com.huawei.opendevice.open.PrivacyActivity filter 9c3e97
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "hwppsprivacydetail"
+          Authority: "com.huawei.health": -1
+      iapfull:
+        ba377ec com.huawei.health/com.huawei.hms.iapfull.webpay.thirdpay.ThirdPayActivity filter fac27b5
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.BROWSABLE"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "iapfull"
+          Authority: "com.huawei.health": -1
+          Path: "PatternMatcher{LITERAL: /alipaysignresult}"
+      tencent1101329243:
+        1d463b6 com.huawei.health/com.tencent.tauth.AuthActivity filter 29418b7
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "tencent1101329243"
+
+  Non-Data Actions:
+      com.huawei.iconnect.action.SHOW_DEVICE:
+        d3b0542 com.huawei.health/com.huawei.ui.homewear21.home.WearHomeActivity filter c78953
+          Action: "com.huawei.iconnect.action.SHOW_DEVICE"
+          Category: "android.intent.category.DEFAULT"
+      com.huawei.wallet.action.UNION_PAY:
+        8727e20 com.huawei.health/com.huawei.pay.ui.setting.WebViewActivity filter 7eda3d9
+          Action: "com.huawei.nfc.carrera.action.NFC_USER_GUIDE"
+          Action: "com.huawei.wallet.action.HUAWEI_PAY_SUPPORT_BANK"
+          Action: "com.huawei.wallet.action.YEE_PAY_SUPPORT_BANK"
+          Action: "com.huawei.wallet.action.UNION_PAY_SUPPORT_BANK"
+          Action: "com.huawei.wallet.action.UNION_PAY"
+          Category: "android.intent.category.DEFAULT"
+      com.huawei.nfc.carrera.action.NFC_USER_GUIDE:
+        8727e20 com.huawei.health/com.huawei.pay.ui.setting.WebViewActivity filter 7eda3d9
+          Action: "com.huawei.nfc.carrera.action.NFC_USER_GUIDE"
+          Action: "com.huawei.wallet.action.HUAWEI_PAY_SUPPORT_BANK"
+          Action: "com.huawei.wallet.action.YEE_PAY_SUPPORT_BANK"
+          Action: "com.huawei.wallet.action.UNION_PAY_SUPPORT_BANK"
+          Action: "com.huawei.wallet.action.UNION_PAY"
+          Category: "android.intent.category.DEFAULT"
+      com.huawei.health.MULTI_SIM_AUTH:
+        26a9392 com.huawei.health/.StartHealthActivity filter 5438163
+          Action: "com.huawei.health.MULTI_SIM_AUTH"
+          Action: "com.google.android.wearable.action.CONFIGURE_CELLULAR"
+          Action: "com.google.android.wearable.action.CONFIGURE_PAYMENTS"
+          Action: "com.huawei.health.CORE_SLEEP"
+          Category: "android.intent.category.DEFAULT"
+      com.huawei.health.CORE_SLEEP:
+        26a9392 com.huawei.health/.StartHealthActivity filter 5438163
+          Action: "com.huawei.health.MULTI_SIM_AUTH"
+          Action: "com.google.android.wearable.action.CONFIGURE_CELLULAR"
+          Action: "com.google.android.wearable.action.CONFIGURE_PAYMENTS"
+          Action: "com.huawei.health.CORE_SLEEP"
+          Category: "android.intent.category.DEFAULT"
+      com.huawei.wallet.ui.setting.action.START_LICENSE:
+        47cf608 com.huawei.health/.wallet.ui.cardholder.CardHolderActivity filter e5b61a1
+          Action: "com.huawei.wallet.ui.setting.action.START_LICENSE"
+          Category: "android.intent.category.DEFAULT"
+      com.huawei.hwdiagnosis.REMOTE_FEEDBACKLOG:
+        b0cdfa com.huawei.health/com.huawei.plugin.remotelog.view.impl.JumpActivity filter 3660fab
+          Action: "com.huawei.hwdiagnosis.REMOTE_FEEDBACKLOG"
+          Category: "android.intent.category.DEFAULT"
+      android.intent.action.MAIN:
+        ce66be1 com.huawei.health/.MainActivity filter 400ad06
+          Action: "android.intent.action.MAIN"
+          Category: "android.intent.category.LAUNCHER"
+      com.huawei.wallet.trans.MAIN:
+        4ef6ab4 com.huawei.health/com.huawei.wallet.transportationcard.carrera.traffictravel.activity.TrafficMainActivity filter 7ab76dd
+          Action: "com.huawei.wallet.trans.MAIN"
+          Category: "android.intent.category.DEFAULT"
+      com.huawei.wallet.action.UNION_PAY_SUPPORT_BANK:
+        8727e20 com.huawei.health/com.huawei.pay.ui.setting.WebViewActivity filter 7eda3d9
+          Action: "com.huawei.nfc.carrera.action.NFC_USER_GUIDE"
+          Action: "com.huawei.wallet.action.HUAWEI_PAY_SUPPORT_BANK"
+          Action: "com.huawei.wallet.action.YEE_PAY_SUPPORT_BANK"
+          Action: "com.huawei.wallet.action.UNION_PAY_SUPPORT_BANK"
+          Action: "com.huawei.wallet.action.UNION_PAY"
+          Category: "android.intent.category.DEFAULT"
+      com.huawei.nfc.intent.action.FUNCTIONJUMP_TRANSFER:
+        e272252 com.huawei.health/com.huawei.wallet.transportationcard.carrera.traffictravel.activity.FunctionJumpActivity filter 8ac923
+          Action: "com.huawei.nfc.intent.action.FUNCTIONJUMP_RECHARGE"
+          Action: "com.huawei.nfc.intent.action.FUNCTIONJUMP_TRANSFER"
+          Action: "com.huawei.nfc.intent.action.FUNCTIONJUMP_COVER"
+          Action: "com.huawei.nfc.intent.action.FUNCTIONJUMP_SETDEFAULT"
+          Category: "android.intent.category.DEFAULT"
+      com.huawei.hms.pps.action.PPS_STUB:
+        32e4ca2 com.huawei.health/com.huawei.openalliance.ad.activity.TemplateStubActivity filter d5c2d33
+          Action: "com.huawei.hms.pps.action.PPS_STUB"
+          Category: "android.intent.category.DEFAULT"
+      com.google.android.wearable.action.CONFIGURE_PAYMENTS:
+        26a9392 com.huawei.health/.StartHealthActivity filter 5438163
+          Action: "com.huawei.health.MULTI_SIM_AUTH"
+          Action: "com.google.android.wearable.action.CONFIGURE_CELLULAR"
+          Action: "com.google.android.wearable.action.CONFIGURE_PAYMENTS"
+          Action: "com.huawei.health.CORE_SLEEP"
+          Category: "android.intent.category.DEFAULT"
+      com.huawei.health.action.Token2H5CallBackActivity:
+        82dcfc6 com.huawei.health/com.huawei.wallet.bankcard.token2onecard.ui.Token2H5CallBackActivity filter 9f3fb87
+          Action: "com.huawei.health.action.Token2H5CallBackActivity"
+          Category: "android.intent.category.DEFAULT"
+      com.huawei.wallet.action.HUAWEI_PAY_SUPPORT_BANK:
+        8727e20 com.huawei.health/com.huawei.pay.ui.setting.WebViewActivity filter 7eda3d9
+          Action: "com.huawei.nfc.carrera.action.NFC_USER_GUIDE"
+          Action: "com.huawei.wallet.action.HUAWEI_PAY_SUPPORT_BANK"
+          Action: "com.huawei.wallet.action.YEE_PAY_SUPPORT_BANK"
+          Action: "com.huawei.wallet.action.UNION_PAY_SUPPORT_BANK"
+          Action: "com.huawei.wallet.action.UNION_PAY"
+          Category: "android.intent.category.DEFAULT"
+      com.huawei.ui.main.stories.me.activity.thirdparty.HealthKitThirdPartyAuthActivity:
+        d207824 com.huawei.health/com.huawei.ui.main.stories.me.activity.thirdparty.HealthKitThirdPartyAuthActivity filter b464f8d
+          Action: "com.huawei.ui.main.stories.me.activity.thirdparty.HealthKitThirdPartyAuthActivity"
+          Category: "android.intent.category.DEFAULT"
+      com.huawei.nfc.intent.action.FUNCTIONJUMP_COVER:
+        e272252 com.huawei.health/com.huawei.wallet.transportationcard.carrera.traffictravel.activity.FunctionJumpActivity filter 8ac923
+          Action: "com.huawei.nfc.intent.action.FUNCTIONJUMP_RECHARGE"
+          Action: "com.huawei.nfc.intent.action.FUNCTIONJUMP_TRANSFER"
+          Action: "com.huawei.nfc.intent.action.FUNCTIONJUMP_COVER"
+          Action: "com.huawei.nfc.intent.action.FUNCTIONJUMP_SETDEFAULT"
+          Category: "android.intent.category.DEFAULT"
+      com.huawei.nfc.intent.action.FUNCTIONJUMP_RECHARGE:
+        e272252 com.huawei.health/com.huawei.wallet.transportationcard.carrera.traffictravel.activity.FunctionJumpActivity filter 8ac923
+          Action: "com.huawei.nfc.intent.action.FUNCTIONJUMP_RECHARGE"
+          Action: "com.huawei.nfc.intent.action.FUNCTIONJUMP_TRANSFER"
+          Action: "com.huawei.nfc.intent.action.FUNCTIONJUMP_COVER"
+          Action: "com.huawei.nfc.intent.action.FUNCTIONJUMP_SETDEFAULT"
+          Category: "android.intent.category.DEFAULT"
+      com.huawei.wallet.action.YEE_PAY_SUPPORT_BANK:
+        8727e20 com.huawei.health/com.huawei.pay.ui.setting.WebViewActivity filter 7eda3d9
+          Action: "com.huawei.nfc.carrera.action.NFC_USER_GUIDE"
+          Action: "com.huawei.wallet.action.HUAWEI_PAY_SUPPORT_BANK"
+          Action: "com.huawei.wallet.action.YEE_PAY_SUPPORT_BANK"
+          Action: "com.huawei.wallet.action.UNION_PAY_SUPPORT_BANK"
+          Action: "com.huawei.wallet.action.UNION_PAY"
+          Category: "android.intent.category.DEFAULT"
+      com.huawei.nfc.intent.action.FUNCTIONJUMP_SETDEFAULT:
+        e272252 com.huawei.health/com.huawei.wallet.transportationcard.carrera.traffictravel.activity.FunctionJumpActivity filter 8ac923
+          Action: "com.huawei.nfc.intent.action.FUNCTIONJUMP_RECHARGE"
+          Action: "com.huawei.nfc.intent.action.FUNCTIONJUMP_TRANSFER"
+          Action: "com.huawei.nfc.intent.action.FUNCTIONJUMP_COVER"
+          Action: "com.huawei.nfc.intent.action.FUNCTIONJUMP_SETDEFAULT"
+          Category: "android.intent.category.DEFAULT"
+      com.google.android.wearable.action.CONFIGURE_CELLULAR:
+        26a9392 com.huawei.health/.StartHealthActivity filter 5438163
+          Action: "com.huawei.health.MULTI_SIM_AUTH"
+          Action: "com.google.android.wearable.action.CONFIGURE_CELLULAR"
+          Action: "com.google.android.wearable.action.CONFIGURE_PAYMENTS"
+          Action: "com.huawei.health.CORE_SLEEP"
+          Category: "android.intent.category.DEFAULT"
+
+  MIME Typed Actions:
+      android.intent.action.VIEW:
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter ad55789
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "file"
+          Authority: "": -1 WILD
+          Path: "PatternMatcher{GLOB: .*\.gpx}"
+          Path: "PatternMatcher{GLOB: .*\..*\.gpx}"
+          Path: "PatternMatcher{GLOB: .*\..*\..*\.gpx}"
+          Path: "PatternMatcher{GLOB: .*\..*\..*\..*\.gpx}"
+          Path: "PatternMatcher{GLOB: .*\.tcx}"
+          Path: "PatternMatcher{GLOB: .*\..*\.tcx}"
+          Path: "PatternMatcher{GLOB: .*\..*\..*\.tcx}"
+          Path: "PatternMatcher{GLOB: .*\..*\..*\..*\.tcx}"
+          StaticType: "*"
+          mPriority=0, mOrder=0, mHasStaticPartialTypes=true, mHasDynamicPartialTypes=false
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter a78338e
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "content"
+          Authority: "": -1 WILD
+          StaticType: "text"
+          mPriority=0, mOrder=0, mHasStaticPartialTypes=true, mHasDynamicPartialTypes=false
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter 2b767af
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "content"
+          Authority: "": -1 WILD
+          StaticType: "audio"
+          mPriority=0, mOrder=0, mHasStaticPartialTypes=true, mHasDynamicPartialTypes=false
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter a08a7bc
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "content"
+          Authority: "": -1 WILD
+          StaticType: "video"
+          mPriority=0, mOrder=0, mHasStaticPartialTypes=true, mHasDynamicPartialTypes=false
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter 32e345
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "content"
+          Authority: "": -1 WILD
+          StaticType: "image"
+          mPriority=0, mOrder=0, mHasStaticPartialTypes=true, mHasDynamicPartialTypes=false
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter 347fa9a
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "content"
+          Authority: "": -1 WILD
+          StaticType: "application/vnd.android.package-archive"
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter 11ccfcb
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          StaticType: "application/vnd.google-earth.kml+xml"
+          StaticType: "application/kml"
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter 29683a8
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          StaticType: "application/gpx"
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter 2236ec1
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          StaticType: "application/tcx"
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter f1b2666
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          StaticType: "application/vnd.google-earth.kmz"
+        9fef290 com.huawei.health/.browseraction.HwSchemeFilterActivity filter d269da7
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          StaticType: "application/octet-stream"
+      android.nfc.action.NDEF_DISCOVERED:
+        1a5afc7 com.huawei.health/.nfcqrcodeaction.NfcAndQrCodeActionActivity filter a04a9f4
+          Action: "android.nfc.action.NDEF_DISCOVERED"
+          Category: "android.intent.category.LAUNCHER"
+          Category: "android.intent.category.DEFAULT"
+          StaticType: "huawei.sports/address"
+
+Receiver Resolver Table:
+  Non-Data Actions:
+      com.huawei.wallet.push.action.PUSH_MSG:
+        f9bb286 com.huawei.health/com.huawei.nfc.carrera.wear.logic.lifecycle.push.NfcPushReceiver filter f540747
+          Action: "com.huawei.wallet.push.action.PUSH_MSG"
+          Action: "com.huawei.wallet.push.action.PUSH_TOKEN"
+      android.intent.action.BATTERY_OKAY:
+        5d26b62 com.huawei.health/androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy filter 71bc4f3
+          Action: "android.intent.action.BATTERY_OKAY"
+          Action: "android.intent.action.BATTERY_LOW"
+      android.intent.action.ACTION_POWER_DISCONNECTED:
+        966a944 com.huawei.health/androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy filter 6e0fa2d
+          Action: "android.intent.action.ACTION_POWER_CONNECTED"
+          Action: "android.intent.action.ACTION_POWER_DISCONNECTED"
+      com.huawei.bone.action.open_gps:
+        7cc1868 com.huawei.health/com.huawei.hwdevice.mainprocess.receiver.SyncFitnessPrivateBroadcastReceiver filter 9c64481
+          Action: "com.huawei.bone.core_sleep_sync"
+          Action: "com.huawei.bone.action.open_gps"
+          Action: "com.huawei.bone.stress_and_relax_sync"
+      com.huawei.android.push.intent.REGISTRATION:
+        b6a6b98 com.huawei.health/com.huawei.hms.support.api.push.PushReceiver filter 8a84ff1
+          Action: "com.huawei.android.push.intent.REGISTRATION"
+          Action: "com.huawei.android.push.intent.RECEIVE"
+      android.intent.action.DEVICE_STORAGE_LOW:
+        3c715b0 com.huawei.health/androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy filter a800c29
+          Action: "android.intent.action.DEVICE_STORAGE_LOW"
+          Action: "android.intent.action.DEVICE_STORAGE_OK"
+      android.net.conn.CONNECTIVITY_CHANGE:
+        cefdbae com.huawei.health/androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy filter da3bd4f
+          Action: "android.net.conn.CONNECTIVITY_CHANGE"
+      com.huawei.intent.action.PUSH_DELAY_NOTIFY:
+        e26450a com.huawei.health/com.huawei.hms.support.api.push.PushMsgReceiver filter f10a17b
+          Action: "com.huawei.intent.action.PUSH_DELAY_NOTIFY"
+          Action: "com.huawei.intent.action.PUSH"
+      com.huawei.profile.service.ProfileDeviceUpdate:
+        80a707c com.huawei.health/com.huawei.hwdevice.outofprocess.receiver.HwTwsBroadcastReceiver filter 69fdd05
+          Action: "com.huawei.profile.service.ProfileDeviceUpdate"
+      android.intent.action.DEVICE_STORAGE_OK:
+        3c715b0 com.huawei.health/androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy filter a800c29
+          Action: "android.intent.action.DEVICE_STORAGE_LOW"
+          Action: "android.intent.action.DEVICE_STORAGE_OK"
+      com.huawei.health.action.DEVICE_OCCUPIED:
+        af1119e com.huawei.health/.device.manager.DeviceMonitorReceiver filter a36d47f
+          Action: "com.huawei.health.action.DEVICE_CONNECTED"
+          Action: "com.huawei.health.action.DEVICE_DISCONNECTED"
+          Action: "com.huawei.health.action.DEVICE_OCCUPIED"
+          Action: "com.huawei.health.action.DEVICE_AVAILABLE"
+      com.huawei.health.action.UPLOAD_STATICS:
+        5d8a9aa com.huawei.health/.manager.receiver.DaemonStaticLogicalReceiver filter 46e399b
+          Action: "com.huawei.health.action.UPLOAD_STATICS"
+      com.huawei.health.track.broadcast:
+        15df138 com.huawei.health/.receiver.NormalizationStaticBroadcastReceiver filter dcef511
+          Action: "com.huawei.health.track.broadcast"
+      com.huawei.android.push.intent.RECEIVE:
+        b6a6b98 com.huawei.health/com.huawei.hms.support.api.push.PushReceiver filter 8a84ff1
+          Action: "com.huawei.android.push.intent.REGISTRATION"
+          Action: "com.huawei.android.push.intent.RECEIVE"
+      com.huawei.plugin.account.login:
+        798c402 com.huawei.health/.receiver.AccountLoginReceiver filter 3504113
+          Action: "com.huawei.plugin.account.login"
+          Action: "com.huawei.plugin.account.logout"
+      android.intent.action.LOCALE_CHANGED:
+        d7e5314 com.huawei.health/.ui.widget.HealthSportWidget filter 191a7bd
+          Action: "android.appwidget.action.APPWIDGET_UPDATE"
+          Action: "android.intent.action.LOCALE_CHANGED"
+        d6ba7d6 com.huawei.health/com.huawei.watchface.mvp.ui.broadcast.ShortcutReceiver filter 97dda57
+          Action: "android.intent.action.LOCALE_CHANGED"
+      com.huawei.bone.core_sleep_sync:
+        7cc1868 com.huawei.health/com.huawei.hwdevice.mainprocess.receiver.SyncFitnessPrivateBroadcastReceiver filter 9c64481
+          Action: "com.huawei.bone.core_sleep_sync"
+          Action: "com.huawei.bone.action.open_gps"
+          Action: "com.huawei.bone.stress_and_relax_sync"
+      com.huawei.health.action.DEVICE_AVAILABLE:
+        af1119e com.huawei.health/.device.manager.DeviceMonitorReceiver filter a36d47f
+          Action: "com.huawei.health.action.DEVICE_CONNECTED"
+          Action: "com.huawei.health.action.DEVICE_DISCONNECTED"
+          Action: "com.huawei.health.action.DEVICE_OCCUPIED"
+          Action: "com.huawei.health.action.DEVICE_AVAILABLE"
+      android.intent.action.BATTERY_LOW:
+        5d26b62 com.huawei.health/androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy filter 71bc4f3
+          Action: "android.intent.action.BATTERY_OKAY"
+          Action: "android.intent.action.BATTERY_LOW"
+      android.intent.action.TIMEZONE_CHANGED:
+        c7fdcdc com.huawei.health/androidx.work.impl.background.systemalarm.RescheduleReceiver filter 5e441e5
+          Action: "android.intent.action.BOOT_COMPLETED"
+          Action: "android.intent.action.TIME_SET"
+          Action: "android.intent.action.TIMEZONE_CHANGED"
+      android.intent.action.TIME_SET:
+        c7fdcdc com.huawei.health/androidx.work.impl.background.systemalarm.RescheduleReceiver filter 5e441e5
+          Action: "android.intent.action.BOOT_COMPLETED"
+          Action: "android.intent.action.TIME_SET"
+          Action: "android.intent.action.TIMEZONE_CHANGED"
+      com.huawei.health.action.DEVICE_CONNECTED:
+        af1119e com.huawei.health/.device.manager.DeviceMonitorReceiver filter a36d47f
+          Action: "com.huawei.health.action.DEVICE_CONNECTED"
+          Action: "com.huawei.health.action.DEVICE_DISCONNECTED"
+          Action: "com.huawei.health.action.DEVICE_OCCUPIED"
+          Action: "com.huawei.health.action.DEVICE_AVAILABLE"
+      com.huawei.plugin.account.logout:
+        798c402 com.huawei.health/.receiver.AccountLoginReceiver filter 3504113
+          Action: "com.huawei.plugin.account.login"
+          Action: "com.huawei.plugin.account.logout"
+      com.huawei.bone.ACTION_RECEIVE_SEND_SPORT_GOAL:
+        f10a926 com.huawei.health/com.huawei.hwdevice.mainprocess.receiver.SendDataToDeviceBroadcastReceiver filter 705c967
+          Action: "com.huawei.bone.ACTION_RECEIVE_SEND_HEART_CONFIG"
+          Action: "com.huawei.bone.ACTION_RECEIVE_SEND_SPORT_GOAL"
+      com.huawei.hwid.ACTION_REMOVE_ACCOUNT:
+        befb676 com.huawei.health/.receiver.LoginStatusReceiver filter 3ecd477
+          Action: "com.huawei.hwid.ACTION_REMOVE_ACCOUNT"
+      com.huawei.wallet.push.action.PUSH_TOKEN:
+        f9bb286 com.huawei.health/com.huawei.nfc.carrera.wear.logic.lifecycle.push.NfcPushReceiver filter f540747
+          Action: "com.huawei.wallet.push.action.PUSH_MSG"
+          Action: "com.huawei.wallet.push.action.PUSH_TOKEN"
+      android.intent.action.BOOT_COMPLETED:
+        7515c4c com.huawei.health/.manager.receiver.DaemonStaticBroadcastReceiver filter 68ba495
+          Action: "android.intent.action.ACTION_SHUTDOWN"
+          Action: "android.intent.action.BOOT_COMPLETED"
+          Action: "android.intent.action.MY_PACKAGE_REPLACED"
+        169b6fe com.huawei.health/.ui.widget.XiaomiWidgetProvider filter 6387e5f
+          Action: "android.appwidget.action.APPWIDGET_UPDATE"
+          Action: "android.intent.action.BOOT_COMPLETED"
+          Action: "miui.appwidget.action.APPWIDGET_UPDATE"
+        c7fdcdc com.huawei.health/androidx.work.impl.background.systemalarm.RescheduleReceiver filter 5e441e5
+          Action: "android.intent.action.BOOT_COMPLETED"
+          Action: "android.intent.action.TIME_SET"
+          Action: "android.intent.action.TIMEZONE_CHANGED"
+      android.intent.action.USER_PRESENT:
+        4d31e4e com.huawei.health/com.huawei.hwdevice.outofprocess.receiver.ScreenReceiver filter f73db6f
+          Action: "android.intent.action.USER_PRESENT"
+      com.huawei.bone.action.CONNECTION_STATE_CHANGED:
+        e46d15a com.huawei.health/com.huawei.ui.homewear21.receiver.WearDeviceReceiverDaemon filter d8cbf8b
+          Action: "com.huawei.bone.action.CONNECTION_STATE_CHANGED"
+      android.intent.action.ACTION_POWER_CONNECTED:
+        966a944 com.huawei.health/androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy filter 6e0fa2d
+          Action: "android.intent.action.ACTION_POWER_CONNECTED"
+          Action: "android.intent.action.ACTION_POWER_DISCONNECTED"
+      miui.appwidget.action.APPWIDGET_UPDATE:
+        169b6fe com.huawei.health/.ui.widget.XiaomiWidgetProvider filter 6387e5f
+          Action: "android.appwidget.action.APPWIDGET_UPDATE"
+          Action: "android.intent.action.BOOT_COMPLETED"
+          Action: "miui.appwidget.action.APPWIDGET_UPDATE"
+      com.huawei.bone.dfx.device_trigger_log:
+        4b1af50 com.huawei.health/com.huawei.hwdevice.mainprocess.receiver.hwdfx.DeviceTriggerDfxReceiver filter af23549
+          Action: "com.huawei.bone.dfx.device_trigger_log"
+      com.huawei.systemmamanger.action.KILL_ROGAPP_END:
+        54e31b2 com.huawei.health/.ui.widget.RovEventReceiver filter 71b9503
+          Action: "com.huawei.systemmamanger.action.KILL_ROGAPP_END"
+      com.huawei.health.action.DEVICE_DISCONNECTED:
+        af1119e com.huawei.health/.device.manager.DeviceMonitorReceiver filter a36d47f
+          Action: "com.huawei.health.action.DEVICE_CONNECTED"
+          Action: "com.huawei.health.action.DEVICE_DISCONNECTED"
+          Action: "com.huawei.health.action.DEVICE_OCCUPIED"
+          Action: "com.huawei.health.action.DEVICE_AVAILABLE"
+      com.huawei.intelligent.action.NOTIFY_MSG:
+        f9ce8e4 com.huawei.health/.receiver.PromptReceiver filter 91cd14d
+          Action: "com.huawei.intelligent.action.NOTIFY_MSG"
+      android.appwidget.action.APPWIDGET_UPDATE:
+        d7e5314 com.huawei.health/.ui.widget.HealthSportWidget filter 191a7bd
+          Action: "android.appwidget.action.APPWIDGET_UPDATE"
+          Action: "android.intent.action.LOCALE_CHANGED"
+        1778c80 com.huawei.health/.ui.widget.HonorWidgetProvider filter 7b602b9
+          Action: "android.appwidget.action.APPWIDGET_UPDATE"
+        169b6fe com.huawei.health/.ui.widget.XiaomiWidgetProvider filter 6387e5f
+          Action: "android.appwidget.action.APPWIDGET_UPDATE"
+          Action: "android.intent.action.BOOT_COMPLETED"
+          Action: "miui.appwidget.action.APPWIDGET_UPDATE"
+        908f0ac com.huawei.health/.widget.YOYOWidgetProvider filter 32b1175
+          Action: "android.appwidget.action.APPWIDGET_UPDATE"
+      androidx.work.diagnostics.REQUEST_DIAGNOSTICS:
+        e9beac8 com.huawei.health/androidx.work.impl.diagnostics.DiagnosticsReceiver filter 89c1761
+          Action: "androidx.work.diagnostics.REQUEST_DIAGNOSTICS"
+      com.huawei.intent.action.PUSH:
+        e26450a com.huawei.health/com.huawei.hms.support.api.push.PushMsgReceiver filter f10a17b
+          Action: "com.huawei.intent.action.PUSH_DELAY_NOTIFY"
+          Action: "com.huawei.intent.action.PUSH"
+      com.huawei.bone.ACTION_RECEIVE_SEND_HEART_CONFIG:
+        f10a926 com.huawei.health/com.huawei.hwdevice.mainprocess.receiver.SendDataToDeviceBroadcastReceiver filter 705c967
+          Action: "com.huawei.bone.ACTION_RECEIVE_SEND_HEART_CONFIG"
+          Action: "com.huawei.bone.ACTION_RECEIVE_SEND_SPORT_GOAL"
+      android.intent.action.MY_PACKAGE_REPLACED:
+        7515c4c com.huawei.health/.manager.receiver.DaemonStaticBroadcastReceiver filter 68ba495
+          Action: "android.intent.action.ACTION_SHUTDOWN"
+          Action: "android.intent.action.BOOT_COMPLETED"
+          Action: "android.intent.action.MY_PACKAGE_REPLACED"
+      androidx.work.impl.background.systemalarm.UpdateProxies:
+        a6204ba com.huawei.health/androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver filter b08df6b
+          Action: "androidx.work.impl.background.systemalarm.UpdateProxies"
+      android.intent.action.ACTION_SHUTDOWN:
+        7515c4c com.huawei.health/.manager.receiver.DaemonStaticBroadcastReceiver filter 68ba495
+          Action: "android.intent.action.ACTION_SHUTDOWN"
+          Action: "android.intent.action.BOOT_COMPLETED"
+          Action: "android.intent.action.MY_PACKAGE_REPLACED"
+      com.huawei.bone.stress_and_relax_sync:
+        7cc1868 com.huawei.health/com.huawei.hwdevice.mainprocess.receiver.SyncFitnessPrivateBroadcastReceiver filter 9c64481
+          Action: "com.huawei.bone.core_sleep_sync"
+          Action: "com.huawei.bone.action.open_gps"
+          Action: "com.huawei.bone.stress_and_relax_sync"
+
+Service Resolver Table:
+  Schemes:
+      wear:
+        ce5e072 com.huawei.health/com.huawei.hwbtsdk.btmanager.btdeviceservice.BtDeviceAwHostService filter 26f7cc3
+          Action: "com.google.android.gms.wearable.DATA_CHANGED"
+          Action: "com.google.android.gms.wearable.MESSAGE_RECEIVED"
+          Action: "com.google.android.gms.wearable.CAPABILITY_CHANGED"
+          Action: "com.google.android.gms.wearable.CHANNEL_EVENT"
+          Scheme: "wear"
+          Authority: "": -1 WILD
+
+  Non-Data Actions:
+      com.unionpay.blepayservice.UPBLEPayService:
+        4e1f270 com.huawei.health/com.unionpay.blepayservice.PayService filter eb289e9
+          Action: "com.unionpay.blepayservice.UPBLEPayService"
+          Category: "android.intent.category.DEFAULT"
+      com.huawei.health.callbackservice:
+        7634ae0 com.huawei.health/.hwhealthlinkage.wearsdk.CallbackService filter f575199
+          Action: "com.huawei.health.callbackservice"
+          Action: "local.proxy"
+      com.huawei.wallet.nfc.UMPSCARD_OPERATE_SERVICE:
+        f4bc59c com.huawei.health/com.huawei.nfc.carrera.lifecycle.operate.UMPSOperateService filter c20dba5
+          Action: "com.huawei.wallet.nfc.UMPSCARD_OPERATE_SERVICE"
+          Action: "com.huawei.wallet.nfc.UMPSPERSONAL_RESULT_HANDLE_SERVICE"
+      com.huawei.health.wear.golf.device_pull:
+        7046d28 com.huawei.health/.receiver.PullPackageService filter b14da41
+          Action: "com.huawei.health.healthyliving.device_pull"
+          Action: "com.huawei.health.wear.golf.device_pull"
+          Action: "com.huawei.ohos.fastinglite.device_pull"
+      com.huawei.synergy.AUTH_STATE_REQ:
+        afbc936 com.huawei.health/com.huawei.hwservicesmgr.ExternalPhoneService filter a475037 permission com.huawei.health.permission.AUTH_STATE_REQ
+          Action: "com.huawei.synergy.AUTH_STATE_REQ"
+          Action: "com.hihonor.synergy.AUTH_STATE_REQ"
+          Action: "com.huawei.synergy.NOTIFY_MSG"
+      com.huawei.wallet.nfc.PERSONAL_RESULT_HANDLE_SERVICE:
+        b3fe66e com.huawei.health/com.huawei.nfc.carrera.lifecycle.operate.CUPOperateService filter 97ed10f
+          Action: "com.huawei.wallet.nfc.CARD_OPERATE_SERVICE"
+          Action: "com.huawei.wallet.nfc.PERSONAL_RESULT_HANDLE_SERVICE"
+      android.content.SyncAdapter:
+        762350c com.huawei.health/.manager.AccountSyncService filter 4426e55
+          Action: "android.content.SyncAdapter"
+      com.huawei.wear.wallet.action.OPEN_BUSINESS:
+        f5a681a com.huawei.health/.hwwear.pluginpay.HealthWalletBusinessService filter 3526f4b
+          Action: "com.huawei.wear.wallet.action.OPEN_BUSINESS"
+      com.huawei.healthcloud.plugintrack.trackSdk.TrackService:
+        ec733d4 com.huawei.health/com.huawei.healthcloud.plugintrack.open.TrackService filter 693d97d permission android.permission.BIND_APPWIDGET
+          Action: "com.huawei.healthcloud.plugintrack.trackSdk.TrackService"
+      com.huawei.health.action.KIT_SERVICE:
+        8e8eb74 com.huawei.health/com.huawei.hihealthservice.HiHealthService filter 2a1c89d
+          Action: "com.huawei.hihealthservice.HiHealthService"
+          Action: "com.huawei.health.action.KIT_SERVICE"
+      com.huawei.aa.action.DeviceConnectionRelayService:
+        1a6ebe6 com.huawei.health/com.huawei.hwservicesmgr.DeviceConnectionRelayService filter 9d6b527 permission huawei.android.permission.HW_SIGNATURE_OR_SYSTEM
+          Action: "com.huawei.aa.action.DeviceConnectionRelayService"
+      com.huawei.wallet.wear.hmspass.action.CALL_AIDL_SERVICE:
+        5ad0bca com.huawei.health/com.huawei.wear.wallet.proxy.openservice.WalletPassService filter c81c13b
+          Action: "com.huawei.wallet.wear.hmspass.action.CALL_AIDL_SERVICE"
+      com.huawei.push.msg.NOTIFY_MSG:
+        4f5296c com.huawei.health/com.huawei.hms.support.api.push.service.HmsMsgService filter 489bb35
+          Action: "com.huawei.push.msg.NOTIFY_MSG"
+          Action: "com.huawei.push.msg.PASSBY_MSG"
+      com.huawei.daemonservice:
+        707112 com.huawei.health/.manager.DaemonService filter 83fd0e3
+          Action: "com.huawei.daemonservice"
+          Action: "com.huawei.daemonservice.remote"
+      com.huawei.ohos.fastinglite.device_pull:
+        7046d28 com.huawei.health/.receiver.PullPackageService filter b14da41
+          Action: "com.huawei.health.healthyliving.device_pull"
+          Action: "com.huawei.health.wear.golf.device_pull"
+          Action: "com.huawei.ohos.fastinglite.device_pull"
+      com.huawei.wearengine.action.REGISTER_CALLBACK_MANAGER:
+        ac17058 com.huawei.health/com.huawei.wearengine.service.WearEngineService filter a7d5b1
+          Action: "com.huawei.wearengine.action.REGISTER_CALLBACK_MANAGER"
+      ModuleUpdateService:
+        aad91be com.huawei.health/com.huawei.android.bundlecore.update.ModuleUpdateService filter 543221f
+          Action: "ModuleUpdateService"
+      android.service.multisimservice.MultiSimService:
+        ecf2c10 com.huawei.health/com.huawei.multisimservice.MultiSimService filter 202d309
+          Action: "android.service.multisimservice.MultiSimService"
+      com.huawei.wallet.nfc.CARD_OPERATE_SERVICE:
+        b3fe66e com.huawei.health/com.huawei.nfc.carrera.lifecycle.operate.CUPOperateService filter 97ed10f
+          Action: "com.huawei.wallet.nfc.CARD_OPERATE_SERVICE"
+          Action: "com.huawei.wallet.nfc.PERSONAL_RESULT_HANDLE_SERVICE"
+      com.huawei.iconnect.ACTION_CONNECT_DEVICE:
+        28395f8 com.huawei.health/com.huawei.hwservicesmgr.PhoneService filter f889ad1
+          Action: "com.huawei.bone.action.StartPhoneService"
+          Action: "com.huawei.iconnect.ACTION_RECONNECT_MSG"
+          Action: "com.huawei.iconnect.ACTION_CONNECT_DEVICE"
+          Action: "com.huawei.test.ACTION_CONNECT_DEVICE"
+          Category: "android.intent.category.DEFAULT"
+      com.huawei.hwsmartinteractmgr.service.SmartInteractService:
+        8608c5e com.huawei.health/com.huawei.hwsmartinteractmgr.service.SmartInteractService filter a94983f permission com.huawei.intelligent.permission.HWINTELLIGENT_START_COMPONENT
+          Action: "com.huawei.hwsmartinteractmgr.service.SmartInteractService"
+      com.huawei.wearengine.action.AUTH_LISTENER_MANAGER:
+        2781a96 com.huawei.health/com.huawei.wearengine.service.WearEngineExtendService filter b413617
+          Action: "com.huawei.wearengine.action.PHONE_SERVICE"
+          Action: "com.huawei.wearengine.action.AUTH_LISTENER_MANAGER"
+      com.hihonor.synergy.AUTH_STATE_REQ:
+        afbc936 com.huawei.health/com.huawei.hwservicesmgr.ExternalPhoneService filter a475037 permission com.huawei.health.permission.AUTH_STATE_REQ
+          Action: "com.huawei.synergy.AUTH_STATE_REQ"
+          Action: "com.hihonor.synergy.AUTH_STATE_REQ"
+          Action: "com.huawei.synergy.NOTIFY_MSG"
+      local.proxy:
+        7634ae0 com.huawei.health/.hwhealthlinkage.wearsdk.CallbackService filter f575199
+          Action: "com.huawei.health.callbackservice"
+          Action: "local.proxy"
+      com.huawei.android.appbundle.splitinstall.BIND_SPLIT_INSTALL_SERVICE:
+        34db940 com.huawei.health/com.huawei.android.bundlecore.install.remote.ModuleInstallService filter e099079
+          Action: "com.huawei.android.appbundle.splitinstall.BIND_SPLIT_INSTALL_SERVICE"
+      com.huawei.health.healthyliving.device_pull:
+        7046d28 com.huawei.health/.receiver.PullPackageService filter b14da41
+          Action: "com.huawei.health.healthyliving.device_pull"
+          Action: "com.huawei.health.wear.golf.device_pull"
+          Action: "com.huawei.ohos.fastinglite.device_pull"
+      com.huawei.synergy.NOTIFY_MSG:
+        afbc936 com.huawei.health/com.huawei.hwservicesmgr.ExternalPhoneService filter a475037 permission com.huawei.health.permission.AUTH_STATE_REQ
+          Action: "com.huawei.synergy.AUTH_STATE_REQ"
+          Action: "com.hihonor.synergy.AUTH_STATE_REQ"
+          Action: "com.huawei.synergy.NOTIFY_MSG"
+      com.huawei.diagnosis.DETECT_REPAIR_SERVICE:
+        6093a04 com.huawei.health/com.huawei.diagnosis.service.DetectRepairService filter 4b31bed
+          Action: "com.huawei.diagnosis.DETECT_REPAIR_SERVICE"
+          Category: "android.intent.category.DEFAULT"
+      com.huawei.hihealthservice.HiHealthService:
+        8e8eb74 com.huawei.health/com.huawei.hihealthservice.HiHealthService filter 2a1c89d
+          Action: "com.huawei.hihealthservice.HiHealthService"
+          Action: "com.huawei.health.action.KIT_SERVICE"
+      android.companion.CompanionDeviceService:
+        53342c2 com.huawei.health/com.huawei.bone.ui.setting.CompanionDeviceDaemonService filter 936b8d3 permission android.permission.BIND_COMPANION_DEVICE_SERVICE
+          Action: "android.companion.CompanionDeviceService"
+      com.huawei.health.wallet.nfc.CARD_OPERATE_SERVICE:
+        9134a22 com.huawei.health/com.huawei.nfc.carrera.wear.logic.lifecycle.cupoperate.CupOperateService filter 6191cb3
+          Action: "com.huawei.health.wallet.nfc.CARD_OPERATE_SERVICE"
+          Action: "com.huawei.health.wallet.nfc.PERSONAL_RESULT_HANDLE_SERVICE"
+      android.service.notification.NotificationListenerService:
+        c5819a4 com.huawei.health/com.huawei.bone.ui.setting.NotificationPushListener filter 22b130d permission android.permission.BIND_NOTIFICATION_LISTENER_SERVICE
+          Action: "android.service.notification.NotificationListenerService"
+      com.huawei.nfc.action.wear.TRANSIT_OPEN_SERVICE:
+        162f93c com.huawei.health/.hwwear.pluginpay.HealthTransitOpenService filter f7c96c5
+          Action: "com.huawei.nfc.action.wear.TRANSIT_OPEN_SERVICE"
+      android.accounts.AccountAuthenticator:
+        8a5106a com.huawei.health/.sync.AccountAuthenticatorService filter 544795b
+          Action: "android.accounts.AccountAuthenticator"
+      com.huawei.push.msg.PASSBY_MSG:
+        4f5296c com.huawei.health/com.huawei.hms.support.api.push.service.HmsMsgService filter 489bb35
+          Action: "com.huawei.push.msg.NOTIFY_MSG"
+          Action: "com.huawei.push.msg.PASSBY_MSG"
+      com.huawei.iconnect.ACTION_RECONNECT_MSG:
+        28395f8 com.huawei.health/com.huawei.hwservicesmgr.PhoneService filter f889ad1
+          Action: "com.huawei.bone.action.StartPhoneService"
+          Action: "com.huawei.iconnect.ACTION_RECONNECT_MSG"
+          Action: "com.huawei.iconnect.ACTION_CONNECT_DEVICE"
+          Action: "com.huawei.test.ACTION_CONNECT_DEVICE"
+          Category: "android.intent.category.DEFAULT"
+      com.huawei.health.wallet.nfc.PERSONAL_RESULT_HANDLE_SERVICE:
+        9134a22 com.huawei.health/com.huawei.nfc.carrera.wear.logic.lifecycle.cupoperate.CupOperateService filter 6191cb3
+          Action: "com.huawei.health.wallet.nfc.CARD_OPERATE_SERVICE"
+          Action: "com.huawei.health.wallet.nfc.PERSONAL_RESULT_HANDLE_SERVICE"
+      com.huawei.test.ACTION_CONNECT_DEVICE:
+        28395f8 com.huawei.health/com.huawei.hwservicesmgr.PhoneService filter f889ad1
+          Action: "com.huawei.bone.action.StartPhoneService"
+          Action: "com.huawei.iconnect.ACTION_RECONNECT_MSG"
+          Action: "com.huawei.iconnect.ACTION_CONNECT_DEVICE"
+          Action: "com.huawei.test.ACTION_CONNECT_DEVICE"
+          Category: "android.intent.category.DEFAULT"
+      com.huawei.bone.action.StartPhoneService:
+        28395f8 com.huawei.health/com.huawei.hwservicesmgr.PhoneService filter f889ad1
+          Action: "com.huawei.bone.action.StartPhoneService"
+          Action: "com.huawei.iconnect.ACTION_RECONNECT_MSG"
+          Action: "com.huawei.iconnect.ACTION_CONNECT_DEVICE"
+          Action: "com.huawei.test.ACTION_CONNECT_DEVICE"
+          Category: "android.intent.category.DEFAULT"
+      com.huawei.wearengine.action.PHONE_SERVICE:
+        2781a96 com.huawei.health/com.huawei.wearengine.service.WearEngineExtendService filter b413617
+          Action: "com.huawei.wearengine.action.PHONE_SERVICE"
+          Action: "com.huawei.wearengine.action.AUTH_LISTENER_MANAGER"
+      com.huawei.push.action.MESSAGING_EVENT:
+        976c90e com.huawei.health/com.huawei.pluginmessagecenter.service.HuaweiHealthHmsPushService filter 7aa0f2f
+          Action: "com.huawei.push.action.MESSAGING_EVENT"
+      com.huawei.daemonservice.remote:
+        707112 com.huawei.health/.manager.DaemonService filter 83fd0e3
+          Action: "com.huawei.daemonservice"
+          Action: "com.huawei.daemonservice.remote"
+      com.huawei.wallet.nfc.UMPSPERSONAL_RESULT_HANDLE_SERVICE:
+        f4bc59c com.huawei.health/com.huawei.nfc.carrera.lifecycle.operate.UMPSOperateService filter c20dba5
+          Action: "com.huawei.wallet.nfc.UMPSCARD_OPERATE_SERVICE"
+          Action: "com.huawei.wallet.nfc.UMPSPERSONAL_RESULT_HANDLE_SERVICE"
+
+Domain verification status:
+
+Permissions:
+  Permission [com.huawei.health.com.huawei.openaliance.ad.app.ins] (8d325c9):
+    sourcePackage=com.huawei.health
+    uid=10402 gids=[] type=0 prot=signature
+    perm=PermissionInfo{f10ffab com.huawei.health.com.huawei.openaliance.ad.app.ins}
+
+Permissions:
+  Permission [com.huawei.permission.HW_HEALTH_HAND_OFF] (9e084ce):
+    sourcePackage=com.huawei.health
+    uid=10402 gids=[] type=0 prot=signature|privileged
+    perm=PermissionInfo{bd7d1a1 com.huawei.permission.HW_HEALTH_HAND_OFF}
+
+Permissions:
+  Permission [com.huawei.health.INTERNAL_PERMISSION] (2637fef):
+    sourcePackage=com.huawei.health
+    uid=10402 gids=[] type=0 prot=signature
+    perm=PermissionInfo{d5deb87 com.huawei.health.INTERNAL_PERMISSION}
+
+Permissions:
+  Permission [com.huawei.health.permission.PUSH_PROVIDER] (7327afc):
+    sourcePackage=com.huawei.health
+    uid=10402 gids=[] type=0 prot=signature
+    perm=PermissionInfo{87ee6dd com.huawei.health.permission.PUSH_PROVIDER}
+
+Permissions:
+  Permission [com.huawei.health.permission.LOCAL_BROADCAST] (cdf5585):
+    sourcePackage=com.huawei.health
+    uid=10402 gids=[] type=0 prot=signature
+    perm=PermissionInfo{8a3b923 com.huawei.health.permission.LOCAL_BROADCAST}
+
+Permissions:
+  Permission [com.huawei.wearengine.permission.DEFAULT] (1041fda):
+    sourcePackage=com.huawei.health
+    uid=10402 gids=[] type=0 prot=normal
+    perm=PermissionInfo{a8813d9 com.huawei.wearengine.permission.DEFAULT}
+
+Permissions:
+  Permission [com.huawei.health.permission.AUTH_STATE_REQ] (d122c0b):
+    sourcePackage=com.huawei.health
+    uid=10402 gids=[] type=0 prot=signature|privileged
+    perm=PermissionInfo{2eec47f com.huawei.health.permission.AUTH_STATE_REQ}
+
+Permissions:
+  Permission [com.huawei.permission.HEALTH_ROUTER] (5aa4ae8):
+    sourcePackage=com.huawei.health
+    uid=10402 gids=[] type=0 prot=signature
+    perm=PermissionInfo{5d1495 com.huawei.permission.HEALTH_ROUTER}
+
+Permissions:
+  Permission [com.huawei.health.permission.PROCESS_PUSH_MSG] (3c4c501):
+    sourcePackage=com.huawei.health
+    uid=10402 gids=[] type=0 prot=signature
+    perm=PermissionInfo{8b5299b com.huawei.health.permission.PROCESS_PUSH_MSG}
+
+Permissions:
+  Permission [com.huawei.health.permission.BACKUP_WRITE_PROVIDER] (e945fa6):
+    sourcePackage=com.huawei.health
+    uid=10402 gids=[] type=0 prot=signature|privileged
+    perm=PermissionInfo{b476511 com.huawei.health.permission.BACKUP_WRITE_PROVIDER}
+
+Permissions:
+  Permission [com.huawei.health.notifypermission.write] (ab57de7):
+    sourcePackage=com.huawei.health
+    uid=10402 gids=[] type=0 prot=signature|privileged
+    perm=PermissionInfo{db2c477 com.huawei.health.notifypermission.write}
+
+Permissions:
+  Permission [com.huawei.health.permission.PUSH_WRITE_PROVIDER] (34d2d94):
+    sourcePackage=com.huawei.health
+    uid=10402 gids=[] type=0 prot=signature
+    perm=PermissionInfo{dac414d com.huawei.health.permission.PUSH_WRITE_PROVIDER}
+
+Permissions:
+  Permission [com.huawei.health.AUTOTRACK] (37b03d):
+    sourcePackage=com.huawei.health
+    uid=10402 gids=[] type=0 prot=signature
+    perm=PermissionInfo{b853113 com.huawei.health.AUTOTRACK}
+
+Permissions:
+  Permission [com.huawei.health.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION] (b96d032):
+    sourcePackage=com.huawei.health
+    uid=10402 gids=[] type=0 prot=signature
+    perm=PermissionInfo{108a549 com.huawei.health.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION}
+
+Permissions:
+  Permission [com.huawei.hihealth.DEFAULT_PERMISSION] (b521183):
+    sourcePackage=com.huawei.health
+    uid=10402 gids=[] type=0 prot=signature
+    perm=PermissionInfo{e07cb6f com.huawei.hihealth.DEFAULT_PERMISSION}
+
+Permissions:
+  Permission [com.huawei.health.heartZonePermission] (1998f00):
+    sourcePackage=com.huawei.health
+    uid=10402 gids=[] type=0 prot=signature|privileged
+    perm=PermissionInfo{fad4d05 com.huawei.health.heartZonePermission}
+
+Permissions:
+  Permission [com.huawei.permission.music_provider] (1f41339):
+    sourcePackage=com.huawei.health
+    uid=10402 gids=[] type=0 prot=signature|privileged
+    perm=PermissionInfo{96faf8b com.huawei.permission.music_provider}
+
+Permissions:
+  Permission [com.huawei.profile.DEVICE_UPDATE] (9ddbd7e):
+    sourcePackage=com.huawei.health
+    uid=10402 gids=[] type=0 prot=signature|privileged
+    perm=PermissionInfo{e3ab481 com.huawei.profile.DEVICE_UPDATE}
+
+Permissions:
+  Permission [com.huawei.health.notifypermission.read] (9a42df):
+    sourcePackage=com.huawei.health
+    uid=10402 gids=[] type=0 prot=signature|privileged
+    perm=PermissionInfo{627b967 com.huawei.health.notifypermission.read}
+
+Permissions:
+  Permission [com.huawei.health.permission.CONNECTSTATUS] (9889b2c):
+    sourcePackage=com.huawei.health
+    uid=10402 gids=[] type=0 prot=signature|privileged
+    perm=PermissionInfo{dd17bd com.huawei.health.permission.CONNECTSTATUS}
+
+Permissions:
+  Permission [com.huawei.health.permission.BACKUP_READ_PROVIDER] (e79a9f5):
+    sourcePackage=com.huawei.health
+    uid=10402 gids=[] type=0 prot=signature|privileged
+    perm=PermissionInfo{e6c8503 com.huawei.health.permission.BACKUP_READ_PROVIDER}
+
+Permissions:
+  Permission [com.huawei.health.ui.imperial.imperial_permission] (414338a):
+    sourcePackage=com.huawei.health
+    uid=10402 gids=[] type=0 prot=signature
+    perm=PermissionInfo{84872b9 com.huawei.health.ui.imperial.imperial_permission}
+
+Registered ContentProviders:
+  com.huawei.health/com.huawei.healthcloud.plugintrack.sportmusic.SportMusicProvider:
+    Provider{de366fe com.huawei.health/com.huawei.healthcloud.plugintrack.sportmusic.SportMusicProvider}
+  com.huawei.health/com.huawei.nfc.carrera.wear.storage.health.db.NFCContentProvider_Decorated_PluginPay:
+    Provider{9a86e5f com.huawei.health/com.huawei.nfc.carrera.wear.storage.health.db.NFCContentProvider_Decorated_PluginPay}
+  com.huawei.health/com.huawei.hwdataaccessmodel.db.backup.HwBackupProvider:
+    Provider{ad220ac com.huawei.health/com.huawei.hwdataaccessmodel.db.backup.HwBackupProvider}
+  com.huawei.health/com.squareup.picasso.PicassoProvider_Decorated_PluginAudioDevice:
+    Provider{2748175 com.huawei.health/com.squareup.picasso.PicassoProvider_Decorated_PluginAudioDevice}
+  com.huawei.health/com.huawei.wallet.system.PushContentProvider_Decorated_PluginPay:
+    Provider{8af50a com.huawei.health/com.huawei.wallet.system.PushContentProvider_Decorated_PluginPay}
+  com.huawei.health/androidx.core.content.FileProvider:
+    Provider{18f917b com.huawei.health/androidx.core.content.FileProvider}
+  com.huawei.health/com.huawei.hwdevice.outofprocess.provider.HwNotificationContentProvider:
+    Provider{8969b98 com.huawei.health/com.huawei.hwdevice.outofprocess.provider.HwNotificationContentProvider}
+  com.huawei.health/com.huawei.wallet.fileprovider.WalletFileProvider_Decorated_PluginPay:
+    Provider{b18bff1 com.huawei.health/com.huawei.wallet.fileprovider.WalletFileProvider_Decorated_PluginPay}
+  com.huawei.health/com.huawei.hms.update.provider.UpdateProvider:
+    Provider{96b57d6 com.huawei.health/com.huawei.hms.update.provider.UpdateProvider}
+  com.huawei.health/.sync.DummyContentProvider:
+    Provider{cfbca57 com.huawei.health/.sync.DummyContentProvider}
+  com.huawei.health/com.huawei.nfc.carrera.storage.db.MainProcessDataSyncProvider_Decorated_PluginPay:
+    Provider{525d944 com.huawei.health/com.huawei.nfc.carrera.storage.db.MainProcessDataSyncProvider_Decorated_PluginPay}
+  com.huawei.health/com.huawei.hms.dupdate.download.storage.adapter.DownloadProvider_Decorated_PluginWearAbility:
+    Provider{7e86a2d com.huawei.health/com.huawei.hms.dupdate.download.storage.adapter.DownloadProvider_Decorated_PluginWearAbility}
+  com.huawei.health/com.huawei.hwidauth.provider.HwIDFileProvider:
+    Provider{a1d1b62 com.huawei.health/com.huawei.hwidauth.provider.HwIDFileProvider}
+  com.huawei.health/com.huawei.hms.support.api.push.PushProvider:
+    Provider{c88b4f3 com.huawei.health/com.huawei.hms.support.api.push.PushProvider}
+  com.huawei.health/.provider.HealthOpenProvider:
+    Provider{44945b0 com.huawei.health/.provider.HealthOpenProvider}
+  com.huawei.health/.VersionContentProvider:
+    Provider{c8e7c29 com.huawei.health/.VersionContentProvider}
+  com.huawei.health/com.huawei.hms.mlsdk.common.provider.MLInitializerProvider:
+    Provider{3358bae com.huawei.health/com.huawei.hms.mlsdk.common.provider.MLInitializerProvider}
+  com.huawei.health/com.huawei.appgallery.marketinstallerservice.impl.download.MarketDownloadFileProvider:
+    Provider{4efad4f com.huawei.health/com.huawei.appgallery.marketinstallerservice.impl.download.MarketDownloadFileProvider}
+  com.huawei.health/.contentprovider.DeviceInfoProvider:
+    Provider{af50cdc com.huawei.health/.contentprovider.DeviceInfoProvider}
+  com.huawei.health/com.huawei.hms.aaid.InitProvider:
+    Provider{269b1e5 com.huawei.health/com.huawei.hms.aaid.InitProvider}
+  com.huawei.health/.contentprovider.DeviceBackupProvider:
+    Provider{752b4ba com.huawei.health/.contentprovider.DeviceBackupProvider}
+  com.huawei.health/.ecologydevice.provider.HealthAppProvider:
+    Provider{323cf6b com.huawei.health/.ecologydevice.provider.HealthAppProvider}
+  com.huawei.health/com.huawei.nfc.carrera.storage.db.NFCContentProvider_Decorated_PluginPay:
+    Provider{7341ac8 com.huawei.health/com.huawei.nfc.carrera.storage.db.NFCContentProvider_Decorated_PluginPay}
+  com.huawei.health/com.huawei.wallet.base.hicloud.provider.HicloudContentProvider_Decorated_PluginPay:
+    Provider{88761 com.huawei.health/com.huawei.wallet.base.hicloud.provider.HicloudContentProvider_Decorated_PluginPay}
+  com.huawei.health/com.huawei.plugindevicedetectdiagnosis.provider.AppDetectDiagnosisProvider_Decorated_PluginDeviceDetectDiagnosis:
+    Provider{2e76286 com.huawei.health/com.huawei.plugindevicedetectdiagnosis.provider.AppDetectDiagnosisProvider_Decorated_PluginDeviceDetectDiagnosis}
+  com.huawei.health/com.huawei.openalliance.ad.download.DownloadFileProvider:
+    Provider{62df747 com.huawei.health/com.huawei.openalliance.ad.download.DownloadFileProvider}
+  com.huawei.health/com.huawei.haf.bundle.extension.BundleStateStoreProvider:
+    Provider{ad41b74 com.huawei.health/com.huawei.haf.bundle.extension.BundleStateStoreProvider}
+  com.huawei.health/com.huawei.nfc.carrera.storage.db.SubProcessDataSyncProvider_Decorated_PluginPay:
+    Provider{c65389d com.huawei.health/com.huawei.nfc.carrera.storage.db.SubProcessDataSyncProvider_Decorated_PluginPay}
+  com.huawei.health/com.huawei.wear.wallet.proxy.contentprovider.ThirdContentProvider:
+    Provider{4c72112 com.huawei.health/com.huawei.wear.wallet.proxy.contentprovider.ThirdContentProvider}
+  com.huawei.health/com.huawei.hwdataaccessmodel.db.contentprovider.HwContentProvider:
+    Provider{ac8c0e3 com.huawei.health/com.huawei.hwdataaccessmodel.db.contentprovider.HwContentProvider}
+  com.huawei.health/com.huawei.agconnect.core.provider.AGConnectInitializeProvider:
+    Provider{4d17ae0 com.huawei.health/com.huawei.agconnect.core.provider.AGConnectInitializeProvider}
+  com.huawei.health/com.huawei.agconnect.apms.APMSInitializeProvider:
+    Provider{9e1c199 com.huawei.health/com.huawei.agconnect.apms.APMSInitializeProvider}
+  com.huawei.health/com.huawei.hms.dupdate.storage.adapter.UpgradeProvider_Decorated_PluginWearAbility:
+    Provider{3723c5e com.huawei.health/com.huawei.hms.dupdate.storage.adapter.UpgradeProvider_Decorated_PluginWearAbility}
+  com.huawei.health/com.huawei.openalliance.ad.provider.PPSECProvider:
+    Provider{4bc883f com.huawei.health/com.huawei.openalliance.ad.provider.PPSECProvider}
+  com.huawei.health/com.huawei.featureuserprofile.sos.provider.EmergencyInfoProvider:
+    Provider{583650c com.huawei.health/com.huawei.featureuserprofile.sos.provider.EmergencyInfoProvider}
+  com.huawei.health/com.huawei.ids.pdk.db.local.IdsProvider_Decorated_PluginHiAiEngine:
+    Provider{503de55 com.huawei.health/com.huawei.ids.pdk.db.local.IdsProvider_Decorated_PluginHiAiEngine}
+  com.huawei.health/com.huawei.updatesdk.fileprovider.UpdateSdkFileProvider:
+    Provider{b21c06a com.huawei.health/com.huawei.updatesdk.fileprovider.UpdateSdkFileProvider}
+
+ContentProvider Authorities:
+  [com.huawei.health.AGCInitializeProvider]:
+    Provider{4d17ae0 com.huawei.health/com.huawei.agconnect.core.provider.AGConnectInitializeProvider}
+      applicationInfo=ApplicationInfo{b0a2dfb com.huawei.health}
+  [com.huawei.health.sport.musicprovider]:
+    Provider{de366fe com.huawei.health/com.huawei.healthcloud.plugintrack.sportmusic.SportMusicProvider}
+      applicationInfo=ApplicationInfo{87a3e18 com.huawei.health}
+  [com.huawei.health.data.access.provider]:
+    Provider{ac8c0e3 com.huawei.health/com.huawei.hwdataaccessmodel.db.contentprovider.HwContentProvider}
+      applicationInfo=ApplicationInfo{987f071 com.huawei.health}
+  [com.huawei.health.marketinstall.fileprovider]:
+    Provider{4efad4f com.huawei.health/com.huawei.appgallery.marketinstallerservice.impl.download.MarketDownloadFileProvider}
+      applicationInfo=ApplicationInfo{289fe56 com.huawei.health}
+  [com.huawei.health.download]:
+    Provider{7e86a2d com.huawei.health/com.huawei.hms.dupdate.download.storage.adapter.DownloadProvider_Decorated_PluginWearAbility}
+      applicationInfo=ApplicationInfo{cc3aed7 com.huawei.health}
+  [com.huawei.health]:
+    Provider{9a86e5f com.huawei.health/com.huawei.nfc.carrera.wear.storage.health.db.NFCContentProvider_Decorated_PluginPay}
+      applicationInfo=ApplicationInfo{fe123c4 com.huawei.health}
+  [com.huawei.health.dupdate]:
+    Provider{3723c5e com.huawei.health/com.huawei.hms.dupdate.storage.adapter.UpgradeProvider_Decorated_PluginWearAbility}
+      applicationInfo=ApplicationInfo{95a22ad com.huawei.health}
+  [com.huawei.health.data.backup.provider]:
+    Provider{ad220ac com.huawei.health/com.huawei.hwdataaccessmodel.db.backup.HwBackupProvider}
+      applicationInfo=ApplicationInfo{bfa9e2 com.huawei.health}
+  [com.huawei.health.MLInitializerProvider]:
+    Provider{3358bae com.huawei.health/com.huawei.hms.mlsdk.common.provider.MLInitializerProvider}
+      applicationInfo=ApplicationInfo{e2a6173 com.huawei.health}
+  [com.huawei.health.fileprovider]:
+    Provider{18f917b com.huawei.health/androidx.core.content.FileProvider}
+      applicationInfo=ApplicationInfo{3aeb830 com.huawei.health}
+  [com.huawei.health.hwidauth.fileProvider]:
+    Provider{a1d1b62 com.huawei.health/com.huawei.hwidauth.provider.HwIDFileProvider}
+      applicationInfo=ApplicationInfo{2a33ca9 com.huawei.health}
+  [com.huawei.health.nfc.carrera]:
+    Provider{7341ac8 com.huawei.health/com.huawei.nfc.carrera.storage.db.NFCContentProvider_Decorated_PluginPay}
+      applicationInfo=ApplicationInfo{fb2822e com.huawei.health}
+  [com.huawei.health.version.provider]:
+    Provider{c8e7c29 com.huawei.health/.VersionContentProvider}
+      applicationInfo=ApplicationInfo{3fa1cf com.huawei.health}
+  [com.huawei.health.provider.idsprovider]:
+    Provider{503de55 com.huawei.health/com.huawei.ids.pdk.db.local.IdsProvider_Decorated_PluginHiAiEngine}
+      applicationInfo=ApplicationInfo{37f275c com.huawei.health}
+  [com.huawei.health.swipecard.sharedpreferences]:
+    Provider{c65389d com.huawei.health/com.huawei.nfc.carrera.storage.db.SubProcessDataSyncProvider_Decorated_PluginPay}
+      applicationInfo=ApplicationInfo{849fa65 com.huawei.health}
+  [com.huawei.health.main.sharedpreferences]:
+    Provider{525d944 com.huawei.health/com.huawei.nfc.carrera.storage.db.MainProcessDataSyncProvider_Decorated_PluginPay}
+      applicationInfo=ApplicationInfo{e8933a com.huawei.health}
+  [com.huawei.health.cloudSync]:
+    Provider{88761 com.huawei.health/com.huawei.wallet.base.hicloud.provider.HicloudContentProvider_Decorated_PluginPay}
+      applicationInfo=ApplicationInfo{8be8beb com.huawei.health}
+  [com.huawei.health.aliveProvider]:
+    Provider{cfbca57 com.huawei.health/.sync.DummyContentProvider}
+      applicationInfo=ApplicationInfo{a855d48 com.huawei.health}
+  [com.huawei.health.transportationcard.fileprovider]:
+    Provider{b18bff1 com.huawei.health/com.huawei.wallet.fileprovider.WalletFileProvider_Decorated_PluginPay}
+      applicationInfo=ApplicationInfo{ae4d7e1 com.huawei.health}
+  [com.huawei.healthcloud.health.provider]:
+    Provider{44945b0 com.huawei.health/.provider.HealthOpenProvider}
+      applicationInfo=ApplicationInfo{63ca906 com.huawei.health}
+  [com.huawei.health.com.squareup.picasso]:
+    Provider{2748175 com.huawei.health/com.squareup.picasso.PicassoProvider_Decorated_PluginAudioDevice}
+      applicationInfo=ApplicationInfo{3f7fbc7 com.huawei.health}
+  [com.huawei.health.aaidinitprovider]:
+    Provider{269b1e5 com.huawei.health/com.huawei.hms.aaid.InitProvider}
+      applicationInfo=ApplicationInfo{23705f4 com.huawei.health}
+  [com.huawei.health.provider.DeviceInfoProvider]:
+    Provider{af50cdc com.huawei.health/.contentprovider.DeviceInfoProvider}
+      applicationInfo=ApplicationInfo{3f6111d com.huawei.health}
+  [com.huawei.health.thirdprovider]:
+    Provider{4c72112 com.huawei.health/com.huawei.wear.wallet.proxy.contentprovider.ThirdContentProvider}
+      applicationInfo=ApplicationInfo{26a4f92 com.huawei.health}
+  [com.huawei.health.huawei.push.provider]:
+    Provider{c88b4f3 com.huawei.health/com.huawei.hms.support.api.push.PushProvider}
+      applicationInfo=ApplicationInfo{86e8d63 com.huawei.health}
+  [com.huawei.health.haf_store_sp.app_bundle_info]:
+    Provider{ad41b74 com.huawei.health/com.huawei.haf.bundle.extension.BundleStateStoreProvider}
+      applicationInfo=ApplicationInfo{3b88d60 com.huawei.health}
+  [com.huawei.health.pps.ecprovider]:
+    Provider{4bc883f com.huawei.health/com.huawei.openalliance.ad.provider.PPSECProvider}
+      applicationInfo=ApplicationInfo{8e7a219 com.huawei.health}
+  [com.huawei.health.PushContentProvider]:
+    Provider{8af50a com.huawei.health/com.huawei.wallet.system.PushContentProvider_Decorated_PluginPay}
+      applicationInfo=ApplicationInfo{659d2de com.huawei.health}
+  [com.huawei.health.updateSdk.fileProvider]:
+    Provider{b21c06a com.huawei.health/com.huawei.updatesdk.fileprovider.UpdateSdkFileProvider}
+      applicationInfo=ApplicationInfo{8329cbf com.huawei.health}
+  [com.huawei.health.sos.provider]:
+    Provider{583650c com.huawei.health/com.huawei.featureuserprofile.sos.provider.EmergencyInfoProvider}
+      applicationInfo=ApplicationInfo{4091f8c com.huawei.health}
+  [com.huawei.health.hms.update.provider]:
+    Provider{96b57d6 com.huawei.health/com.huawei.hms.update.provider.UpdateProvider}
+      applicationInfo=ApplicationInfo{1c746d5 com.huawei.health}
+  [com.huawei.health.provider.DeviceBackupProvider]:
+    Provider{752b4ba com.huawei.health/.contentprovider.DeviceBackupProvider}
+      applicationInfo=ApplicationInfo{72c3eea com.huawei.health}
+  [com.huawei.health.HwNotificationContentProvider]:
+    Provider{8969b98 com.huawei.health/com.huawei.hwdevice.outofprocess.provider.HwNotificationContentProvider}
+      applicationInfo=ApplicationInfo{bfe45db com.huawei.health}
+  [com.huawei.health.APMSInitializeProvider]:
+    Provider{9e1c199 com.huawei.health/com.huawei.agconnect.apms.APMSInitializeProvider}
+      applicationInfo=ApplicationInfo{6eea878 com.huawei.health}
+  [com.huawei.health.provider.AppDetectDiagnosisProvider]:
+    Provider{2e76286 com.huawei.health/com.huawei.plugindevicedetectdiagnosis.provider.AppDetectDiagnosisProvider_Decorated_PluginDeviceDetectDiagnosis}
+      applicationInfo=ApplicationInfo{fc27b51 com.huawei.health}
+  [com.huawei.health.provider.HealthAppProvider]:
+    Provider{323cf6b com.huawei.health/.ecologydevice.provider.HealthAppProvider}
+      applicationInfo=ApplicationInfo{9075fb6 com.huawei.health}
+  [com.huawei.health.hiad.fileprovider]:
+    Provider{62df747 com.huawei.health/com.huawei.openalliance.ad.download.DownloadFileProvider}
+      applicationInfo=ApplicationInfo{41164b7 com.huawei.health}
+
+Key Set Manager:
+  [com.huawei.health]
+      KeySets Aliases: keysetnewkey=621, keysetoldkey=620
+      Defined KeySets: 621, 620
+      Signing KeySets: 620
+      Upgrade KeySets: 621, 620
+
+Packages:
+  Package [com.huawei.health] (c5f8f83):
+    userId=10402
+    pkg=Package{c786a04 com.huawei.health}
+    codePath=/data/app/~~JQhYHl9h57ZaglneswNAQg==/com.huawei.health-IJYmlpvy2L3LixEVdfi6aw==
+    resourcePath=/data/app/~~JQhYHl9h57ZaglneswNAQg==/com.huawei.health-IJYmlpvy2L3LixEVdfi6aw==
+    legacyNativeLibraryDir=/data/app/~~JQhYHl9h57ZaglneswNAQg==/com.huawei.health-IJYmlpvy2L3LixEVdfi6aw==/lib
+    extractNativeLibs=true
+    primaryCpuAbi=arm64-v8a
+    secondaryCpuAbi=null
+    cpuAbiOverride=null
+    versionCode=1600103320 minSdk=26 targetSdk=34
+    minExtensionVersions=[]
+    versionName=16.1.3.320
+    usesNonSdkApi=false
+    splits=[base]
+    apkSigningVersion=2
+    flags=[ HAS_CODE ALLOW_CLEAR_USER_DATA LARGE_HEAP ]
+    privateFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE ALLOW_AUDIO_PLAYBACK_CAPTURE PRIVATE_FLAG_REQUEST_LEGACY_EXTERNAL_STORAGE PARTIALLY_DIRECT_BOOT_AWARE ]
+    forceQueryable=false
+    queriesPackages=[com.huawei.android.pushagent, com.byd.aeri.caranywhere, app.huawei.auto, cn.com.bmac.nfc, com.lingnanpass, com.jiuyu.sptcc.cordova, com.jingdong.app.mall, com.xxka.xxykt, com.cmf.cqwallet, com.jieyisoft.weex.yktApp, com.mzk.android, com.smk, com.citywithincity.ecard, com.example.meijiahui, com.uniriho.szt, com.szt.pay, com.chinarainbow.tft, com.crb.cttic, com.bsit.coband, com.gzyct.yctwallet, com.weconex.jscizizen, com.panchan.wallet, com.octopuscards.tourist, com.snowballtech.rta, com.huawei.wallet, com.icbc, com.chinamworld.bocmbci, cn.com.cmbc.newmbank, cn.com.cmbc.mbank.cc, com.rytong.app.bankhx, com.ebank.creditcard, cn.com.bsb.mbank, com.chinamworld.main, com.cmbchina.ccd.pluto.cmbActivity, com.cib.cibmb, com.yitong.xian.mbank, com.android.bankabc, com.citiccard.mobilebank, com.pingan.pabank.activity, com.pingan.paces.ccms, com.spdbccc.app, com.csii.nxbank, com.hisilicon.android.hiRMService, com.huawei.health, com.huawei.appmarket, com.huawei.appdiscovery, com.venmo, com.paypal.android.p2pmobile, com.huawei.hwid, com.eg.android.AlipayGphone, com.eg.android.AlipayGphoneRC, hk.alipay.wallet, hk.alipay.walletRC, com.huawei.hff, com.huawei.hms, com.huawei.hwid.tv, com.huawei.works]
+    queriesIntents=[Intent { act=com.apptouch.intent.action.update_hms }, Intent { act=com.huawei.appmarket.intent.action.AppDetail }, Intent { act=com.huawei.appmarket.intent.action.ThirdUpdateAction }, Intent { act=com.huawei.health.action.KIT_SERVICE }, Intent { act=android.intent.action.VIEW cat=[android.intent.category.BROWSABLE] dat=https:/... }, Intent { act=android.support.customtabs.action.CustomTabsService }, Intent { act=com.huawei.hms.core.aidlservice }, Intent { act=com.huawei.hms.core }, Intent { act=* dat=tbopen:/... }]
+    dataDir=/data/user/0/com.huawei.health
+    supportsScreens=[small, large, xlarge, resizeable, anyDensity]
+    usesOptionalLibraries:
+      org.apache.http.legacy
+      hwkeystore
+      richtap-api
+      org.simalliance.openmobileapi
+      hccm
+      hwpay_hccm_lib
+    usesOptionalNativeLibraries:
+      libai_client.so
+      libai_hidl_request_client.so
+      libai_fmk_memory_manager.so
+      libai_client.so
+      libai_hidl_request_client.so
+      libai_fmk_memory_manager.so
+    usesLibraryFiles:
+      /system/framework/org.apache.http.legacy.jar
+    timeStamp=2026-05-13 19:09:48
+    lastUpdateTime=2026-05-13 19:09:50
+    installerPackageName=com.google.android.packageinstaller
+    packageSource=3
+    signatures=PackageSignatures{2aa8bed version:2, signatures:[b4ade0ed], past signatures:[]}
+    installPermissionsFixed=true
+    pkgFlags=[ HAS_CODE ALLOW_CLEAR_USER_DATA LARGE_HEAP ]
+    declared permissions:
+      com.huawei.health.permission.LOCAL_BROADCAST: prot=signature, INSTALLED
+      com.huawei.health.INTERNAL_PERMISSION: prot=signature, INSTALLED
+      com.huawei.health.ui.imperial.imperial_permission: prot=signature, INSTALLED
+      com.huawei.permission.HW_HEALTH_HAND_OFF: prot=signature|privileged, INSTALLED
+      com.huawei.hihealth.DEFAULT_PERMISSION: prot=signature, INSTALLED
+      com.huawei.health.AUTOTRACK: prot=signature, INSTALLED
+      com.huawei.health.notifypermission.read: prot=signature|privileged, INSTALLED
+      com.huawei.health.notifypermission.write: prot=signature|privileged, INSTALLED
+      com.huawei.health.heartZonePermission: prot=signature|privileged, INSTALLED
+      com.huawei.health.permission.AUTH_STATE_REQ: prot=signature|privileged, INSTALLED
+      com.huawei.wearengine.permission.DEFAULT: prot=normal, INSTALLED
+      com.huawei.health.permission.BACKUP_READ_PROVIDER: prot=signature|privileged, INSTALLED
+      com.huawei.health.permission.BACKUP_WRITE_PROVIDER: prot=signature|privileged, INSTALLED
+      com.huawei.permission.music_provider: prot=signature|privileged, INSTALLED
+      com.huawei.profile.DEVICE_UPDATE: prot=signature|privileged, INSTALLED
+      com.huawei.health.permission.CONNECTSTATUS: prot=signature|privileged, INSTALLED
+      com.huawei.health.permission.PROCESS_PUSH_MSG: prot=signature, INSTALLED
+      com.huawei.health.permission.PUSH_PROVIDER: prot=signature, INSTALLED
+      com.huawei.health.permission.PUSH_WRITE_PROVIDER: prot=signature, INSTALLED
+      com.huawei.health.com.huawei.openaliance.ad.app.ins: prot=signature, INSTALLED
+      com.huawei.health.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION: prot=signature, INSTALLED
+      com.huawei.permission.HEALTH_ROUTER: prot=signature, INSTALLED
+    requested permissions:
+      android.permission.REQUEST_COMPANION_PROFILE_WATCH
+      android.permission.REQUEST_OBSERVE_COMPANION_DEVICE_PRESENCE
+      android.permission.REQUEST_COMPANION_START_FOREGROUND_SERVICES_FROM_BACKGROUND
+      android.permission.FOREGROUND_SERVICE_SPECIAL_USE
+      android.permission.REQUEST_COMPANION_RUN_IN_BACKGROUND
+      android.permission.REQUEST_COMPANION_USE_DATA_IN_BACKGROUND
+      android.permission.WRITE_SYNC_SETTINGS
+      android.permission.FOREGROUND_SERVICE_HEALTH
+      android.permission.RECEIVE_SENSITIVE_NOTIFICATIONS
+      android.permission.GET_INTENT_SENDER_INTENT
+      android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE
+      android.permission.ACCESS_BACKGROUND_LOCATION
+      android.permission.SCHEDULE_EXACT_ALARM
+      android.permission.USE_EXACT_ALARM
+      android.permission.POST_NOTIFICATIONS
+      com.huawei.permission.sec.MDM.v2
+      com.huawei.android.thememanager.permission.THEME_PROVIDER_ACCESS
+      com.huawei.dmsdp.permission.CameraRemoteCtrlProvider.read
+      com.huawei.dmsdp.permission.CameraRemoteCtrlProvider.write
+      android.permission.READ_MEDIA_AUDIO
+      com.huawei.pengine.READ_PERMISSION
+      com.huawei.contentsensor.BIND_CONTENTSENSOR_PERMISSION
+      com.huawei.health.permission.LOCAL_BROADCAST
+      android.permission.READ_PRIVILEGED_PHONE_STATE
+      android.permission.FOREGROUND_SERVICE
+      android.permission.START_ACTIVITIES_FROM_BACKGROUND
+      com.huawei.health.permission.CONNECTSTATUS
+      android.permission.BLUETOOTH_SCAN
+      android.permission.BLUETOOTH_CONNECT
+      android.permission.NEARBY_WIFI_DEVICES
+      com.huawei.camera.permission.PRIVATE
+      com.huawei.camera.permission.REMOTECONTROLLER
+      com.huawei.health.INTERNAL_PERMISSION
+      com.huawei.health.ui.imperial.imperial_permission
+      com.huawei.intelligent.permission.HWINTELLIGENT_START_COMPONENT
+      com.huawei.permission.INTELLIGENT_NOTIFICATION_MSG_BRACELET
+      com.huawei.permission.DISTRIBUTED_DATASYNC
+      android.permission.DISABLE_KEYGUARD
+      android.permission.READ_CALENDAR
+      android.permission.WRITE_CALENDAR
+      com.coloros.permission.READ_COLOROS_CALENDAR
+      com.coloros.permission.WRITE_COLOROS_CALENDAR
+      android.permission.BROADCAST_STICKY
+      com.android.alarm.permission.SET_ALARM
+      com.huawei.permission.HANDOFF
+      com.huawei.pcassistant.permisssion.HANDOFF_SDK_SERVICE
+      com.huawei.permission.ONEHOP
+      com.android.keyguard.permission.SEND_STEP_INFO_COUNTER
+      com.android.keyguard.permission.RECEIVE_COVERSCREEN_STATE
+      com.android.keyguard.permission.SEND_STEP_INFO
+      com.android.keyguard.permission.RECEIVE_COVER_STATE
+      android.permission.ACCESS_COARSE_LOCATION
+      android.permission.ACCESS_FINE_LOCATION
+      android.permission.CHANGE_WIFI_STATE
+      android.permission.READ_MEDIA_IMAGES
+      android.permission.READ_MEDIA_VIDEO
+      android.permission.MANAGE_EXTERNAL_STORAGE
+      android.permission.WAKE_LOCK
+      android.permission.WRITE_SETTINGS
+      android.permission.ANSWER_PHONE_CALLS
+      android.permission.CHANGE_NETWORK_STATE
+      com.huawei.motion.permission.START_MOTION_SETTINGS
+      com.huawei.motion.permission.START_MOTION_SERVICE
+      com.huawei.motion.permission.READ_DATA
+      com.huawei.motion.permission.WRITE_DATA
+      com.huawei.motion.permission.MOTION_ACTION_OPERATE
+      com.huawei.motion.permission.MOTION_ACTION_RECOGNITION
+      com.huawei.health.permission.START_SERVICE
+      com.huawei.android.permission.ACCESS_BIND_ARSERVICE
+      android.permission.INTERNET
+      android.permission.READ_PHONE_STATE
+      android.permission.READ_PHONE_NUMBERS
+      android.permission.READ_CALL_LOG
+      android.permission.ACCESS_NETWORK_STATE
+      android.permission.ACCESS_WIFI_STATE
+      com.huawei.calendar.permission.START_APP
+      huawei.android.permission.HW_SIGNATURE_OR_SYSTEM
+      android.permission.RECEIVE_BOOT_COMPLETED
+      com.huawei.hihealth.DEFAULT_PERMISSION
+      android.permission.READ_LOGS
+      android.permission.DUMP
+      com.huawei.permission.external_app_settings.USE_COMPONENT
+      com.huawei.health.AUTOTRACK
+      android.permission.READ_CONTACTS
+      android.permission.SEND_SMS
+      android.permission.READ_SMS
+      com.huawei.emergency.permission.EMERGENCY_INFO
+      com.huawei.emergency.permission.READ_EMERGENCY_INFO
+      com.huawei.emergency.permission.WRITE_EMERGENCY_INFO
+      android.permission.CALL_PHONE
+      android.permission.MODIFY_PHONE_STATE
+      com.huawei.iconnect.permission.BROKEN_LINE_RECONNECTION
+      android.permission.CAMERA
+      com.huawei.permission.sec.ACCESS_UDID
+      com.huawei.systemmanager.permission.ACCESS_INTERFACE
+      com.huawei.android.totemweather.permission.ACCESS_WEATHERCLOCK_PROVIDER
+      com.huawei.android.powerkit.permission.BIND
+      com.android.permission.airsharing_play_interface
+      android.permission.NFC
+      android.permission.HIDE_NON_SYSTEM_OVERLAY_WINDOWS
+      com.android.mediacenter.permission.INTERACTION
+      com.huawei.synergy.permission.AUTH_STATE_RESP
+      com.hihonor.synergy.permission.AUTH_STATE_RESP
+      com.huawei.profile.DEVICE_UPDATE
+      android.permission.STATUS_BAR_SERVICE
+      com.huawei.permission.ACCESS_AP_INFORMATION
+      com.huawei.dataprivacycenter.permission.LAUNCH_APP_PRIVACY_STATEMENT
+      com.huawei.hwvoipservice.PRIVACY_READ
+      com.huawei.meetime.PRIVACY_READ
+      com.huawei.permission.ACCESS_HW_KEYSTORE
+      huawei.permission.CLICK_STATUSBAR_BROADCAST
+      android.permission.FOREGROUND_SERVICE_REMOTE_MESSAGING
+      android.permission.VIBRATE
+      com.huawei.permission.ACCESS_SERVICE_DM
+      com.huawei.hwddmp.servicebus.BIND_SERVICE
+      android.permission.USES_HW_LOG_SERVICE
+      com.huawei.dataprivacycenter.permission.LAUNCH_DATA_PRIVACY_CENTER
+      android.permission.SET_PROCESS_LIMIT
+      com.huawei.wfd.permission.ACCESS_WIFI_DISPLAY_CASTING
+      android.permission.CHANGE_WIFI_MULTICAST_STATE
+      android.view.WindowManager.LayoutParams.PRIVATE_FLAG_HIDE_NON_SYSTEM_OVERLAY_WINDOWS
+      android.permission.RECORD_AUDIO
+      android.permission.MODIFY_AUDIO_SETTINGS
+      android.permission.PROCESS_OUTGOING_CALLS
+      android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK
+      android.permission.ACCESS_EXTECOVER_PREVIEW
+      com.huawei.permission.MANAGE_FOLD_SCREEN
+      android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION
+      android.permission.FOREGROUND_SERVICE_LOCATION
+      android.permission.WRITE_SECURE_SETTINGS
+      android.permission.GRANT_RUNTIME_PERMISSIONS
+      android.permission.ACCESS_LOCATION_EXTRA_COMMANDS
+      com.huawei.diagnosis.DETECT_REPAIR
+      com.huawei.dmsdp.DMSDPCameraRemoteCtrlService.BIND_SERVICE
+      android.permission.INTERACT_ACROSS_USERS_FULL
+      android.permission.INTERACT_ACROSS_USERS
+      com.huawei.lbs.permission.ACCESS_BIND_LBSSERVICE
+      android.permission.MANAGE_USERS
+      android.permission.CREATE_USERS
+      android.permission.MOUNT_UNMOUNT_FILESYSTEMS
+      com.huawei.meetime.CAAS_SHARE_SERVICE
+      com.huawei.hiai.awareness.ACCESS_BIND_COMMON_FENCE_AWARENESSSERVICE
+      android.permission.FOREGROUND_SERVICE_DATA_SYNC
+      com.huawei.fastapp.provider.PackageInfo.READ
+      com.huawei.hiai.permission.CUSTOM_BROADCAST_EVENT
+      mediacontroller.permission.START_MEDIACONTROLLER
+      com.huawei.ohos.health.DataAbilityShellProvider.PROVIDER
+      miui.permission.READ_STEPS
+      android.permission.ACTIVITY_RECOGNITION
+      ohos.permission.REQUIRE_FORM
+      com.hihonor.android.permission.ACCESS_BIND_ARSERVICE
+      com.hihonor.android.powerkit.permission.BIND
+      com.hihonor.android.totemweather.permission.ACCESS_WEATHERCLOCK_PROVIDER
+      com.hihonor.camera.permission.PRIVATE
+      com.hihonor.camera.permission.REMOTECONTROLLER
+      com.hihonor.emergency.permission.EMERGENCY_INFO
+      com.hihonor.emergency.permission.READ_EMERGENCY_INFO
+      com.hihonor.health.permission.START_SERVICE
+      com.hihonor.hiai.awareness.ACCESS_BIND_COMMON_FENCE_AWARENESSSERVICE
+      com.hihonor.hiai.awareness.permission.NOTIFY_RESTART_SERVICE
+      com.hihonor.iconnect.permission.BROKEN_LINE_RECONNECTION
+      com.hihonor.motion.permission.MOTION_ACTION_OPERATE
+      com.hihonor.motion.permission.MOTION_ACTION_RECOGNITION
+      com.hihonor.motion.permission.READ_DATA
+      com.hihonor.motion.permission.START_MOTION_SETTINGS
+      com.hihonor.motion.permission.START_MOTION_SERVICE
+      com.hihonor.motion.permission.WRITE_DATA
+      com.hihonor.nfc.permission.SWITH_CE_SWITCH_ACTION
+      com.hihonor.permission.ACCESS_AP_INFORMATION
+      com.hihonor.permission.ACCESS_DEVICE_GROUP_MANAGER
+      com.hihonor.permission.external_app_settings.USE_COMPONENT
+      com.hihonor.permission.MANAGE_FOLD_SCREEN
+      com.hihonor.permission.sec.ACCESS_UDID
+      com.hihonor.systemmanager.permission.ACCESS_INTERFACE
+      com.hihonor.wfd.permission.ACCESS_WIFI_DISPLAY_CASTING
+      hihonor.android.permission.HW_SIGNATURE_OR_SYSTEM
+      com.hihonor.permission.HANDOFF
+      com.hihonor.pcassistant.permisssion.HANDOFF_SDK_SERVICE
+      com.hihonor.permission.sec.MDM.v2
+      com.huawei.permission.ACCESS_DEVICE_GROUP_MANAGER
+      com.huawei.permission.ACCESS_HW_GROUP_AUTH_SERVICE
+      android.permission.BLUETOOTH_PRIVILEGED
+      com.huawei.health.permission.PROCESS_PUSH_MSG
+      com.huawei.health.permission.PUSH_PROVIDER
+      com.huawei.parentcontrol.permission.provider
+      com.hihonor.parentcontrol.permission.provider
+      com.android.launcher.permission.INSTALL_SHORTCUT
+      com.android.launcher.permission.UNINSTALL_SHORTCUT
+      com.android.launcher.permission.READ_SETTINGS
+      android.permission.REQUEST_INSTALL_PACKAGES
+      com.huawei.appmarket.service.commondata.permission.GET_COMMON_DATA
+      com.huawei.android.permission.GET_DEVICE_INFO
+      com.huawei.health.com.huawei.openaliance.ad.app.ins
+      android.permission.QUERY_ALL_PACKAGES
+      com.hihonor.permission.MANAGE_FOLD_SCREEN_PRIVILEGED
+      com.huawei.health.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+      com.huawei.nb.service.permission.ACCESS_NATURALBASE_DATASERVICE
+      com.hihonor.assistant.permission.CONFIGURATION_CHANGED
+      com.hihonor.assistant.permission.YOYO_CARD_READ
+      com.hihonor.assistant.permission.YOYO_CARD_WRITE
+      com.hihonor.assistant.permission.DISPLAY_CARD
+      com.hihonor.assistant.permission.DISPLAY_CARD_WRITE
+      com.hihonor.assistant.permission.DISPLAY_EVENT
+      com.hihonor.assistant.permission.SWITCH_STATE
+      com.hihonor.assistant.permission.SWITCH_STATE_WRITE
+      com.huawei.hiai.permission.HIAIENGINE_START_COMPONENT
+      com.huawei.recsys.permission.DIS_ACCESS_PERMISSION
+      com.huawei.decision.permission.ACCESS_PERMISSION
+      com.huawei.hiai.permission.READ_HIAIENGINE_PROVIDER
+      com.huawei.hiai.permission.WRITE_HIAIENGINE_PROVIDER
+      com.huawei.hiai.nlp.BIND_NLP_PERMISSION
+      com.huawei.hiai.awareness.permission.NOTIFY_RESTART_SERVICE
+      com.huawei.audioaccessorymanager.permission.ACCESS_BIND_AAM_SERVICE
+      android.permission.BLUETOOTH_ADVERTISE
+      com.huawei.nfc.permission.SWITH_CE_SWITCH_ACTION
+      com.huawei.wallet.permission.COLLABORATE_CAR_CTRL
+      READ_PHONE_NUMBERS
+      com.huawei.hicloud.permission.hicloudLogin
+      android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
+      android.permission.FOREGROUND_SERVICE_MICROPHONE
+    install permissions:
+      android.permission.WRITE_SETTINGS: granted=false
+      android.permission.SET_PROCESS_LIMIT: granted=false
+      com.huawei.health.com.huawei.openaliance.ad.app.ins: granted=true
+      android.permission.MODIFY_AUDIO_SETTINGS: granted=true
+      android.permission.MANAGE_EXTERNAL_STORAGE: granted=false
+      com.huawei.health.INTERNAL_PERMISSION: granted=true
+      android.permission.NFC: granted=true
+      android.permission.REQUEST_COMPANION_START_FOREGROUND_SERVICES_FROM_BACKGROUND: granted=true
+      com.huawei.health.permission.PUSH_PROVIDER: granted=true
+      android.permission.CHANGE_NETWORK_STATE: granted=true
+      android.permission.FOREGROUND_SERVICE: granted=true
+      com.huawei.health.permission.LOCAL_BROADCAST: granted=true
+      android.permission.WRITE_SYNC_SETTINGS: granted=true
+      android.permission.REQUEST_COMPANION_USE_DATA_IN_BACKGROUND: granted=true
+      android.permission.RECEIVE_BOOT_COMPLETED: granted=true
+      com.android.launcher.permission.UNINSTALL_SHORTCUT: granted=true
+      android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS: granted=true
+      android.permission.CHANGE_WIFI_MULTICAST_STATE: granted=true
+      com.android.alarm.permission.SET_ALARM: granted=true
+      android.permission.INTERNET: granted=true
+      com.huawei.appmarket.service.commondata.permission.GET_COMMON_DATA: granted=true
+      android.permission.GET_INTENT_SENDER_INTENT: granted=false
+      android.permission.REQUEST_OBSERVE_COMPANION_DEVICE_PRESENCE: granted=true
+      android.permission.REQUEST_COMPANION_RUN_IN_BACKGROUND: granted=true
+      android.permission.USE_EXACT_ALARM: granted=true
+      android.permission.INTERACT_ACROSS_USERS_FULL: granted=false
+      android.permission.MOUNT_UNMOUNT_FILESYSTEMS: granted=false
+      android.permission.WRITE_SECURE_SETTINGS: granted=false
+      com.huawei.health.permission.PROCESS_PUSH_MSG: granted=true
+      android.permission.STATUS_BAR_SERVICE: granted=false
+      com.android.launcher.permission.READ_SETTINGS: granted=false
+      android.permission.ACCESS_LOCATION_EXTRA_COMMANDS: granted=true
+      android.permission.READ_PRIVILEGED_PHONE_STATE: granted=false
+      android.permission.BROADCAST_STICKY: granted=true
+      android.permission.BLUETOOTH_PRIVILEGED: granted=false
+      android.permission.CHANGE_WIFI_STATE: granted=true
+      com.huawei.health.AUTOTRACK: granted=true
+      com.huawei.health.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION: granted=true
+      android.permission.MANAGE_USERS: granted=false
+      android.permission.ACCESS_NETWORK_STATE: granted=true
+      android.permission.DISABLE_KEYGUARD: granted=true
+      com.huawei.hihealth.DEFAULT_PERMISSION: granted=true
+      android.permission.READ_LOGS: granted=false
+      android.permission.INTERACT_ACROSS_USERS: granted=false
+      miui.permission.READ_STEPS: granted=true
+      com.huawei.profile.DEVICE_UPDATE: granted=true
+      android.permission.SCHEDULE_EXACT_ALARM: granted=true
+      android.permission.GRANT_RUNTIME_PERMISSIONS: granted=false
+      android.permission.START_ACTIVITIES_FROM_BACKGROUND: granted=false
+      android.permission.HIDE_NON_SYSTEM_OVERLAY_WINDOWS: granted=false
+      android.permission.VIBRATE: granted=true
+      com.huawei.health.permission.CONNECTSTATUS: granted=true
+      android.permission.CREATE_USERS: granted=false
+      android.permission.REQUEST_COMPANION_PROFILE_WATCH: granted=true
+      android.permission.ACCESS_WIFI_STATE: granted=true
+      android.permission.REQUEST_INSTALL_PACKAGES: granted=false
+      android.permission.MODIFY_PHONE_STATE: granted=false
+      com.android.launcher.permission.INSTALL_SHORTCUT: granted=true
+      android.permission.QUERY_ALL_PACKAGES: granted=true
+      android.permission.DUMP: granted=false
+      android.permission.WAKE_LOCK: granted=true
+      com.huawei.health.ui.imperial.imperial_permission: granted=true
+    User 0: ceDataInode=5349190 installed=true hidden=false suspended=false distractionFlags=0 stopped=false notLaunched=false enabled=0 instant=false virtual=false
+      installReason=4
+      firstInstallTime=2026-05-13 19:09:50
+      uninstallReason=0
+      overlay paths:
+        /product/overlay/GestureLineOverlay.apk
+        /data/resource-cache/com.android.systemui-neutral-Xn8M.frro
+        /data/resource-cache/com.android.systemui-accent-2qtI.frro
+      legacy overlay paths:
+        /product/overlay/GestureLineOverlay.apk
+      lastDisabledCaller: com.google.android.packageinstaller
+      gids=[3003]
+      runtime permissions:
+        android.permission.READ_SMS: granted=true, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|RESTRICTION_INSTALLER_EXEMPT]
+        android.permission.READ_CALENDAR: granted=true, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.POST_NOTIFICATIONS: granted=true, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.READ_CALL_LOG: granted=true, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|RESTRICTION_INSTALLER_EXEMPT]
+        android.permission.ACCESS_FINE_LOCATION: granted=true, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|524288]
+        android.permission.ANSWER_PHONE_CALLS: granted=true, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.READ_PHONE_NUMBERS: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.NEARBY_WIFI_DEVICES: granted=true, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.BLUETOOTH_CONNECT: granted=true, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.ACCESS_COARSE_LOCATION: granted=true, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.READ_PHONE_STATE: granted=true, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.SEND_SMS: granted=true, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|RESTRICTION_INSTALLER_EXEMPT]
+        android.permission.CALL_PHONE: granted=true, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.READ_MEDIA_IMAGES: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.CAMERA: granted=true, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.WRITE_CALENDAR: granted=true, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.READ_MEDIA_AUDIO: granted=true, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.READ_MEDIA_VIDEO: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.PROCESS_OUTGOING_CALLS: granted=true, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|RESTRICTION_INSTALLER_EXEMPT]
+        android.permission.BLUETOOTH_ADVERTISE: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.ACTIVITY_RECOGNITION: granted=true, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.RECORD_AUDIO: granted=true, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.READ_CONTACTS: granted=true, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.ACCESS_BACKGROUND_LOCATION: granted=true, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|RESTRICTION_INSTALLER_EXEMPT]
+        android.permission.BLUETOOTH_SCAN: granted=true, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+      enabledComponents:
+        androidx.work.impl.background.systemalarm.RescheduleReceiver
+        androidx.work.impl.background.systemjob.SystemJobService
+    User 10: ceDataInode=0 installed=false hidden=false suspended=false distractionFlags=0 stopped=true notLaunched=true enabled=0 instant=false virtual=false
+      installReason=0
+      firstInstallTime=1969-12-31 21:00:00
+      uninstallReason=0
+      gids=[3003]
+      runtime permissions:
+        android.permission.READ_SMS: granted=false, flags=[ APPLY_RESTRICTION]
+        android.permission.READ_CALENDAR: granted=false
+        android.permission.POST_NOTIFICATIONS: granted=false
+        android.permission.READ_CALL_LOG: granted=false, flags=[ APPLY_RESTRICTION]
+        android.permission.ACCESS_FINE_LOCATION: granted=false
+        android.permission.ANSWER_PHONE_CALLS: granted=false
+        android.permission.READ_PHONE_NUMBERS: granted=false
+        android.permission.NEARBY_WIFI_DEVICES: granted=false
+        android.permission.BLUETOOTH_CONNECT: granted=false
+        android.permission.ACCESS_COARSE_LOCATION: granted=false
+        android.permission.READ_PHONE_STATE: granted=false
+        android.permission.SEND_SMS: granted=false, flags=[ APPLY_RESTRICTION]
+        android.permission.CALL_PHONE: granted=false
+        android.permission.READ_MEDIA_IMAGES: granted=false
+        android.permission.CAMERA: granted=false
+        android.permission.WRITE_CALENDAR: granted=false
+        android.permission.READ_MEDIA_AUDIO: granted=false
+        android.permission.READ_MEDIA_VIDEO: granted=false
+        android.permission.PROCESS_OUTGOING_CALLS: granted=false, flags=[ APPLY_RESTRICTION]
+        android.permission.BLUETOOTH_ADVERTISE: granted=false
+        android.permission.ACTIVITY_RECOGNITION: granted=false
+        android.permission.RECORD_AUDIO: granted=false
+        android.permission.READ_CONTACTS: granted=false
+        android.permission.ACCESS_BACKGROUND_LOCATION: granted=false, flags=[ APPLY_RESTRICTION]
+        android.permission.BLUETOOTH_SCAN: granted=false
+    User 999: ceDataInode=0 installed=false hidden=false suspended=false distractionFlags=0 stopped=true notLaunched=true enabled=0 instant=false virtual=false
+      installReason=0
+      firstInstallTime=1969-12-31 21:00:00
+      uninstallReason=0
+      gids=[3003]
+      runtime permissions:
+        android.permission.READ_SMS: granted=false, flags=[ APPLY_RESTRICTION]
+        android.permission.READ_CALENDAR: granted=false
+        android.permission.POST_NOTIFICATIONS: granted=false
+        android.permission.READ_CALL_LOG: granted=false, flags=[ APPLY_RESTRICTION]
+        android.permission.ACCESS_FINE_LOCATION: granted=false
+        android.permission.ANSWER_PHONE_CALLS: granted=false
+        android.permission.READ_PHONE_NUMBERS: granted=false
+        android.permission.NEARBY_WIFI_DEVICES: granted=false
+        android.permission.BLUETOOTH_CONNECT: granted=false
+        android.permission.ACCESS_COARSE_LOCATION: granted=false
+        android.permission.READ_PHONE_STATE: granted=false
+        android.permission.SEND_SMS: granted=false, flags=[ APPLY_RESTRICTION]
+        android.permission.CALL_PHONE: granted=false
+        android.permission.READ_MEDIA_IMAGES: granted=false
+        android.permission.CAMERA: granted=false
+        android.permission.WRITE_CALENDAR: granted=false
+        android.permission.READ_MEDIA_AUDIO: granted=false
+        android.permission.READ_MEDIA_VIDEO: granted=false
+        android.permission.PROCESS_OUTGOING_CALLS: granted=false, flags=[ APPLY_RESTRICTION]
+        android.permission.BLUETOOTH_ADVERTISE: granted=false
+        android.permission.ACTIVITY_RECOGNITION: granted=false
+        android.permission.RECORD_AUDIO: granted=false
+        android.permission.READ_CONTACTS: granted=false
+        android.permission.ACCESS_BACKGROUND_LOCATION: granted=false, flags=[ APPLY_RESTRICTION]
+        android.permission.BLUETOOTH_SCAN: granted=false
+
+Queries:
+  system apps queryable: false
+  queries via forceQueryable:
+  queries via package name:
+    com.huawei.health:
+      com.huawei.appmarket
+    com.betterfly.app:
+      com.huawei.health
+  queries via component:
+    com.android.thememanager:
+      com.huawei.health
+    us.zoom.videomeetings:
+      com.huawei.health
+    com.xiaomi.glgm:
+      com.huawei.health
+    com.mxtech.videoplayer.ad:
+      com.huawei.health
+    com.instantbits.cast.webvideo:
+      com.huawei.health
+    com.playdigital.modo:
+      com.huawei.health
+    com.google.android.apps.chromecast.app:
+      com.huawei.health
+    com.miui.gallery:
+      com.huawei.health
+    com.xiaomi.midrop:
+      com.huawei.health
+    com.miui.weather2:
+      com.huawei.health
+    com.miui.player:
+      com.huawei.health
+    com.instagram.barcelona:
+      com.huawei.health
+    com.xiaomi.mipicks:
+      com.huawei.health
+    com.mi.globalbrowser:
+      com.huawei.health
+    com.miui.videoplayer:
+      com.huawei.health
+    com.miui.global.packageinstaller:
+      com.huawei.health
+    com.xiaomi.account:
+      com.huawei.health
+    com.android.settings.intelligence:
+      com.huawei.health
+    com.google.android.apps.messaging:
+      com.huawei.health
+    com.google.android.gm:
+      com.huawei.health
+    [com.samsung.android.waterplugin,com.samsung.android.app.watchmanager,com.samsung.accessory.atticmgr]:
+      com.huawei.health
+    com.mi.globalminusscreen:
+      com.huawei.health
+    com.google.android.apps.classroom:
+      com.huawei.health
+    com.google.android.apps.photos:
+      com.huawei.health
+    com.duokan.phone.remotecontroller:
+      com.huawei.health
+    com.miui.android.fashiongallery:
+      com.huawei.health
+    com.google.android.apps.docs:
+      com.huawei.health
+    com.facebook.katana:
+      com.huawei.health
+    com.epicoro.castleclashers:
+      com.huawei.health
+    com.mercadolibre:
+      com.huawei.health
+    com.mercadopago.wallet:
+      com.huawei.health
+    com.instagram.android:
+      com.huawei.health
+    com.binance.dev:
+      com.huawei.health
+    com.truecaller:
+      com.huawei.health
+    com.facebook.orca:
+      com.huawei.health
+    com.snapchat.android:
+      com.huawei.health
+    ar.com.personalpay:
+      com.huawei.health
+    com.microsoft.office.outlook:
+      com.huawei.health
+    com.mosync.app_Banco_Galicia:
+      com.huawei.health
+    com.tianxingjian.supersound:
+      com.huawei.health
+    com.zhiliaoapp.musically:
+      com.huawei.health
+    com.adobe.reader:
+      com.huawei.health
+    com.dubox.drive:
+      com.huawei.health
+    com.Slack:
+      com.huawei.health
+    com.bbva.nxt_argentina:
+      com.huawei.health
+    com.whatsapp:
+      com.huawei.health
+    com.booking:
+      com.huawei.health
+    com.huawei.health:
+      com.mxtech.videoplayer.ad
+      com.instantbits.cast.webvideo
+      com.mi.globalbrowser
+      com.google.android.googlequicksearchbox
+      com.android.chrome
+      com.google.android.setupwizard
+      com.google.android.apps.docs
+      com.huawei.appmarket
+    com.grability.rappi:
+      com.huawei.health
+    com.atlassian.android.jira.core:
+      com.huawei.health
+    com.tencent.ig:
+      com.huawei.health
+    com.amazon.mShop.android.shopping:
+      com.huawei.health
+    com.buepp:
+      com.huawei.health
+  queryable via interaction:
+    User 0:
+      [com.android.server.telecom,com.xiaomi.trustservice,com.android.systemui,com.miui.cit,com.android.settings,com.android.provision,com.xiaomi.joyose,com.android.inputdevices,com.miui.securitycenter,com.miui.notification,com.android.keychain,com.mi.android.globalminusscreen,com.miui.touchassistant,com.miui.face,com.xiaomi.mtb,com.miui.daemon,com.miui.bugreport,com.xiaomi.barrage,android,com.miui.qr,com.miui.miinput,com.miui.securitycore,com.miui.freeform,com.android.localtransport,com.xiaomi.devauth,com.miui.aod,com.android.dynsystem,com.xiaomi.misettings,com.qualcomm.qti.xrcb,com.miui.audiomonitor,miui.systemui.plugin,com.miui.screenrecorder,com.miui.powerkeeper,com.android.providers.settings,com.android.wallpaperbackup,com.android.location.fused,com.bsp.catchlog,com.modemdebug]:
+        com.huawei.health
+      [com.android.phone,com.qti.dpmserviceapp,com.qti.qualcomm.datastatusnotification,com.android.stk,com.qti.qualcomm.deviceinfo,com.qualcomm.qti.uceShimService,com.android.mms.service,com.qualcomm.atfwd,com.android.ons,com.android.providers.telephony,vendor.qti.imsrcs,vendor.qti.imsdatachannel,com.qualcomm.qti.dynamicddsservice]:
+        com.huawei.health
+      [com.xiaomi.bluetooth,com.android.bluetooth]:
+        com.huawei.health
+      com.miui.rom:
+        com.huawei.health
+      [com.android.calllogbackup,com.android.providers.contacts,com.android.providers.blockednumber,com.android.providers.userdictionary]:
+        com.huawei.health
+      com.android.providers.calendar:
+        com.huawei.health
+      com.android.camera:
+        com.huawei.health
+      com.android.companiondevicemanager:
+        com.huawei.health
+      [com.google.android.gsf,com.google.android.gms]:
+        com.huawei.health
+      com.google.android.webview:
+        com.huawei.health
+      com.google.android.inputmethod.latin:
+        com.huawei.health
+      com.google.android.providers.media.module:
+        com.huawei.health
+      com.google.android.permissioncontroller:
+        com.huawei.health
+      com.huawei.appmarket:
+        com.huawei.health
+      com.android.remoteprovisioner:
+        com.huawei.health
+      com.huawei.health:
+        [com.android.server.telecom,com.xiaomi.trustservice,com.android.systemui,com.miui.cit,com.android.settings,com.android.provision,com.xiaomi.joyose,com.android.inputdevices,com.miui.securitycenter,com.miui.notification,com.android.keychain,com.mi.android.globalminusscreen,com.miui.touchassistant,com.miui.face,com.xiaomi.mtb,com.miui.daemon,com.miui.bugreport,com.xiaomi.barrage,android,com.miui.qr,com.miui.miinput,com.miui.securitycore,com.miui.freeform,com.android.localtransport,com.xiaomi.devauth,com.miui.aod,com.android.dynsystem,com.xiaomi.misettings,com.qualcomm.qti.xrcb,com.miui.audiomonitor,miui.systemui.plugin,com.miui.screenrecorder,com.miui.powerkeeper,com.android.providers.settings,com.android.wallpaperbackup,com.android.location.fused,com.bsp.catchlog,com.modemdebug]
+        com.google.android.webview
+        [com.android.server.telecom,com.xiaomi.trustservice,com.android.systemui,com.miui.cit,com.android.settings,com.android.provision,com.xiaomi.joyose,com.android.inputdevices,com.miui.securitycenter,com.miui.notification,com.android.keychain,com.mi.android.globalminusscreen,com.miui.touchassistant,com.miui.face,com.xiaomi.mtb,com.miui.daemon,com.miui.bugreport,com.xiaomi.barrage,android,com.miui.qr,com.miui.miinput,com.miui.securitycore,com.miui.freeform,com.android.localtransport,com.xiaomi.devauth,com.miui.aod,com.android.dynsystem,com.xiaomi.misettings,com.qualcomm.qti.xrcb,com.miui.audiomonitor,miui.systemui.plugin,com.miui.screenrecorder,com.miui.powerkeeper,com.android.providers.settings,com.android.wallpaperbackup,com.android.location.fused,com.bsp.catchlog,com.modemdebug]
+    User 10:
+    User 999:
+  queryable via uses-library:
+
+Dexopt state:
+  [com.huawei.health]
+    path: /data/app/~~JQhYHl9h57ZaglneswNAQg==/com.huawei.health-IJYmlpvy2L3LixEVdfi6aw==/base.apk
+      arm64: [status=verify] [reason=install]
+      known secondary dex files:
+        /data/user/0/com.huawei.health/app_bundle/16.1.3.320_CiR7dvBGv-P5wyKFPXN8mek=/PluginPay/1.0@1/PluginPay.apk
+          class loader context: PCL[];DLC[/data/user/0/com.huawei.health/app_bundle/16.1.3.320_CiR7dvBGv-P5wyKFPXN8mek=/PluginPay/1.0@1/PluginPay.apk:/data/user/0/com.huawei.health/app_bundle/16.1.3.320_CiR7dvBGv-P5wyKFPXN8mek=/PluginHealthAlgorithm/1.0@1/PluginHealthAlgorithm.apk:/data/user/0/com.huawei.health/app_bundle/16.1.3.320_CiR7dvBGv-P5wyKFPXN8mek=/PluginSleepDetection/1.0@1/PluginSleepDetection.apk:/data/user/0/com.huawei.health/app_bundle/16.1.3.320_CiR7dvBGv-P5wyKFPXN8mek=/PluginWearAbility/1.0@1/PluginWearAbility.apk:/data/user/0/com.huawei.health/app_bundle/16.1.3.320_CiR7dvBGv-P5wyKFPXN8mek=/PluginHiAiEngine/1.0@1/PluginHiAiEngine.apk:/data/user/0/com.huawei.health/app_bundle/16.1.3.320_CiR7dvBGv-P5wyKFPXN8mek=/PluginHealthModel/1.0@1/PluginHealthModel.apk:/data/app/~~JQhYHl9h57ZaglneswNAQg==/com.huawei.health-IJYmlpvy2L3LixEVdfi6aw==/base.apk]{PCL[/system/framework/org.apache.http.legacy.jar]}
+        /data/user/0/com.huawei.health/app_bundle/16.1.3.320_CiR7dvBGv-P5wyKFPXN8mek=/PluginSleepDetection/1.0@1/PluginSleepDetection.apk
+          class loader context: PCL[];DLC[/data/user/0/com.huawei.health/app_bundle/16.1.3.320_CiR7dvBGv-P5wyKFPXN8mek=/PluginWearAbility/1.0@1/PluginWearAbility.apk:/data/user/0/com.huawei.health/app_bundle/16.1.3.320_CiR7dvBGv-P5wyKFPXN8mek=/PluginHiAiEngine/1.0@1/PluginHiAiEngine.apk:/data/user/0/com.huawei.health/app_bundle/16.1.3.320_CiR7dvBGv-P5wyKFPXN8mek=/PluginHealthModel/1.0@1/PluginHealthModel.apk:/data/app/~~JQhYHl9h57ZaglneswNAQg==/com.huawei.health-IJYmlpvy2L3LixEVdfi6aw==/base.apk]{PCL[/system/framework/org.apache.http.legacy.jar]}
+        /data/user/0/com.huawei.health/app_bundle/16.1.3.320_CiR7dvBGv-P5wyKFPXN8mek=/PluginHealthAlgorithm/1.0@1/PluginHealthAlgorithm.apk
+          class loader context: PCL[];DLC[/data/user/0/com.huawei.health/app_bundle/16.1.3.320_CiR7dvBGv-P5wyKFPXN8mek=/PluginSleepDetection/1.0@1/PluginSleepDetection.apk:/data/user/0/com.huawei.health/app_bundle/16.1.3.320_CiR7dvBGv-P5wyKFPXN8mek=/PluginWearAbility/1.0@1/PluginWearAbility.apk:/data/user/0/com.huawei.health/app_bundle/16.1.3.320_CiR7dvBGv-P5wyKFPXN8mek=/PluginHiAiEngine/1.0@1/PluginHiAiEngine.apk:/data/user/0/com.huawei.health/app_bundle/16.1.3.320_CiR7dvBGv-P5wyKFPXN8mek=/PluginHealthModel/1.0@1/PluginHealthModel.apk:/data/app/~~JQhYHl9h57ZaglneswNAQg==/com.huawei.health-IJYmlpvy2L3LixEVdfi6aw==/base.apk]{PCL[/system/framework/org.apache.http.legacy.jar]}
+        /data/user/0/com.huawei.health/app_bundle/16.1.3.320_CiR7dvBGv-P5wyKFPXN8mek=/PluginWearAbility/1.0@1/PluginWearAbility.apk
+          class loader context: PCL[];DLC[/data/user/0/com.huawei.health/app_bundle/16.1.3.320_CiR7dvBGv-P5wyKFPXN8mek=/PluginHiAiEngine/1.0@1/PluginHiAiEngine.apk:/data/user/0/com.huawei.health/app_bundle/16.1.3.320_CiR7dvBGv-P5wyKFPXN8mek=/PluginHealthModel/1.0@1/PluginHealthModel.apk:/data/app/~~JQhYHl9h57ZaglneswNAQg==/com.huawei.health-IJYmlpvy2L3LixEVdfi6aw==/base.apk]{PCL[/system/framework/org.apache.http.legacy.jar]}
+      odex file size: base.odex: 624Kb base.vdex: 91713Kb 
+
+Compiler stats:
+  [com.huawei.health]
+     base.apk - 2899

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:dead_porky/features/auth/domain/entities/user.dart';
@@ -56,7 +57,7 @@ class FirebaseAuthDatasource implements AuthDatasource {
 
     // Create user document in Firestore
     final user = _mapFirebaseUser(credential.user!, displayName: displayName);
-    await _createUserDocument(user);
+    await _ensureUserDocument(user);
 
     return await _buildUserFromFirebase(credential.user!);
   }
@@ -110,6 +111,8 @@ class FirebaseAuthDatasource implements AuthDatasource {
       if (user.avatarUrl != null) {
         await firebaseUser.updatePhotoURL(user.avatarUrl);
       }
+      // 🔴 FIX: Reload user to get latest data after profile update
+      await firebaseUser.reload();
     }
 
     // Update Firestore document
@@ -153,15 +156,20 @@ class FirebaseAuthDatasource implements AuthDatasource {
   }
 
   Future<User> _buildUserFromFirebase(firebase_auth.User firebaseUser) async {
-    final doc = await _firestore.collection('users').doc(firebaseUser.uid).get();
-    if (doc.exists && doc.data() != null) {
-      final data = Map<String, dynamic>.from(doc.data()!);
-      return User.fromJson(data);
-    }
+    try {
+      final doc = await _firestore.collection('users').doc(firebaseUser.uid).get();
+      if (doc.exists && doc.data() != null) {
+        final data = Map<String, dynamic>.from(doc.data()!);
+        return User.fromJson(data);
+      }
 
-    final defaultUser = _mapFirebaseUser(firebaseUser);
-    await _createUserDocument(defaultUser);
-    return defaultUser;
+      final defaultUser = _mapFirebaseUser(firebaseUser);
+      await _ensureUserDocument(defaultUser);
+      return defaultUser;
+    } on FirebaseException catch (error) {
+      debugPrint('Firestore unavailable during auth bootstrap: ${error.code}');
+      return _mapFirebaseUser(firebaseUser);
+    }
   }
 
   Future<void> _createUserDocument(User user) async {
@@ -177,5 +185,13 @@ class FirebaseAuthDatasource implements AuthDatasource {
       'createdAt': FieldValue.serverTimestamp(),
       'updatedAt': FieldValue.serverTimestamp(),
     });
+  }
+
+  Future<void> _ensureUserDocument(User user) async {
+    try {
+      await _createUserDocument(user);
+    } on FirebaseException catch (error) {
+      debugPrint('Firestore unavailable while creating user document: ${error.code}');
+    }
   }
 }
