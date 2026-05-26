@@ -1,151 +1,173 @@
-# Dead Porky - Proyecto de app de entrenador personal IA
+# Dead Porky - Plan de Proyecto Actualizado
+
+## Fecha de actualización
+26 de mayo de 2026
 
 ## 1. Visión del producto
-Dead Porky es una aplicación de salud y fitness que funciona como un entrenador personal inteligente. El usuario registra rápidamente su día (entrenamiento, comidas, sueño, agua, peso y medidas) y una IA analiza ese contexto para ajustar recomendaciones diarias y semanales.
+Dead Porky es una app Flutter de salud y fitness enfocada en combinar:
+- seguimiento diario (entrenamiento, hábitos, nutrición y métricas de salud),
+- integración con fuentes de datos de wearable,
+- y un asistente IA para recomendaciones personalizadas.
 
-### Metas principales
-- Crear un flujo de entrada de datos rápido, intuitivo y accesible.
-- Mantener contexto diario y semanal para que la IA pueda ofrecer ajustes personalizados.
-- Permitir que la IA funcione como un asistente conversacional, pero también como un dashboard de progreso.
-- Facilitar el seguimiento de resultados sin que el usuario pierda tiempo.
+El objetivo es que el usuario registre rápido, vea su progreso en un dashboard claro y reciba ajustes prácticos cada día y semana.
 
-## 2. Usuarios objetivo
-- Personas activas que quieren optimizar su entrenamiento y alimentación.
-- Usuarios que desean un coach digital que interprete su comportamiento diario.
-- Personas con interés en medir cambios de grasa corporal y ganancia muscular.
+## 2. Estado real del producto
 
-## 3. Flujos clave
+### 2.1. Base de aplicación
+Completado:
+- Inicialización Flutter + Firebase en el arranque.
+- Navegación con GoRouter y shell con navegación inferior.
+- Protección de rutas por autenticación.
 
-### 3.1. Onboarding y objetivos
-- Definir objetivo principal: pérdida de grasa, ganancia muscular o mantenimiento.
-- Registrar restricciones: alergias, dieta, lesiones/cruces, horarios.
-- Inicializar métricas iniciales: peso, grasa, cintura, cadera, pecho, bíceps, muslo.
+Parcial:
+- Inyección de dependencias declarada, pero no inicializada en main.
 
-### 3.2. Check-in diario
-- Inputs rápidos para:
-  - entrenamiento
-  - comidas y snacks
-  - hidratación
-  - sueño
-  - peso
-  - medidas corporales
-  - estado general (energía, ánimo, estrés)
-- Guardar estos datos de forma estructurada en una DB local.
+### 2.2. Autenticación
+Completado:
+- Login y registro por email.
+- Flujo de redirección auth/no-auth.
+- Modo local de debug para entrar sin backend en builds de desarrollo.
 
-### 3.3. Evaluación del día
-- Comparar lo esperado vs lo hecho.
-- Generar recomendaciones inmediatas:
-  - ajustar entrenamiento
-  - cambiar ingesta
-  - mejorar hidratación
-  - optimizar sueño
-- Comunicarlo en lenguaje simple.
+Pendiente:
+- Google Sign-In.
+- Apple Sign-In.
 
-### 3.4. Revisión semanal
-- Mostrar tendencias:
-  - peso y medidas
-  - cumplimiento de entrenamientos
-  - promedio de agua y sueño
-  - balance de macros / comidas
-- Ajustar el plan de la siguiente semana.
+### 2.3. Dashboard y check-in
+Completado:
+- Dashboard principal con tarjetas de resumen, hábitos, métricas y accesos rápidos.
+- Check-in diario con datos de agua, sueño, ánimo, energía, notas y cumplimiento básico.
+- Accesos a chat IA, reportes y escaneo de dispositivos.
 
-## 4. Módulos propuestos
+### 2.4. Salud y métricas
+Completado:
+- Pantalla de métricas de salud con secciones de resumen, composición, cardio y sueño.
+- Registro manual de métricas (vía provider de health metrics).
+- Sincronización de métricas wearable con enfoque en fuentes Huawei/bridge.
 
-### 4.1. Dashboard
-- Resumen diario de cumplimiento.
-- Acceso a check-in rápido.
-- Grafico de progreso semanal.
-- Entrada al asistente IA.
+Parcial:
+- Algunas visualizaciones todavía aplican valores de fallback cuando faltan datos (evitar presentar esos valores como medición real en UI final).
 
-### 4.2. Entrenamiento
-- Registro de sesión rápida:
-  - tipo, duración, intensidad, ejercicios.
-- Objetivos semanales.
-- Historial de sesiones.
+### 2.5. Wearable (Huawei + Health Connect)
+Completado:
+- Escaneo BLE de dispositivos.
+- Provider de métricas wearable con lectura desde Health API.
+- Integración Android por MethodChannel para Huawei Health Kit.
+- Lógica de fallback cuando Huawei Health Kit no está disponible y paso a Health Connect/bridge.
 
-### 4.3. Nutrición
-- Entradas por comida.
-- Cálculo de macros/calorías.
-- Plantillas y comidas frecuentes.
-- Ajustes recomendados por la IA.
+Pendiente crítico externo:
+- Configurar credenciales reales de Huawei Health Kit (HUAWEI_HEALTH_APP_ID) y permisos/scope aprobados en consola Huawei.
+- En iOS, configurar capability/entitlements de HealthKit para sincronización real.
 
-### 4.4. Sueño y recuperación
-- Registro de horas soñadas.
-- Calidad percibida.
-- Consejos de higiene del sueño.
+### 2.6. Nutrición
+Completado:
+- Módulo de nutrición operativo con:
+  - entradas diarias por comida,
+  - objetivos personalizados,
+  - recetas guardadas,
+  - persistencia en Drift.
+- Captura por foto con IA (image_picker + análisis con Kilo Gateway), pasando por editor manual antes de guardar.
 
-### 4.5. Hidratación
-- Tracking de agua fácil.
-- Meta diaria personalizable.
+### 2.7. Entrenamiento y rutinas
+Completado:
+- Pantallas de rutinas, sesión activa y gestión base de ejercicios.
+- Entidades de entrenamiento y registros de sesión.
 
-### 4.6. Peso y medidas
-- Peso corporal.
-- Medidas clave para cambio corporal.
-- Análisis de ganancias de músculo vs pérdida de grasa.
+Parcial:
+- Servicio de historial aún mantiene almacenamiento en memoria para parte del flujo y no persiste todo en Drift/Firestore.
+- Quedan TODOs de UX/acciones en algunas pantallas (iniciar desde template, detalle, reorder, etc.).
 
-### 4.7. Asistente IA
-- Chat conversacional.
-- Revisión del día y la semana.
-- Prompts generados a partir de datos registrados.
-- Ajustes y recomendaciones.
+### 2.8. Hábitos, reportes y ajustes
+Completado:
+- Módulo de hábitos operativo.
+- Pantalla de reportes disponible.
+- Sección de ajustes con opciones de exportación/reset/base legal en UI.
 
-## 5. Arquitectura técnica
+Pendiente:
+- Implementar cierre de sesión desde ajustes.
+- Implementar eliminación de cuenta.
+- Enlazar acciones legales (términos/privacidad) a URLs reales dentro de la app.
 
-### 5.1. Estado global
-- Usar Riverpod para estados de UI y datos.
-- StateNotifier para lógica de negocio.
+### 2.9. Persistencia y datos
+Completado:
+- Base local con Drift y tablas para:
+  - workouts,
+  - workout_sets,
+  - habits,
+  - habit_logs,
+  - health_metrics,
+  - daily_checkins,
+  - nutrition_entries,
+  - nutrition_goals,
+  - nutrition_recipes,
+  - sync_queue.
+- Migración de esquema activa (versionado de DB y upgrade para tablas de nutrición).
 
-### 5.2. Persistencia
-- Guardar datos en base local (Drift / SQLite) para historial.
-- Opcional: sincronización con Firebase.
+### 2.10. Legal y publicación
+Completado:
+- Documentación legal web en docs (privacy policy, terms, index).
+- Estructura lista para servir en GitHub Pages.
 
-### 5.3. Estructura de prompt IA
-- No reenviar todo el historial cada vez.
-- Enviar datos estructurados y resumen relevante.
-- Mantener:
-  - metas del usuario
-  - estado de la semana
-  - resultados de los últimos 3-5 días
-  - entradas del día actual
-  - pregunta o petición específica
+## 3. Arquitectura vigente
+- Framework: Flutter (Material 3).
+- Estado: Riverpod + StateNotifier.
+- Navegación: GoRouter (StatefulShellRoute con tabs).
+- Persistencia local: Drift/SQLite.
+- Backend/servicios: Firebase (core/auth/firestore/messaging/crashlytics/analytics) y API IA (Kilo Gateway).
+- Wearables: Health (Health Connect / Apple Health) + puente Huawei Health Kit por canal nativo Android.
 
-## 6. Prioridades de implementación
+## 4. Deuda técnica priorizada
 
-### Sprint 1: Base y flujo diario
-- Actualizar README y documentación.
-- Crear dashboard base.
-- Implementar check-in diario para entrenamiento, comida, agua y sueño.
-- Guardar datos en DB local.
-- Mostrar resumen simple.
+Prioridad alta:
+1. Activar inyección de dependencias en el arranque y limpiar wiring manual.
+2. Persistir de forma consistente historial de entrenamientos/snapshots en Drift (y opcional sync remoto).
+3. Completar flujo de sesión/cuenta en Ajustes (logout + delete account).
+4. Reducir dependencias de respuestas fallback en IA y métricas para separar claramente dato real vs estimado.
 
-### Sprint 2: IA y ajustes
-- Configurar asistente conversacional.
-- Crear motor de contexto y prompt.
-- Integrar respuestas de la IA con recomendaciones.
-- Añadir revisión diaria.
+Prioridad media:
+1. Implementar Google/Apple Sign-In.
+2. Finalizar acciones pendientes en pantallas de entrenamiento (templates, navegación y reorder).
+3. Mejorar cobertura de tests unitarios/widget para providers críticos (auth, wearable, nutrición, health metrics).
 
-### Sprint 3: Revisión semanal y métricas
-- Añadir medidas corporales.
-- Implementar gráficos de progreso.
-- Construir resumen semanal.
-- Ajustar plan y notificaciones.
+Prioridad baja:
+1. Internacionalización completa (mover constantes hardcodeadas a ARB).
+2. Endurecer estrategia de sincronización offline/online sobre sync_queue.
 
-## 7. Archivo de trabajo
-- `TRAINER_IA_DOCUMENTATION.md`: visión del producto e IA.
-- `PROJECT_PLAN.md`: plan del proyecto y roadmap.
-- `agent.md` / `copilot-instructions.md`: configuración de agente.
+## 5. Roadmap propuesto (alineado al estado actual)
 
-## 8. Tareas iniciales inmediatas
-1. Actualizar `README.md` con visión del producto.
-2. Definir los modelos de datos principales:
-   - Entrenamiento
-   - Comida
-   - Sueño
-   - Agua
-   - Peso/medidas
-3. Crear pantallas básicas de check-in y resumen.
-4. Establecer el prompt builder para IA.
+### Fase A - Cerrar funcionalidad core (1-2 semanas)
+- Implementar logout y eliminación de cuenta.
+- Conectar términos y privacidad desde Ajustes.
+- Activar DI en main y resolver dependencias de servicios.
+- Completar persistencia faltante de historial de entreno.
+
+### Fase B - Robustez de datos y wearable (2-3 semanas)
+- Diferenciar explícitamente en UI datos medidos, agregados y fallback.
+- Cerrar integración Huawei Health Kit productiva (app id real, scopes, prueba en dispositivo).
+- Preparar HealthKit capability en iOS.
+- Añadir telemetría de errores de sync wearable y trazabilidad por fuente.
+
+### Fase C - Calidad y release readiness (2 semanas)
+- Cobertura de pruebas en módulos críticos.
+- QA end-to-end de flujo auth -> dashboard -> check-in -> nutrición -> IA -> reportes.
+- Revisión de performance en pantallas más pesadas (salud y nutrición).
+- Checklist de release Android/iOS y smoke tests finales.
+
+## 6. Próximos pasos inmediatos
+1. Resolver TODOs de Ajustes: logout, eliminación de cuenta y enlaces legales.
+2. Integrar persistencia real en WorkoutHistoryService (Drift) y adaptar consumidores.
+3. Inicializar DI en main y validar arranque completo.
+4. Definir en dashboard/salud una convención visual única para datos sin muestra (sin convertirlos a cero ficticio).
+5. Correr batería de validación mínima:
+   - flutter analyze
+   - pruebas de flujo auth
+   - prueba de sync wearable en Android (Huawei/bridge)
+
+## 7. Documentos de referencia del repo
+- TRAINER_IA_DOCUMENTATION.md: visión funcional del producto e IA.
+- APP_FLOW.md: flujo real de navegación y rutas.
+- README.md: resumen general del repositorio.
+- docs/privacy-policy.html y docs/terms-of-use.html: base legal pública.
 
 ---
 
-**Siguiente paso:** comenzar por crear la base de datos y las entidades del flujo diario, y luego construir el dashboard inicial con cards de estado y botones de check-in.
+Este plan reemplaza el enfoque de "módulos propuestos" por un estado de ejecución real y una hoja de ruta orientada a cierre de producto.
